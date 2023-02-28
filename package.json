@@ -1,0 +1,35 @@
+{
+  "name": "my-turborepo",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "services/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{js,ts,tsx,md}\"",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "dotenv-cli": "7.0.0",
+    "esbuild": "0.17.5"
+  },
+  "devDependencies": {
+    "eslint": "8.33.0",
+    "eslint-config-turbo": "0.0.7",
+    "eslint-plugin-import": "2.27.5",
+    "husky": "8.0.3",
+    "prettier": "2.8.3",
+    "rimraf": "4.1.2",
+    "shx": "0.3.4",
+    "turbo": "1.7.3"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "packageManager": "pnpm@7.5.0"
+}

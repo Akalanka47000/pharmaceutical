@@ -7,6 +7,7 @@ import clusterize from '@sliit-foss/clusterizer';
 import { moduleLogger } from '@sliit-foss/module-logger';
 import { correlationId } from "./utils";
 import { errorHandler, responseInterceptor } from './middleware';
+import { connectDatabase } from './database/mongo';
 import config from './config';
 import routes from './routes';
 
@@ -28,6 +29,8 @@ clusterize(
       context.set('correlationId', req.headers[correlationId] ?? crypto.randomBytes(16).toString("hex"));
       next();
     });
+
+    connectDatabase()
 
     app.use(`/api`, routes);
 

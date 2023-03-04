@@ -5,15 +5,13 @@ class Base {
     return {
       HOST: Joi.string().optional(),
       PORT: Joi.number().optional(),
-      REDIS_CONNECTION_STRING: Joi.string().optional(),
-      DB_URL: Joi.string().optional(),
+      DB_URL: Joi.string().required(),
     };
   }
   static get values() {
     return {
       HOST: process.env.HOST ?? 'localhost',
       PORT: process.env.PORT ?? 2000,
-      REDIS_CONNECTION_STRING: process.env.REDIS_CONNECTION_STRING,
       DB_URL: process.env.DB_URL,
     };
   }

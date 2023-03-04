@@ -24,16 +24,7 @@
       "always"
     ],
     "arrow-spacing": "error",
-    "camelcase": [
-      "error"
-    ],
     "default-case": "error",
-    "newline-per-chained-call": [
-      "error",
-      {
-        "ignoreChainWithDepth": 2
-      }
-    ],
     "no-confusing-arrow": "error",
     "no-console": "warn",
     "no-duplicate-imports": [
@@ -80,6 +71,7 @@
       }
     ],
     "import/order": 2,
-    "import/first": 2
+    "import/first": 2,
+    "turbo/no-undeclared-env-vars": "off",
   }
 }

@@ -3,13 +3,13 @@ import { moduleLogger } from "@sliit-foss/module-logger";
 
 const logger = moduleLogger("Error-handler");
 
-export const errorHandler = (err, _req, res, _next) => {
+export const errorHandler = (err, _req, res) => {
     if (!res.errorLogged) {
         logger.error(err.message, err);
         res.errorLogged = true;
     }
     if (isCelebrateError(err)) {
-        for (const [_key, value] of err.details.entries()) {
+        for (const [, value] of err.details.entries()) {
             return res.status(422).json({ message: value.details[0].message });
         }
     }

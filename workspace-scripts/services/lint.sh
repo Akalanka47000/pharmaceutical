@@ -1,1 +1,1 @@
-eslint --ignore-path .gitignore .
+eslint --ignore-path ../../.gitignore .

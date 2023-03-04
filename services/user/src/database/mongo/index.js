@@ -4,7 +4,7 @@ import config from "../../config";
 
 const logger = moduleLogger("DB-Connector");
 
-export const connectDatabase = async () => {
+export const connectDatabase = () => {
     try {
         mongoose.connect(config.DB_URL, {
             keepAlive: true,

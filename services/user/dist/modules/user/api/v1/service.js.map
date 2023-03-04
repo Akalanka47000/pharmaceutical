@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../../src/modules/user/api/v1/service.js"],
+  "sourcesContent": ["export async function serviceLogin({ email, password }) {\r\n    // ...\r\n}"],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,eAAsB,aAAa,EAAE,OAAO,SAAS,GAAG;AAExD;AAFsB;",
+  "names": []
+}

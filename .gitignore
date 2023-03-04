@@ -31,3 +31,9 @@ yarn-error.log*
 
 # turbo
 .turbo
+
+frontend/.env
+packages/**/.env
+services/**/.env
+
+!workspace-scripts/services/build

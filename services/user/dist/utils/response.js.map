@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/utils/response.js"],
+  "sourcesContent": ["import { responseInterceptor } from \"../middleware\"\r\n\r\nexport const toSuccess = ({ res, status = 200, data, message }) => {\r\n    responseInterceptor({}, res, () => { })\r\n    if (res.polyglot) message = res.polyglot.t(message)\r\n    const responseData = { data, message }\r\n    if (!data) delete responseData.data\r\n    res.status(status).json(responseData)\r\n}\r\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,wBAAoC;AAE7B,MAAM,YAAY,wBAAC,EAAE,KAAK,SAAS,KAAK,MAAM,QAAQ,MAAM;AAC/D,6CAAoB,CAAC,GAAG,KAAK,MAAM;AAAA,EAAE,CAAC;AACtC,MAAI,IAAI;AAAU,cAAU,IAAI,SAAS,EAAE,OAAO;AAClD,QAAM,eAAe,EAAE,MAAM,QAAQ;AACrC,MAAI,CAAC;AAAM,WAAO,aAAa;AAC/B,MAAI,OAAO,MAAM,EAAE,KAAK,YAAY;AACxC,GANyB;",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../../src/modules/user/api/v1/controller.js"],
+  "sourcesContent": ["import express from 'express';\r\nimport { tracedAsyncHandler } from '@sliit-foss/functions';\r\nimport { toSuccess } from '../../../../utils';\r\nimport { serviceLogin } from './service';\r\n\r\nconst system = express.Router();\r\n\r\nsystem.get('/login', tracedAsyncHandler(async function controllerLogin(req, res) {\r\n    const { email, password } = req.body\r\n    const data = await serviceLogin({ email, password })\r\n    return toSuccess({ res, data, message: 'Authentication successfull!' })\r\n}));\r\n\r\nexport default system;"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,qBAAoB;AACpB,uBAAmC;AACnC,mBAA0B;AAC1B,qBAA6B;AAE7B,MAAM,SAAS,eAAAA,QAAQ,OAAO;AAE9B,OAAO,IAAI,cAAU,qCAAmB,sCAAe,gBAAgB,KAAK,KAAK;AAC7E,QAAM,EAAE,OAAO,SAAS,IAAI,IAAI;AAChC,QAAM,OAAO,UAAM,6BAAa,EAAE,OAAO,SAAS,CAAC;AACnD,aAAO,wBAAU,EAAE,KAAK,MAAM,SAAS,8BAA8B,CAAC;AAC1E,GAJwC,kBAIvC,CAAC;AAEF,IAAO,qBAAQ;",
+  "names": ["express"]
+}

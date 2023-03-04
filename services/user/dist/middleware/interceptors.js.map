@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/middleware/interceptors.js"],
+  "sourcesContent": ["import os from 'os';\r\nimport context from 'express-http-context';\r\nimport { correlationId, hostName } from \"../utils/constants\";\r\n\r\nexport const responseInterceptor = (_req, res, next) => {\r\n    if (res.headersSent) return;\r\n    res.set(hostName, os.hostname());\r\n    res.set(correlationId, context.get('correlationId'));\r\n    next();\r\n}"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,gBAAe;AACf,kCAAoB;AACpB,uBAAwC;AAEjC,MAAM,sBAAsB,wBAAC,MAAM,KAAK,SAAS;AACpD,MAAI,IAAI;AAAa;AACrB,MAAI,IAAI,2BAAU,UAAAA,QAAG,SAAS,CAAC;AAC/B,MAAI,IAAI,gCAAe,4BAAAC,QAAQ,IAAI,eAAe,CAAC;AACnD,OAAK;AACT,GALmC;",
+  "names": ["os", "context"]
+}

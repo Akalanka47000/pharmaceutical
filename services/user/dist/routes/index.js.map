@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/routes/index.js"],
+  "sourcesContent": ["import fs from 'fs';\r\nimport express from 'express';\r\n\r\nconst router = express.Router();\r\n\r\n// Register all modules\r\n\r\nfs.readdirSync(`${__dirname}/../modules`)?.forEach((module) => {\r\n    fs.readdirSync(`${__dirname}/../modules/${module}/api`)?.forEach((v) => {\r\n        router.use(`/${v}/${module}`, require(`../modules/${module}/api/${v}/controller`).default)\r\n    });\r\n});\r\n\r\nexport default router;"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,gBAAe;AACf,qBAAoB;AADpB;AAGA,MAAM,SAAS,eAAAA,QAAQ,OAAO;AAAA,CAI9B,eAAAC,QAAG,YAAY,GAAG,sBAAsB,MAAxC,mBAA2C,QAAQ,CAACC,YAAW;AAP/D,MAAAC;AAQI,GAAAA,MAAA,UAAAF,QAAG,YAAY,GAAG,wBAAwBC,aAAY,MAAtD,gBAAAC,IAAyD,QAAQ,CAAC,MAAM;AACpE,WAAO,IAAI,IAAI,KAAKD,WAAU,QAAQ,cAAcA,eAAc,cAAc,EAAE,OAAO;AAAA,EAC7F;AACJ;AAEA,IAAO,iBAAQ;",
+  "names": ["express", "fs", "module", "_a"]
+}

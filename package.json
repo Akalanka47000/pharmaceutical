@@ -16,12 +16,16 @@
   },
   "dependencies": {
     "dotenv-cli": "7.0.0",
-    "esbuild": "0.17.5"
+    "esbuild": "0.17.5",
+    "esbuild-plugin-glob": "2.2.1"
   },
   "devDependencies": {
+    "cross-env": "5.1.4",
     "eslint": "8.33.0",
+    "eslint-config-prettier": "2.9.0",
     "eslint-config-turbo": "0.0.7",
-    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-import": "2.8.0",
+    "eslint-plugin-prettier": "2.6.0",
     "husky": "8.0.3",
     "prettier": "2.8.3",
     "rimraf": "4.1.2",

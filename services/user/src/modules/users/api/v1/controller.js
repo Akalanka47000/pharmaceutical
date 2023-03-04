@@ -31,7 +31,7 @@ user.patch('/:id',
     }));
 
 user.patch('/', filterQuery, celebrate({ [Segments.BODY]: updateUserSchema }), tracedAsyncHandler(async function controllerUpdateMultipleUsers(req, res) {
-    const data = await traced(serviceUpdateMultipleUsers)(req.body.filters, req.body.data);
+    const data = await traced(serviceUpdateMultipleUsers)(req.query.filter, req.body);
     return toSuccess({ res, data, message: 'Users updated successfully!' })
 }));
 

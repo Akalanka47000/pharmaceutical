@@ -1,11 +1,11 @@
 import crypto from 'crypto';
-import bcrypt from 'bcryptjs';
 import { traced } from '@sliit-foss/functions';
 import { createUserInDB, getAllUsers, getUserById, updateUserById, updateMultipleUsers, deleteUserById } from '../../repository';
+import { hashPasswordIfProvided } from './helpers';
 
 export const serviceCreateUser = async (user) => {
     if (!user.password) user.password = crypto.randomBytes(20).toString('hex');
-    if (!user.password.match(/^\$2[ayb]\$.{56}$/)) user.password = await bcrypt.hash(user.password, 10); // If password is not already hashed, hash it
+    await hashPasswordIfProvided(user)
     return traced(createUserInDB)(user)
 }
 
@@ -13,18 +13,20 @@ export const serviceGetUsers = async (filters, sorts, page, limit) => {
     return traced(getAllUsers)({ filters, sorts, page, limit });
 }
 
-export function serviceGetUserById(id) {
+export const serviceGetUserById = (id) => {
     return traced(getUserById)(id);
 }
 
-export function serviceUpdateUserById(id, data) {
+export const serviceUpdateUserById = async (id, data) => {
+    await hashPasswordIfProvided(data)
     return traced(updateUserById)(id, data);
 }
 
-export function serviceUpdateMultipleUsers(filters, data) {
+export const serviceUpdateMultipleUsers = async (filters, data) => {
+    await hashPasswordIfProvided(data)
     return traced(updateMultipleUsers)(filters, data);
 }
 
-export function serviceDeleteUserById(id) {
+export const serviceDeleteUserById = (id) => {
     return traced(deleteUserById)(id);
 }

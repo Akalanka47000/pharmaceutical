@@ -1,5 +1,5 @@
 {
-  "name": "user-service",
+  "name": "auth-service",
   "version": "1.0.0",
   "author": "FOSS",
   "engines": {
@@ -18,7 +18,7 @@
     "@sliit-foss/clusterizer": "1.1.1",
     "@sliit-foss/functions": "2.0.1",
     "@sliit-foss/module-logger": "1.1.2",
-    "@sliit-foss/mongoose-filter-query": "1.1.1",
+    "@sliit-foss/service-connector": "1.1.1",
     "bcryptjs": "2.4.3",
     "celebrate": "15.0.1",
     "compression": "1.7.2",
@@ -26,11 +26,8 @@
     "express-http-context": "1.2.4",
     "helmet": "3.12.0",
     "http-errors": "2.0.0",
-    "lodash": "4.17.10",
-    "migrate-mongo": "9.0.0",
-    "mongoose": "^6.3.4",
-    "mongoose-lean-defaults": "2.2.1",
-    "mongoose-paginate-v2": "1.6.3"
+    "jsonwebtoken": "9.0.0",
+    "lodash": "4.17.10"
   },
   "devDependencies": {
     "@babel/cli": "7.17.10",

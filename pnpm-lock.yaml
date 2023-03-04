@@ -48,7 +48,7 @@ importers:
       framer-motion: 7.3.4
       lodash: 4.17.21
       moment: 2.29.4
-      postcss: 8.4.14
+      postcss: 8.4.21
       react: 18.0.0
       react-dom: 18.0.0
       react-icons: 4.8.0
@@ -79,10 +79,51 @@ importers:
       '@types/react': 18.0.0
       '@types/react-dom': 18.0.0
       '@vitejs/plugin-react': 1.3.0
-      autoprefixer: 10.4.7_postcss@8.4.14
-      postcss: 8.4.14
+      autoprefixer: 10.4.7_postcss@8.4.21
+      postcss: 8.4.21
       tailwindcss: 3.1.5
       vite: 2.9.9
+
+  services/auth:
+    specifiers:
+      '@babel/cli': 7.17.10
+      '@babel/core': 7.17.12
+      '@babel/node': 7.20.7
+      '@babel/preset-env': 7.17.12
+      '@sliit-foss/clusterizer': 1.1.1
+      '@sliit-foss/functions': 2.0.1
+      '@sliit-foss/module-logger': 1.1.2
+      '@sliit-foss/mongoose-filter-query': 1.1.1
+      '@sliit-foss/service-connector': 1.1.1
+      bcryptjs: 2.4.3
+      celebrate: 15.0.1
+      compression: 1.7.2
+      express: 4.16.3
+      express-http-context: 1.2.4
+      helmet: 3.12.0
+      http-errors: 2.0.0
+      lodash: 4.17.10
+      nodemon: 1.12.1
+    dependencies:
+      '@sliit-foss/clusterizer': 1.1.1
+      '@sliit-foss/functions': 2.0.1
+      '@sliit-foss/module-logger': 1.1.2
+      '@sliit-foss/mongoose-filter-query': 1.1.1
+      '@sliit-foss/service-connector': 1.1.1
+      bcryptjs: 2.4.3
+      celebrate: 15.0.1
+      compression: 1.7.2
+      express: 4.16.3
+      express-http-context: 1.2.4
+      helmet: 3.12.0
+      http-errors: 2.0.0
+      lodash: 4.17.10
+    devDependencies:
+      '@babel/cli': 7.17.10_@babel+core@7.17.12
+      '@babel/core': 7.17.12
+      '@babel/node': 7.20.7_@babel+core@7.17.12
+      '@babel/preset-env': 7.17.12_@babel+core@7.17.12
+      nodemon: 1.12.1
 
   services/user:
     specifiers:
@@ -94,7 +135,6 @@ importers:
       '@sliit-foss/functions': 2.0.1
       '@sliit-foss/module-logger': 1.1.2
       '@sliit-foss/mongoose-filter-query': 1.1.1
-      axios: 0.27.2
       bcryptjs: 2.4.3
       celebrate: 15.0.1
       compression: 1.7.2
@@ -113,7 +153,6 @@ importers:
       '@sliit-foss/functions': 2.0.1
       '@sliit-foss/module-logger': 1.1.2
       '@sliit-foss/mongoose-filter-query': 1.1.1
-      axios: 0.27.2
       bcryptjs: 2.4.3
       celebrate: 15.0.1
       compression: 1.7.2
@@ -2781,6 +2820,17 @@ packages:
     resolution: {integrity: sha512-VOhUApMiKCrxEeVme8gVlgci3BG8L0AxNN/FSrunUuPUx/lqDM3RGn/b0PlLm7d2remiHB6m89fDCTNDHvopKQ==}
     dev: false
 
+  /@sliit-foss/service-connector/1.1.1:
+    resolution: {integrity: sha512-RYDb9HbdpOFJrnDM5dJsbePELeX/e/20ImhB4g3G+xLflsbH8G+H9tYGfDzIro21c5EpYwGMG7/gYA8p8TtZWg==}
+    dependencies:
+      '@sliit-foss/module-logger': 1.1.2
+      axios: 1.3.2
+      express-http-context: 1.2.4
+      http-errors: 2.0.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
   /@tsconfig/node10/1.0.9:
     resolution: {integrity: sha512-jNsYVVxU8v5g43Erja32laIDHXeoNvFEpX33OK4d6hljo3jDhCBDhx5dhCCTMWUojscpAagGiRkBKxpdl9fxqA==}
     dev: false
@@ -3180,7 +3230,7 @@ packages:
     hasBin: true
     dev: true
 
-  /autoprefixer/10.4.7_postcss@8.4.14:
+  /autoprefixer/10.4.7_postcss@8.4.21:
     resolution: {integrity: sha512-ypHju4Y2Oav95SipEcCcI5J7CGPuvz8oat7sUtYj3ClK44bldfvtvcxK6IEK++7rqB7YchDGzweZIBG+SD0ZAA==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
@@ -3192,7 +3242,7 @@ packages:
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
-      postcss: 8.4.14
+      postcss: 8.4.21
       postcss-value-parser: 4.2.0
     dev: true
 
@@ -3206,6 +3256,16 @@ packages:
     dependencies:
       follow-redirects: 1.15.2
       form-data: 4.0.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /axios/1.3.2:
+    resolution: {integrity: sha512-1M3O703bYqYuPhbHeya5bnhpYVsDDRyQSabNja04mZtboLNSuZ4YrltestrLXfHgmzua4TpUqRiVKbiQuo2epw==}
+    dependencies:
+      follow-redirects: 1.15.2
+      form-data: 4.0.0
+      proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
     dev: false
@@ -3485,7 +3545,7 @@ packages:
     dependencies:
       escape-html: 1.0.3
       joi: 17.8.3
-      lodash: 4.17.10
+      lodash: 4.17.21
     dev: false
 
   /chalk/2.4.2:
@@ -7049,27 +7109,27 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /postcss-import/14.1.0_postcss@8.4.14:
+  /postcss-import/14.1.0_postcss@8.4.21:
     resolution: {integrity: sha512-flwI+Vgm4SElObFVPpTIT7SU7R3qk2L7PyduMcokiaVKuWv9d/U+Gm/QAd8NDLuykTWTkcrjOeD2Pp1rMeBTGw==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       postcss: ^8.0.0
     dependencies:
-      postcss: 8.4.14
+      postcss: 8.4.21
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.1
 
-  /postcss-js/4.0.1_postcss@8.4.14:
+  /postcss-js/4.0.1_postcss@8.4.21:
     resolution: {integrity: sha512-dDLF8pEO191hJMtlHFPRa8xsizHaM82MLfNkUHdUtVEV3tgTp5oj+8qbEqYM57SLfc74KSbw//4SeJma2LRVIw==}
     engines: {node: ^12 || ^14 || >= 16}
     peerDependencies:
       postcss: ^8.4.21
     dependencies:
       camelcase-css: 2.0.1
-      postcss: 8.4.14
+      postcss: 8.4.21
 
-  /postcss-load-config/4.0.1_postcss@8.4.14:
+  /postcss-load-config/4.0.1_postcss@8.4.21:
     resolution: {integrity: sha512-vEJIc8RdiBRu3oRAI0ymerOn+7rPuMvRXslTvZUKZonDHFIczxztIyJ1urxM1x9JXEikvpWWTUUqal5j/8QgvA==}
     engines: {node: '>= 14'}
     peerDependencies:
@@ -7082,16 +7142,16 @@ packages:
         optional: true
     dependencies:
       lilconfig: 2.1.0
-      postcss: 8.4.14
+      postcss: 8.4.21
       yaml: 2.2.1
 
-  /postcss-nested/5.0.6_postcss@8.4.14:
+  /postcss-nested/5.0.6_postcss@8.4.21:
     resolution: {integrity: sha512-rKqm2Fk0KbA8Vt3AdGN0FB9OBOMDVajMG6ZCf/GoHgdxUJ4sBFp0A/uMIRm+MJUdo33YXEtjqIz8u7DAp8B7DA==}
     engines: {node: '>=12.0'}
     peerDependencies:
       postcss: ^8.2.14
     dependencies:
-      postcss: 8.4.14
+      postcss: 8.4.21
       postcss-selector-parser: 6.0.11
 
   /postcss-selector-parser/6.0.11:
@@ -7104,8 +7164,8 @@ packages:
   /postcss-value-parser/4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
 
-  /postcss/8.4.14:
-    resolution: {integrity: sha512-E398TUmfAYFPBSdzgeieK2Y1+1cpdxJx8yXbK/m57nRhKSmk1GB2tO4lbLBtlkfPQTDKfe4Xqv1ASWPpayPEig==}
+  /postcss/8.4.21:
+    resolution: {integrity: sha512-tP7u/Sn/dVxK2NnruI4H9BG+x+Wxz6oeZ1cJ8P6G/PZY0IKk4k/63TDsQf2kQq3+qoJeLm2kIBUNlZe3zgb4Zg==}
     engines: {node: ^10 || ^12 || >=14}
     dependencies:
       nanoid: 3.3.4
@@ -7143,6 +7203,10 @@ packages:
     dependencies:
       forwarded: 0.2.0
       ipaddr.js: 1.9.1
+    dev: false
+
+  /proxy-from-env/1.1.0:
+    resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
     dev: false
 
   /ps-tree/1.2.0:
@@ -8098,11 +8162,11 @@ packages:
       normalize-path: 3.0.0
       object-hash: 3.0.0
       picocolors: 1.0.0
-      postcss: 8.4.14
-      postcss-import: 14.1.0_postcss@8.4.14
-      postcss-js: 4.0.1_postcss@8.4.14
-      postcss-load-config: 4.0.1_postcss@8.4.14
-      postcss-nested: 5.0.6_postcss@8.4.14
+      postcss: 8.4.21
+      postcss-import: 14.1.0_postcss@8.4.21
+      postcss-js: 4.0.1_postcss@8.4.21
+      postcss-load-config: 4.0.1_postcss@8.4.21
+      postcss-nested: 5.0.6_postcss@8.4.21
       postcss-selector-parser: 6.0.11
       postcss-value-parser: 4.2.0
       quick-lru: 5.1.1
@@ -8545,7 +8609,7 @@ packages:
         optional: true
     dependencies:
       esbuild: 0.14.54
-      postcss: 8.4.14
+      postcss: 8.4.21
       resolve: 1.22.1
       rollup: 2.79.1
     optionalDependencies:

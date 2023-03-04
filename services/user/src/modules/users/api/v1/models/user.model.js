@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2'
 import { roles } from '../../../constants';
 
 const { Schema } = mongoose;
@@ -37,6 +38,8 @@ const UserSchema = new Schema(
 );
 
 UserSchema.index({ createdAt: 1 });
+
+UserSchema.plugin(mongoosePaginate);
 
 const User = mongoose.model('User', UserSchema);
 

@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../src/middleware/errors.js"],
-  "sourcesContent": ["import { isCelebrateError } from \"celebrate\";\r\nimport { moduleLogger } from \"@sliit-foss/module-logger\";\r\n\r\nconst logger = moduleLogger(\"Error-handler\");\r\n\r\nexport const errorHandler = (err, _req, res, _next) => {\r\n    if (!res.errorLogged) {\r\n        logger.error(err.message, err);\r\n        res.errorLogged = true;\r\n    }\r\n    if (isCelebrateError(err)) {\r\n        for (const [_key, value] of err.details.entries()) {\r\n            return res.status(422).json({ message: value.details[0].message });\r\n        }\r\n    }\r\n    let message = err.message;\r\n    if (res.polyglot) message = res.polyglot.t(message)\r\n    return res.status(err.status ?? 500).json({\r\n        message,\r\n    });\r\n}"],
-  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,uBAAiC;AACjC,2BAA6B;AAE7B,MAAM,aAAS,mCAAa,eAAe;AAEpC,MAAM,eAAe,wBAAC,KAAK,MAAM,KAAK,UAAU;AACnD,MAAI,CAAC,IAAI,aAAa;AAClB,WAAO,MAAM,IAAI,SAAS,GAAG;AAC7B,QAAI,cAAc;AAAA,EACtB;AACA,UAAI,mCAAiB,GAAG,GAAG;AACvB,eAAW,CAAC,MAAM,KAAK,KAAK,IAAI,QAAQ,QAAQ,GAAG;AAC/C,aAAO,IAAI,OAAO,GAAG,EAAE,KAAK,EAAE,SAAS,MAAM,QAAQ,CAAC,EAAE,QAAQ,CAAC;AAAA,IACrE;AAAA,EACJ;AACA,MAAI,UAAU,IAAI;AAClB,MAAI,IAAI;AAAU,cAAU,IAAI,SAAS,EAAE,OAAO;AAClD,SAAO,IAAI,OAAO,IAAI,UAAU,GAAG,EAAE,KAAK;AAAA,IACtC;AAAA,EACJ,CAAC;AACL,GAf4B;",
-  "names": []
-}

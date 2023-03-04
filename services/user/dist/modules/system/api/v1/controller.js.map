@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../../src/modules/system/api/v1/controller.js"],
-  "sourcesContent": ["import express from 'express';\r\nimport { tracedAsyncHandler } from '@sliit-foss/functions';\r\nimport { toSuccess } from '../../../../utils';\r\n\r\nconst system = express.Router();\r\n\r\nsystem.get('/health', tracedAsyncHandler(function healthCheck(_req, res) {\r\n  return toSuccess({ res, message: 'Server up and running!' })\r\n}));\r\n\r\nexport default system;"],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,qBAAoB;AACpB,uBAAmC;AACnC,mBAA0B;AAE1B,MAAM,SAAS,eAAAA,QAAQ,OAAO;AAE9B,OAAO,IAAI,eAAW,qCAAmB,gCAAS,YAAY,MAAM,KAAK;AACvE,aAAO,wBAAU,EAAE,KAAK,SAAS,yBAAyB,CAAC;AAC7D,GAFyC,cAExC,CAAC;AAEF,IAAO,qBAAQ;",
-  "names": ["express"]
-}

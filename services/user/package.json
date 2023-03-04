@@ -12,8 +12,7 @@
     "start": "sh ../../workspace-scripts/services/start.sh",
     "build": "node ../../workspace-scripts/services/build/esbuild.js",
     "build:docker": "docker build -f ../../workspace-scripts/services/build/docker",
-    "lint": "sh ../../workspace-scripts/services/lint.sh",
-    "migrate": "npx migrate-mongo -f ../../workspace-scripts/services/db-migrate.js"
+    "lint": "sh ../../workspace-scripts/services/lint.sh"
   },
   "dependencies": {
     "@sliit-foss/clusterizer": "1.1.1",

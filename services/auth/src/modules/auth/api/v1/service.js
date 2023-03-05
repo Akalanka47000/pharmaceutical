@@ -1,32 +1,41 @@
-import crypto from 'crypto';
+import bcrypt from 'bcryptjs';
+import createError from "http-errors";
 import { traced } from '@sliit-foss/functions';
-import { createUserInDB, getAllUsers, getUserById, updateUserById, updateMultipleUsers, deleteUserById } from '../../repository';
-import { hashPasswordIfProvided } from './helpers';
+import { getUserByEmail, getUserById } from '../../../../services'
+import { errors, verify, generateTokens } from '../../../../utils';
 
-export const serviceCreateUser = async (user) => {
-    if (!user.password) user.password = crypto.randomBytes(20).toString('hex');
-    await hashPasswordIfProvided(user)
-    return traced(createUserInDB)(user)
+export const serviceLogin = async ({email, password}) => {
+    const user = await getUserByEmail(email);
+    if (!user) {
+        throw errors.invalid_email;
+    }
+    if (!user.is_active) {
+        throw errors.user_deactivated;
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+        throw errors.invalid_password;
+    }
+    return traced(generateTokens)(user);
 }
 
-export const serviceGetUsers = async (filters, sorts, page, limit) => {
-    return traced(getAllUsers)({ filters, sorts, page, limit });
+export const serviceRegister = async ({ name, email, password }) => {
+    const user = await getUserByEmail(email);
+    if (!user) {
+        throw createError(400, "User already exists")
+    }
+    return createUser({ name, email, password });
 }
 
-export const serviceGetUserById = (id) => {
-    return traced(getUserById)(id);
-}
-
-export const serviceUpdateUserById = async (id, data) => {
-    await hashPasswordIfProvided(data)
-    return traced(updateUserById)(id, data);
-}
-
-export const serviceUpdateMultipleUsers = async (filters, data) => {
-    await hashPasswordIfProvided(data)
-    return traced(updateMultipleUsers)(filters, data);
-}
-
-export const serviceDeleteUserById = (id) => {
-    return traced(deleteUserById)(id);
+export const serviceRefreshToken = (token) => {
+    const decodedRefreshToken = verify(token);
+    const decodedUser = verify(decodedRefreshToken.access_token, true);
+    const user = await getUserById(decodedUser._id);
+    if (!user) {
+        throw errors.invalid_token;
+    }
+    if (!user.is_active) {
+        throw errors.user_deactivated;
+    }
+    return traced(generateTokens)(user);
 }

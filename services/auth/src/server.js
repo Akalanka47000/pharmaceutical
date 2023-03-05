@@ -6,7 +6,7 @@ import context from 'express-http-context';
 import clusterize from '@sliit-foss/clusterizer';
 import { moduleLogger } from '@sliit-foss/module-logger';
 import { correlationId } from "./utils";
-import { errorHandler, responseInterceptor } from './middleware';
+import { authorizer, errorHandler, responseInterceptor } from './middleware';
 import config from './config';
 import routes from './routes';
 
@@ -29,7 +29,7 @@ clusterize(
       next();
     });
 
-    app.use(`/api`, routes);
+    app.use(`/api`, authorizer, routes);
 
     app.use(responseInterceptor);
 

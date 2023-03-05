@@ -9,6 +9,6 @@ export const errors = {
     invalid_password: createError(401, 'Invalid password'),
     invalid_email: createError(401, 'Invalid email'),
     token_expired: createError(401, 'Token has expired'),
-    user_deactivated: createError(401, 'User has been deactivated'),
+    user_deactivated: createError(401, 'User has been deactivated')
   };
   

@@ -9,6 +9,7 @@ class Base {
       ACCESS_TOKEN_EXPIRY: Joi.string().optional(),
       REFRESH_TOKEN_EXPIRY: Joi.string().optional(),
       USER_SERVICE_BASE_URL: Joi.string().required(),
+      REDIS_CONNECTION_STRING: Joi.string().required()
     };
   }
   static get values() {
@@ -19,6 +20,7 @@ class Base {
       ACCESS_TOKEN_EXPIRY: process.env.ACCESS_TOKEN_EXPIRY ?? '1h',
       REFRESH_TOKEN_EXPIRY: process.env.REFRESH_TOKEN_EXPIRY ?? '1d',
       USER_SERVICE_BASE_URL: process.env.USER_SERVICE_BASE_URL,
+      REDIS_CONNECTION_STRING: process.env.REDIS_CONNECTION_STRING
     };
   }
 }

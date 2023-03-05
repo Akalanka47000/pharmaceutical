@@ -1,8 +1,8 @@
 import express from 'express';
 import { celebrate, Segments } from 'celebrate'
 import { tracedAsyncHandler, traced } from '@sliit-foss/functions';
-import { toSuccess } from '../../../../utils';
-import { serviceLogin, serviceRegister, serviceRefreshToken, serviceLogout } from './service';
+import { toSuccess, blacklist } from '../../../../utils';
+import { serviceLogin, serviceRegister, serviceRefreshToken } from './service';
 import { loginSchema, registerSchema, refreshTokenSchema } from './schema';
 
 const auth = express.Router();
@@ -27,7 +27,7 @@ auth.get('/current', tracedAsyncHandler(async function controllerGetAuthUser(req
 }));
 
 auth.post('/logout', tracedAsyncHandler(async function controllerLogout(req, res) {
-    await traced(serviceLogout)(req.user);
+    await traced(blacklist.add.bind(this, token))(req.token);
     return toSuccess({ res, message: 'Logout successfull!' })
 }));
 

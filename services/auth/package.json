@@ -27,6 +27,7 @@
     "helmet": "3.12.0",
     "http-errors": "2.0.0",
     "jsonwebtoken": "9.0.0",
+    "jwt-blacklist": "0.1.2",
     "lodash": "4.17.10"
   },
   "devDependencies": {

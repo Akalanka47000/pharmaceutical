@@ -1,6 +1,6 @@
 import { tracedAsyncHandler } from '@sliit-foss/functions';
 import { getUserByid } from '../services';
-import { verify, errors } from '../utils';
+import { blacklist, verify, errors } from '../utils';
 
 export const whitelistedRoutes = ['/v1/auth', '/v1/auth/refresh', '/system/health'];
 
@@ -17,8 +17,12 @@ export const authorizer = tracedAsyncHandler(function authorizer(req, res) {
     if (!user) {
         throw errors.invalid_token;
     }
+    if (await blacklist.has(token)) {
+        throw errors.cancelled_token;
+    }
     if (!user.is_active) {
         throw errors.user_deactivated;
     }
     req.user = user;
+    req.token = token;
 })

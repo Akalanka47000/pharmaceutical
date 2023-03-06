@@ -15,7 +15,7 @@ class Base {
   static get values() {
     return {
       HOST: process.env.HOST ?? 'localhost',
-      PORT: process.env.PORT ?? 2000,
+      PORT: process.env.PORT ?? 2003,
       MAIL_HOST: process.env.MAIL_HOST,
       MAIL_USER: process.env.MAIL_USER,
       MAIL_PASSWORD: process.env.MAIL_PASSWORD

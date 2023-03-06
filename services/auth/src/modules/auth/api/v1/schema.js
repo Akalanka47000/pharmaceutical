@@ -17,6 +17,7 @@ export const registerSchema = Joi.object({
         return err
       })
     ),
+  address: Joi.string().optional(),
 });
 
 export const refreshTokenSchema = Joi.object({

@@ -21,12 +21,12 @@ export const serviceLogin = async ({ email, password }) => {
     return traced(generateTokens)(user);
 }
 
-export const serviceRegister = async ({ name, email, password }) => {
+export const serviceRegister = async ({ name, email, password, address }) => {
     const user = await getUserByEmail(email);
     if (user) {
         throw createError(400, "User already exists")
     }
-    return createUser({ name, email, password });
+    return createUser({ name, email, password, address });
 }
 
 export const serviceRefreshToken = async (token) => {

@@ -3,13 +3,14 @@ import createError from 'http-errors';
 import { traced } from '@sliit-foss/functions';
 import { sendMail } from '../../../../services';
 
-export const serviceSendEmail = async (template) => {
-    const { template, data, options: { to, cc, bcc, subject, attachments } } = payload;
+export const serviceSendEmail = async ({ template, data, options: { to, cc, bcc, subject, attachments } }) => {
     let html
     try {
-        fs.readFileSync(`${_dirname}/templates/${template}.html`, 'utf8')
+        html = fs.readFileSync(`${__dirname}/templates/${template}.html`, 'utf8')
     } catch (error) {
-        throw createError(400, 'Template not found')
+        throw createError(400, 'Template not found', { template })
     }
-    return traced(sendMail)({ to, cc, bcc, templateHTML: html, replacements: data, subject, attachments })
+    const result = await traced(sendMail)({ to, cc, bcc, templateHTML: html, replacements: data, subject, attachments })
+    if (result) return
+    throw createError(424, 'Failed to send email')
 }

@@ -25,6 +25,9 @@ const UserSchema = new Schema(
             enum: Object.values(roles),
             default: roles.buyer,
         },
+        address: {
+            type: SchemaTypes.String,
+        },
         is_active: {
             type: SchemaTypes.Boolean,
             default: true,

@@ -1,3 +1,4 @@
+import fs from 'fs';
 import crypto from 'crypto';
 import express from 'express';
 import expressHealth from 'express-health-middleware'
@@ -6,6 +7,7 @@ import helmet from 'helmet';
 import cors from 'cors';
 import polyglot from 'node-polyglot';
 import context from 'express-http-context';
+import stack from "callsite";
 import clusterize from '@sliit-foss/clusterizer';
 import { moduleLogger } from '@sliit-foss/module-logger';
 import { correlationId } from "@app/constants";
@@ -53,6 +55,16 @@ const initialize = ({ service, routes, leadingMiddleware = [], cors: enableCors,
             }
 
             app.use('/system', expressHealth());
+
+            if (!routes) {
+                routes = express.Router();
+                const root = stack().find((site) => site.getFileName().endsWith("server.js"))?.getFileName();
+                fs.readdirSync(`${root}/../modules`)?.forEach((module) => {
+                    fs.readdirSync(`${root}/../modules/${module}/api`)?.forEach((v) => {
+                        routes.use(`/${v}/${module}`, require(`${root}/../modules/${module}/api/${v}/controller`).default)
+                    });
+                });
+            }
 
             app.use(`/api`, ...leadingMiddleware, routes);
 

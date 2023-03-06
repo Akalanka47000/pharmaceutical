@@ -12,7 +12,7 @@ const transport = nodemailer.createTransport({
     pool: true,
 })
 
-export const sendMail = async ({ to, cc = [], bcc = [], templateHTML, replacements, subject, attachments = [] }) => {
+export const sendMail = ({ to, cc = [], bcc = [], templateHTML, replacements, subject, attachments = [] }) => {
     const template = handlebars.compile(templateHTML)
     const htmlToSend = template(replacements)
     const mailOptions = {

@@ -12,7 +12,8 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{js,ts,tsx,md}\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "terminate": "sh ./workspace-scripts/terminate.sh"
   },
   "dependencies": {
     "dotenv-cli": "7.0.0",
@@ -32,6 +33,7 @@
     "eslint-plugin-import": "2.27.5",
     "eslint-plugin-prettier": "2.6.0",
     "husky": "8.0.3",
+    "kill-port": "2.0.1",
     "prettier": "2.8.3",
     "rimraf": "4.1.2",
     "shx": "0.3.4",

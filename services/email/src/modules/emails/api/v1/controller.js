@@ -12,5 +12,4 @@ email.post('/', celebrate({ [Segments.BODY]: sendEmailSchema }), tracedAsyncHand
     return toSuccess({ res, data, message: 'Email sent successfully!' })
 }));
 
-
 export default email;

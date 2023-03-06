@@ -17,7 +17,7 @@ export const authorizer = tracedAsyncHandler(async function authorizer(req) {
     req.user = user;
 })
 
-export const permittedRoles = (roles) => asyncHandler(function roleChecker(req) {
+export const permittedRoles = (roles) => asyncHandler(function roleGuard(req) {
     if (roles && !roles.includes(req.user.role)) {
         logger.error(`Forbidden route - access denied - user_id: ${req.user._id} - role: ${req.user.role}`);
         throw createError(403, 'Route forbidden');

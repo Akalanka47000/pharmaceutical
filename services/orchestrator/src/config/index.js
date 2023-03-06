@@ -10,6 +10,8 @@ class Base {
       PORT: Joi.number().optional(),
       AUTH_SERVICE_BASE_URL: Joi.string().required(),
       USER_SERVICE_BASE_URL: Joi.string().required(),
+      EMAIL_SERVICE_BASE_URL: Joi.string().required(),
+      SMS_SERVICE_BASE_URL: Joi.string().required(),
       REDIS_CONNECTION_STRING: Joi.string().required()
     };
   }
@@ -19,6 +21,8 @@ class Base {
       PORT: process.env.PORT ?? 2002,
       AUTH_SERVICE_BASE_URL: process.env.AUTH_SERVICE_BASE_URL,
       USER_SERVICE_BASE_URL: process.env.USER_SERVICE_BASE_URL,
+      EMAIL_SERVICE_BASE_URL: process.env.EMAIL_SERVICE_BASE_URL,
+      SMS_SERVICE_BASE_URL: process.env.SMS_SERVICE_BASE_URL,
       REDIS_CONNECTION_STRING: process.env.REDIS_CONNECTION_STRING
     };
   }

@@ -12,8 +12,7 @@ inputs:
     required: true
   tag:
     description: Docker image tag
-    required: false
-    default: "${{ inputs.service }}:${{ inputs.sha }}-run-${{ github.run_attempt }}"
+    required: true
 runs:
   using: composite
   steps:

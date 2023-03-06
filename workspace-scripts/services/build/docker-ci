@@ -42,5 +42,7 @@ WORKDIR /app
 COPY --from=installer /app/services/$dir/package.json .
 COPY --from=installer /app/services/$dir/migrate-mongo-config.js .
 COPY --from=installer /app/services/$dir/dist ./dist
- 
+COPY --from=installer /app/services/$dir/node_modules ./node_modules
+COPY --from=installer /app/node_modules ./node_modules
+
 CMD node dist/server.js

@@ -9,7 +9,7 @@ export const serviceCreateUser = async (user) => {
     return traced(createUserInDB)(user)
 }
 
-export const serviceGetUsers = async (filters, sorts, page, limit) => {
+export const serviceGetUsers = (filters, sorts, page, limit) => {
     return traced(getAllUsers)({ filters, sorts, page, limit });
 }
 

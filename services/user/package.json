@@ -15,6 +15,7 @@
     "lint": "sh ../../workspace-scripts/services/lint.sh"
   },
   "dependencies": {
+    "@app/constants": "workspace*",
     "@sliit-foss/clusterizer": "1.1.1",
     "@sliit-foss/functions": "2.0.1",
     "@sliit-foss/module-logger": "1.1.2",
@@ -33,10 +34,6 @@
     "mongoose-paginate-v2": "1.6.3"
   },
   "devDependencies": {
-    "@babel/cli": "7.17.10",
-    "@babel/core": "7.17.12",
-    "@babel/node": "7.20.7",
-    "@babel/preset-env": "7.17.12",
     "nodemon": "1.12.1"
   },
   "keywords": [

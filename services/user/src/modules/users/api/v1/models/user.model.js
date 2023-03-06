@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate-v2'
-import { roles } from '../../../constants';
+import { roles } from '@app/constants';
 
 const { Schema } = mongoose;
 

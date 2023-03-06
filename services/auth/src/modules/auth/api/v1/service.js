@@ -1,3 +1,5 @@
+/* eslint-disable import/named */
+
 import bcrypt from 'bcryptjs';
 import createError from "http-errors";
 import { traced } from '@sliit-foss/functions';

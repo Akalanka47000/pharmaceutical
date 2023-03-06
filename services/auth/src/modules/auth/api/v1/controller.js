@@ -4,7 +4,6 @@ import { tracedAsyncHandler, traced } from '@sliit-foss/functions';
 import { toSuccess } from '../../../../utils';
 import { serviceLogin, serviceRegister, serviceRefreshToken, serviceLogout } from './service';
 import { loginSchema, registerSchema, refreshTokenSchema } from './schema';
-import { BlackList } from 'jwt-blacklist';
 
 const auth = express.Router();
 
@@ -23,7 +22,7 @@ auth.post('/refresh-token', celebrate({ [Segments.BODY]: refreshTokenSchema }), 
     return toSuccess({ res, data, message: 'Token refresh successfull!' })
 }));
 
-auth.get('/current', tracedAsyncHandler(async function controllerGetAuthUser(req, res) {
+auth.get('/current', tracedAsyncHandler(function controllerGetAuthUser(req, res) {
     return toSuccess({ res, data: req.user, message: 'Auth user fetched successfully!' })
 }));
 

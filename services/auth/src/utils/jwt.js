@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { moduleLogger } from '@sliit-foss/module-logger';
-import { errors } from './constants';
 import config from '../config';
+import { errors } from './constants';
 
 const logger = moduleLogger('Jwt-util');
 

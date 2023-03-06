@@ -1,11 +1,11 @@
 import { Joi } from 'celebrate';
-import { roles } from '../../constants';
+import { roles } from '@app/constants';
 
 export const createUserSchema = Joi.object({
   name: Joi.string().required(),
   email: Joi.string().email().required(),
   password: Joi.string().optional(),
-  role: Joi.string().valid(...roles).optional(),
+  role: Joi.string().valid(...Object.values(roles)).optional(),
 });
 
 export const updateUserSchema = Joi.object({

@@ -1,8 +1,9 @@
 import { createBlackList } from 'jwt-blacklist';
 import config from '../config';
+
 export class Blacklist {
     
-    blacklist = null;
+    static blacklist
 
     constructor() {
         throw new Error('Blacklist is a singleton class. Use Blacklist.getInstance()'); 

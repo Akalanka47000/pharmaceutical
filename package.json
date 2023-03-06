@@ -20,6 +20,11 @@
     "esbuild-plugin-glob": "2.2.1"
   },
   "devDependencies": {
+    "@babel/cli": "7.17.10",
+    "@babel/core": "7.17.12",
+    "@babel/eslint-parser": "7.17.0",
+    "@babel/node": "7.20.7",
+    "@babel/preset-env": "7.17.12",
     "cross-env": "5.1.4",
     "eslint": "8.33.0",
     "eslint-config-prettier": "2.9.0",

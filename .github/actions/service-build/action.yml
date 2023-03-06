@@ -13,10 +13,6 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Install dependencies
-      run: npm install -g pnpm && pnpm install
-      shell: bash
-
     - name: Docker build
       run: docker build -f ./workspace-scripts/services/build/docker-ci --build-arg service=${{ inputs.service }} -t "${{ inputs.service }}:${{ inputs.sha }}"
       shell: bash

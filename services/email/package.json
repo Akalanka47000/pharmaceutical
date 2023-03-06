@@ -22,6 +22,7 @@
     "celebrate": "15.0.1",
     "express": "4.16.3",
     "express-http-context": "1.2.4",
+    "handlebars": "4.7.7",
     "http-errors": "2.0.0",
     "lodash": "4.17.10",
     "nodemailer": "6.9.1"

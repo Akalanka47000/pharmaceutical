@@ -19,6 +19,8 @@
     "dotenv-cli": "7.0.0",
     "esbuild": "0.17.5",
     "esbuild-plugin-glob": "2.2.1",
+    "rimraf": "4.1.2",
+    "shx": "0.3.4",
     "turbo": "1.7.3"
   },
   "devDependencies": {
@@ -35,9 +37,7 @@
     "eslint-plugin-prettier": "2.6.0",
     "husky": "8.0.3",
     "kill-port": "2.0.1",
-    "prettier": "2.8.3",
-    "rimraf": "4.1.2",
-    "shx": "0.3.4"
+    "prettier": "2.8.3"
   },
   "engines": {
     "node": ">=14.0.0"

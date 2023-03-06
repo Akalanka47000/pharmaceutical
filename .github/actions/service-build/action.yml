@@ -14,7 +14,7 @@ runs:
   using: composite
   steps:
     - name: Docker build
-      run: docker build -f ./workspace-scripts/services/build/docker-ci --build-arg service=${{ inputs.service }} -t "${{ inputs.service }}:${{ inputs.sha }}"
+      run: DOCKER_BUILDKIT=1 docker build -f ./workspace-scripts/services/build/docker-ci --build-arg service=${{ inputs.service }} -t "${{ inputs.service }}:${{ inputs.sha }}"
       shell: bash
 
     - name: Docker login

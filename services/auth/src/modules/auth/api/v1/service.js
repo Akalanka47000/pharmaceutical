@@ -27,7 +27,7 @@ export const serviceRegister = async ({ name, email, password }) => {
     return createUser({ name, email, password });
 }
 
-export const serviceRefreshToken = (token) => {
+export const serviceRefreshToken = async (token) => {
     const decodedRefreshToken = verify(token);
     const decodedUser = verify(decodedRefreshToken.access_token, true);
     const user = await getUserById(decodedUser._id);

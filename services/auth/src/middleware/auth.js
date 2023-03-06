@@ -4,7 +4,7 @@ import { blacklist, verify, errors } from '../utils';
 
 export const whitelistedRoutes = ['/v1/auth', '/v1/auth/refresh', '/system/health'];
 
-export const authorizer = tracedAsyncHandler(function authorizer(req, res) {
+export const authorizer = tracedAsyncHandler(async function authorizer(req) {
     if (whitelistedRoutes.includes(req.path)) {
         return next();
     }

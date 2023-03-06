@@ -16,4 +16,4 @@ jobs:
         with:
           service: user-service
           access_token: ${{ secrets.REGISTRY_ACCESS_TOKEN }}
-          sha: ${{ env.GITHUB_SHA }}
+          sha: ${{ github.sha }}

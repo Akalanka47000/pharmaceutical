@@ -7,11 +7,18 @@ inputs:
   access_token:
     description: Token to authenticate with the container registry
     required: true
+  sha:
+    description: Commit sha which triggered the job
+    required: true
 runs:
   using: composite
   steps:
     - name: Install dependencies
       run: npm install -g pnpm && pnpm install
+      shell: bash
+
+    - name: Docker build
+      run: docker build -f ./workspace-scripts/services/build/docker-ci --build-arg service=${{ inputs.service }} -t "${{ inputs.service }}:${{ inputs.sha }}"
       shell: bash
 
     - name: Docker login

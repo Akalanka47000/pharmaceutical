@@ -23,6 +23,7 @@ auth.post('/refresh-token', celebrate({ [Segments.BODY]: refreshTokenSchema }), 
 }));
 
 auth.get('/current', tracedAsyncHandler(function controllerGetAuthUser(req, res) {
+    delete req.user.password;
     return toSuccess({ res, data: req.user, message: 'Auth user fetched successfully!' })
 }));
 

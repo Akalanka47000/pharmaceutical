@@ -6,7 +6,7 @@ import { permittedRoles } from '../../../middleware';
 
 const orchestrator = express.Router();
 
-orchestrator.all('/:api_version/:module*', tracedAsyncHandler(function roleChecker(req, res, next) {
+orchestrator.all('/:api_version/:module*', tracedAsyncHandler(function roleGuard(req, res, next) {
   switch (req.params.module) {
     case 'users': return permittedRoles([roles.admin])(req, res, next);
     default: return next();

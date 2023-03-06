@@ -1,0 +1,19 @@
+name: service-build
+description: Base docker build action for the project microservices
+inputs:
+  service:
+    description: Service to build
+    required: true
+  access_token:
+    description: Token to authenticate with the container registry
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Install dependencies
+      run: npm install -g pnpm && pnpm install
+      shell: bash
+
+    - name: Docker login
+      run: echo ${{ inputs.access_token }} | docker login ghcr.io -u akalanka47000 --password-stdin
+      shell: bash

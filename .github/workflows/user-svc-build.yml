@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     container: docker:dind
     steps:
+      - uses: actions/checkout@v3
       - uses: ./.github/actions/service-build
         with:
           service: user-service

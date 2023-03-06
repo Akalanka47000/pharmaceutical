@@ -10,13 +10,21 @@ inputs:
   sha:
     description: Commit sha which triggered the job
     required: true
+  tag:
+    description: Docker image tag
+    required: false
+    default: "${{ inputs.service }}:${{ inputs.sha }}-run-${{ github.run_attempt }}"
 runs:
   using: composite
   steps:
     - name: Docker build
-      run: DOCKER_BUILDKIT=1 docker build -f ./workspace-scripts/services/build/docker-ci -t "${{ inputs.service }}:${{ inputs.sha }}" --build-arg service=${{ inputs.service }} --build-arg dir=$(echo "${{ inputs.service }}" | cut -d'-' -f1) .
+      run: DOCKER_BUILDKIT=1 docker build -f ./workspace-scripts/services/build/docker-ci -t ${{ inputs.tag }}  --build-arg service=${{ inputs.service }} --build-arg dir=$(echo "${{ inputs.service }}" | cut -d'-' -f1) .
       shell: bash
 
     - name: Docker login
       run: echo ${{ inputs.access_token }} | docker login ghcr.io -u akalanka47000 --password-stdin
+      shell: bash
+
+    - name: Docker push
+      run: docker push ghcr.io/${{ github.repository_owner }}/${{ inputs.tag }}
       shell: bash

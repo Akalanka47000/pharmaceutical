@@ -27,7 +27,8 @@ COPY .gitignore .gitignore
 COPY --from=builder /app/out/json/ .
 COPY --from=builder /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
 COPY --from=builder /app/workspace-scripts ./workspace-scripts
-RUN pnpm install
+
+RUN pnpm install --production --ignore-scripts
  
 COPY --from=builder /app/out/full/ .
 RUN pnpm turbo run build --filter=$service

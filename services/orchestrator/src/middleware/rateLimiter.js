@@ -14,7 +14,7 @@ const options = {
 };
 
 if (config.REDIS_CONNECTION_STRING) {
-  const { redis } = require('../database/redis').default;
+  const { redis } = require('@app/redis').default;
   options.store = new RedisStore({
     sendCommand: (...args) => redis.call(...args),
   });

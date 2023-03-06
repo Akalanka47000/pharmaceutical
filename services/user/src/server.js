@@ -7,7 +7,7 @@ import clusterize from '@sliit-foss/clusterizer';
 import { moduleLogger } from '@sliit-foss/module-logger';
 import { correlationId } from "@app/constants";
 import { errorHandler, responseInterceptor } from '@app/middleware';
-import { connectDatabase } from './database/mongo';
+import { connect as connectDatabase } from '@app/mongoose';
 import config from './config';
 import routes from './routes';
 

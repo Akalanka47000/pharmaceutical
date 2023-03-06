@@ -1,12 +1,11 @@
 import mongoose from "mongoose";
 import { moduleLogger } from "@sliit-foss/module-logger";
-import config from "../../config";
 
-const logger = moduleLogger("Database-Connector");
+const logger = moduleLogger("Mongoose-Connector");
 
-export const connectDatabase = () => {
+export const connect = () => {
     try {
-        mongoose.connect(config.DB_URL, {
+        mongoose.connect(process.env.DB_URL, {
             keepAlive: true,
             socketTimeoutMS: 30000,
         });

@@ -4,13 +4,13 @@ import { moduleLogger } from '@sliit-foss/module-logger';
 
 const logger = moduleLogger('Redis');
 
-export const client = new Redis(process.env.REDIS_CONNECTION_STRING);
+export const redis = new Redis(process.env.REDIS_CONNECTION_STRING);
 
-export const redlock = new Redlock([client]);
+export const redlock = new Redlock([redis]);
 
-client.on('connect', () => logger.info('Redis connected'));
-client.on('error', (err) => logger.error(`Redis error - message: ${err.message}`, err));
+redis.on('connect', () => logger.info('Redis connected'));
+redis.on('error', (err) => logger.error(`Redis error - message: ${err.message}`, err));
 
-client.set = (key, value, ttl) => client.set(key, value, 'EX', ttl ?? 30);
+redis.set = (key, value, ttl) => redis.set(key, value, 'EX', ttl ?? 30);
 
-export default { client, redlock };
+export default { redis, redlock };

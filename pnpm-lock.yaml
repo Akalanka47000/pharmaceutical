@@ -144,20 +144,46 @@ importers:
       ioredis: 5.2.3
       redlock: 4.2.0
 
+  packages/server:
+    specifiers:
+      '@app/constants': workspace*
+      '@app/middleware': workspace*
+      '@app/mongoose': workspace*
+      '@sliit-foss/clusterizer': 1.1.1
+      '@sliit-foss/module-logger': 1.1.2
+      compression: 1.7.2
+      cors: 2.8.5
+      express: 4.16.3
+      express-health-middleware: 1.0.1
+      express-http-context: 1.2.4
+      helmet: 3.12.0
+      node-polyglot: 2.4.2
+    dependencies:
+      '@app/constants': link:../constants
+      '@app/middleware': link:../middleware
+      '@app/mongoose': link:../mongoose
+      '@sliit-foss/clusterizer': 1.1.1
+      '@sliit-foss/module-logger': 1.1.2
+      compression: 1.7.2
+      cors: 2.8.5
+      express: 4.16.3
+      express-health-middleware: 1.0.1
+      express-http-context: 1.2.4
+      helmet: 3.12.0
+      node-polyglot: 2.4.2
+
   services/auth:
     specifiers:
       '@app/constants': workspace*
       '@app/middleware': workspace*
-      '@sliit-foss/clusterizer': 1.1.1
+      '@app/server': workspace*
       '@sliit-foss/functions': 2.0.1
       '@sliit-foss/module-logger': 1.1.2
       '@sliit-foss/service-connector': 1.1.1
       bcryptjs: 2.4.3
       celebrate: 15.0.1
-      compression: 1.7.2
       express: 4.16.3
       express-http-context: 1.2.4
-      helmet: 3.12.0
       http-errors: 2.0.0
       jsonwebtoken: 9.0.0
       jwt-blacklist: 0.1.2
@@ -166,16 +192,14 @@ importers:
     dependencies:
       '@app/constants': link:../../packages/constants
       '@app/middleware': link:../../packages/middleware
-      '@sliit-foss/clusterizer': 1.1.1
+      '@app/server': link:../../packages/server
       '@sliit-foss/functions': 2.0.1
       '@sliit-foss/module-logger': 1.1.2
       '@sliit-foss/service-connector': 1.1.1
       bcryptjs: 2.4.3
       celebrate: 15.0.1
-      compression: 1.7.2
       express: 4.16.3
       express-http-context: 1.2.4
-      helmet: 3.12.0
       http-errors: 2.0.0
       jsonwebtoken: 9.0.0
       jwt-blacklist: 0.1.2
@@ -185,31 +209,25 @@ importers:
 
   services/email:
     specifiers:
-      '@app/constants': workspace*
       '@app/middleware': workspace*
-      '@sliit-foss/clusterizer': 1.1.1
+      '@app/server': workspace*
       '@sliit-foss/functions': 2.0.1
       '@sliit-foss/module-logger': 1.1.2
       celebrate: 15.0.1
-      compression: 1.7.2
       express: 4.16.3
       express-http-context: 1.2.4
-      helmet: 3.12.0
       http-errors: 2.0.0
       lodash: 4.17.10
       nodemailer: 6.9.1
       nodemon: 1.12.1
     dependencies:
-      '@app/constants': link:../../packages/constants
       '@app/middleware': link:../../packages/middleware
-      '@sliit-foss/clusterizer': 1.1.1
+      '@app/server': link:../../packages/server
       '@sliit-foss/functions': 2.0.1
       '@sliit-foss/module-logger': 1.1.2
       celebrate: 15.0.1
-      compression: 1.7.2
       express: 4.16.3
       express-http-context: 1.2.4
-      helmet: 3.12.0
       http-errors: 2.0.0
       lodash: 4.17.10
       nodemailer: 6.9.1
@@ -221,40 +239,32 @@ importers:
       '@app/constants': workspace*
       '@app/middleware': workspace*
       '@app/redis': workspace*
-      '@sliit-foss/clusterizer': 1.1.1
+      '@app/server': workspace*
       '@sliit-foss/functions': 2.0.1
       '@sliit-foss/module-logger': 1.1.2
       '@sliit-foss/service-connector': 1.1.1
       celebrate: 15.0.1
-      compression: 1.7.2
-      cors: 2.8.5
       express: 4.16.3
       express-http-context: 1.2.4
       express-rate-limit: 6.7.0
-      helmet: 3.12.0
       http-errors: 2.0.0
       lodash: 4.17.10
-      node-polyglot: 2.4.2
       nodemon: 1.12.1
       rate-limit-redis: 3.0.1
     dependencies:
       '@app/constants': link:../../packages/constants
       '@app/middleware': link:../../packages/middleware
       '@app/redis': link:../../packages/redis
-      '@sliit-foss/clusterizer': 1.1.1
+      '@app/server': link:../../packages/server
       '@sliit-foss/functions': 2.0.1
       '@sliit-foss/module-logger': 1.1.2
       '@sliit-foss/service-connector': 1.1.1
       celebrate: 15.0.1
-      compression: 1.7.2
-      cors: 2.8.5
       express: 4.16.3
       express-http-context: 1.2.4
       express-rate-limit: 6.7.0_express@4.16.3
-      helmet: 3.12.0
       http-errors: 2.0.0
       lodash: 4.17.10
-      node-polyglot: 2.4.2
       rate-limit-redis: 3.0.1_express-rate-limit@6.7.0
     devDependencies:
       nodemon: 1.12.1
@@ -263,17 +273,14 @@ importers:
     specifiers:
       '@app/constants': workspace*
       '@app/middleware': workspace*
-      '@app/mongoose': workspace*
-      '@sliit-foss/clusterizer': 1.1.1
+      '@app/server': workspace*
       '@sliit-foss/functions': 2.0.1
       '@sliit-foss/module-logger': 1.1.2
       '@sliit-foss/mongoose-filter-query': 1.1.1
       bcryptjs: 2.4.3
       celebrate: 15.0.1
-      compression: 1.7.2
       express: 4.16.3
       express-http-context: 1.2.4
-      helmet: 3.12.0
       http-errors: 2.0.0
       lodash: 4.17.10
       migrate-mongo: 9.0.0
@@ -284,17 +291,14 @@ importers:
     dependencies:
       '@app/constants': link:../../packages/constants
       '@app/middleware': link:../../packages/middleware
-      '@app/mongoose': link:../../packages/mongoose
-      '@sliit-foss/clusterizer': 1.1.1
+      '@app/server': link:../../packages/server
       '@sliit-foss/functions': 2.0.1
       '@sliit-foss/module-logger': 1.1.2
       '@sliit-foss/mongoose-filter-query': 1.1.1
       bcryptjs: 2.4.3
       celebrate: 15.0.1
-      compression: 1.7.2
       express: 4.16.3
       express-http-context: 1.2.4
-      helmet: 3.12.0
       http-errors: 2.0.0
       lodash: 4.17.10
       migrate-mongo: 9.0.0
@@ -3992,6 +3996,26 @@ packages:
       - supports-color
     dev: false
 
+  /body-parser/1.20.1:
+    resolution: {integrity: sha512-jWi7abTbYwajOytWCQc37VulmWiRae5RyTpaCyDcS5/lMdtwSz5lOpDE67srw/HYe35f1z3fDQw+3txg7gNtWw==}
+    engines: {node: '>= 0.8', npm: 1.2.8000 || >= 1.4.16}
+    dependencies:
+      bytes: 3.1.2
+      content-type: 1.0.5
+      debug: 2.6.9
+      depd: 2.0.0
+      destroy: 1.2.0
+      http-errors: 2.0.0
+      iconv-lite: 0.4.24
+      on-finished: 2.4.1
+      qs: 6.11.0
+      raw-body: 2.5.1
+      type-is: 1.6.18
+      unpipe: 1.0.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /bowser/2.11.0:
     resolution: {integrity: sha512-AlcaJBi/pqqJBIQ8U9Mcpc9i8Aqxn88Skv5d+xBX006BY5u8N3mGLHa5Lgppa7L/HfwgwLgZ6NYs+Ag6uUmJRA==}
     dev: false
@@ -4090,6 +4114,11 @@ packages:
 
   /bytes/3.0.0:
     resolution: {integrity: sha512-pMhOfFDPiv9t5jjIXkHosWmkSyQbvsgEVNkz0ERHbuLh2T/7j4Mqqpz523Fe8MVY89KC6Sh/QfS2sM+SjgFDcw==}
+    engines: {node: '>= 0.8'}
+    dev: false
+
+  /bytes/3.1.2:
+    resolution: {integrity: sha512-/Nf7TyzTx6S3yRJObOAV7956r8cr2+Oj8AC5dt8wSP3BQAoeX58NoHyCU8P8zGkNXStjTSi6fzO6F0pBdcYbEg==}
     engines: {node: '>= 0.8'}
     dev: false
 
@@ -4427,6 +4456,13 @@ packages:
     engines: {node: '>= 0.6'}
     dev: false
 
+  /content-disposition/0.5.4:
+    resolution: {integrity: sha512-FveZTNuGw04cxlAiWbzi6zTAL/lhehaWbTtgluJh4/E95DqMwTmha3KZN1aAWA8cFIhHzMZUvLevkw5Rqk+tSQ==}
+    engines: {node: '>= 0.6'}
+    dependencies:
+      safe-buffer: 5.2.1
+    dev: false
+
   /content-security-policy-builder/2.0.0:
     resolution: {integrity: sha512-j+Nhmj1yfZAikJLImCvPJFE29x/UuBi+/MWqggGGc515JKaZrjuei2RhULJmy0MsstW3E3htl002bwmBNMKr7w==}
     dev: false
@@ -4450,6 +4486,11 @@ packages:
 
   /cookie/0.3.1:
     resolution: {integrity: sha512-+IJOX0OqlHCszo2mBUq+SrEbCj6w7Kpffqx60zYbPTFaO4+yYgRjHwcZNpWvaTylDHaV7PPmBHzSecZiMhtPgw==}
+    engines: {node: '>= 0.6'}
+    dev: false
+
+  /cookie/0.5.0:
+    resolution: {integrity: sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==}
     engines: {node: '>= 0.6'}
     dev: false
 
@@ -4771,6 +4812,11 @@ packages:
 
   /destroy/1.0.4:
     resolution: {integrity: sha512-3NdhDuEXnfun/z7x9GOElY49LoqVHoGScmOKwmxhsS8N5Y+Z8KyPPDnaSzqWgYt/ji4mqwfTS34Htrk0zPIXVg==}
+    dev: false
+
+  /destroy/1.2.0:
+    resolution: {integrity: sha512-2sJGJTaXIIaR1w4iJSNoN0hnMY7Gpc/n8D4qSCJw8QqFWXf7cuAgnEHxBpweaVcPevC2l3KpjYCx3NypQQgaJg==}
+    engines: {node: '>= 0.8', npm: 1.2.8000 || >= 1.4.16}
     dev: false
 
   /detect-file/1.0.0:
@@ -5779,6 +5825,14 @@ packages:
     resolution: {integrity: sha512-knuXkuEDTW97AqRZjIAsCM6yG1651w0Tjseb/npXZ1Ydc7TLNyvbcbtJVsklr5kficIsnEJEsFkBMFQiNAPyCQ==}
     dev: false
 
+  /express-health-middleware/1.0.1:
+    resolution: {integrity: sha512-2ZOrhsYRYH0kpadAy7p8hAo1yvmm1Mmepn5GKdrrX2B9NQqgOHgVxkMa2MPh13aU1JtRF2IbjoErZe/Z09V+eQ==}
+    dependencies:
+      express: 4.18.2
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /express-http-context/1.2.4:
     resolution: {integrity: sha512-jPpBbF1MWWdRcUU1rxsX0CPnA8ueEj8xgWvpRGHoXWGI4l5KqhPY4Bq+Gt6s2IhqHQQ0g0wIvJ3jFfbUuJJycQ==}
     engines: {node: '>=8.0.0 <10.0.0 || >=10.4.0'}
@@ -5828,6 +5882,45 @@ packages:
       serve-static: 1.13.2
       setprototypeof: 1.1.0
       statuses: 1.4.0
+      type-is: 1.6.18
+      utils-merge: 1.0.1
+      vary: 1.1.2
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /express/4.18.2:
+    resolution: {integrity: sha512-5/PsL6iGPdfQ/lKM1UuielYgv3BUoJfz1aUwU9vHZ+J7gyvwdQXFEBIEIaxeGf0GIcreATNyBExtalisDbuMqQ==}
+    engines: {node: '>= 0.10.0'}
+    dependencies:
+      accepts: 1.3.8
+      array-flatten: 1.1.1
+      body-parser: 1.20.1
+      content-disposition: 0.5.4
+      content-type: 1.0.5
+      cookie: 0.5.0
+      cookie-signature: 1.0.6
+      debug: 2.6.9
+      depd: 2.0.0
+      encodeurl: 1.0.2
+      escape-html: 1.0.3
+      etag: 1.8.1
+      finalhandler: 1.2.0
+      fresh: 0.5.2
+      http-errors: 2.0.0
+      merge-descriptors: 1.0.1
+      methods: 1.1.2
+      on-finished: 2.4.1
+      parseurl: 1.3.3
+      path-to-regexp: 0.1.7
+      proxy-addr: 2.0.7
+      qs: 6.11.0
+      range-parser: 1.2.1
+      safe-buffer: 5.2.1
+      send: 0.18.0
+      serve-static: 1.15.0
+      setprototypeof: 1.2.0
+      statuses: 2.0.1
       type-is: 1.6.18
       utils-merge: 1.0.1
       vary: 1.1.2
@@ -5992,6 +6085,21 @@ packages:
       on-finished: 2.3.0
       parseurl: 1.3.3
       statuses: 1.4.0
+      unpipe: 1.0.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /finalhandler/1.2.0:
+    resolution: {integrity: sha512-5uXcUVftlQMFnWC9qu/svkWv3GTd2PfUhK/3PLkYNAe7FbqJMt3515HaxE6eRL74GdsriiwujiawdaB1BpEISg==}
+    engines: {node: '>= 0.8'}
+    dependencies:
+      debug: 2.6.9
+      encodeurl: 1.0.2
+      escape-html: 1.0.3
+      on-finished: 2.4.1
+      parseurl: 1.3.3
+      statuses: 2.0.1
       unpipe: 1.0.0
     transitivePeerDependencies:
       - supports-color
@@ -7606,6 +7714,12 @@ packages:
     hasBin: true
     dev: false
 
+  /mime/1.6.0:
+    resolution: {integrity: sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==}
+    engines: {node: '>=4'}
+    hasBin: true
+    dev: false
+
   /mimic-fn/2.1.0:
     resolution: {integrity: sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==}
     engines: {node: '>=6'}
@@ -7957,6 +8071,13 @@ packages:
 
   /on-finished/2.3.0:
     resolution: {integrity: sha512-ikqdkGAAyf/X/gPhXGvfgAytDZtDbr+bkNUJ0N9h5MI/dmdgCs3l6hoHrcUv41sRKew3jIwrp4qQDXiK99Utww==}
+    engines: {node: '>= 0.8'}
+    dependencies:
+      ee-first: 1.1.1
+    dev: false
+
+  /on-finished/2.4.1:
+    resolution: {integrity: sha512-oVlzkg3ENAhCk2zdv7IJwd/QUD4z2RxRwpkcGY8psCVcCYZNq4wYnVWALHM+brtuJjePWiYF/ClmuDr8Ch5+kg==}
     engines: {node: '>= 0.8'}
     dependencies:
       ee-first: 1.1.1
@@ -8328,6 +8449,13 @@ packages:
     resolution: {integrity: sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==}
     engines: {node: '>=6'}
 
+  /qs/6.11.0:
+    resolution: {integrity: sha512-MvjoMCJwEarSbUYk5O+nmoSzSutSsTwF85zcHPQ9OrlFoZOYIjaqBAJIqIXjptyD5vThxGq52Xu/MaJzRkIk4Q==}
+    engines: {node: '>=0.6'}
+    dependencies:
+      side-channel: 1.0.4
+    dev: false
+
   /qs/6.5.1:
     resolution: {integrity: sha512-eRzhrN1WSINYCDCbrz796z37LOe3m5tmW7RQf6oBntukAG1nmovJvhnwHHRMAfeoItc1m2Hk02WER2aQ/iqs+A==}
     engines: {node: '>=0.6'}
@@ -8370,6 +8498,16 @@ packages:
       bytes: 3.0.0
       http-errors: 1.6.2
       iconv-lite: 0.4.19
+      unpipe: 1.0.0
+    dev: false
+
+  /raw-body/2.5.1:
+    resolution: {integrity: sha512-qqJBtEyVgS0ZmPGdCFPWJ3FreoqvG4MVQln/kCgF7Olq95IbOp0/BWyMwbdtn4VTvkM8Y7khCQ2Xgk/tcrCXig==}
+    engines: {node: '>= 0.8'}
+    dependencies:
+      bytes: 3.1.2
+      http-errors: 2.0.0
+      iconv-lite: 0.4.24
       unpipe: 1.0.0
     dev: false
 
@@ -8928,6 +9066,27 @@ packages:
       - supports-color
     dev: false
 
+  /send/0.18.0:
+    resolution: {integrity: sha512-qqWzuOjSFOuqPjFe4NOsMLafToQQwBSOEpS+FwEt3A2V3vKubTquT3vmLTQpFgMXp8AlFWFuP1qKaJZOtPpVXg==}
+    engines: {node: '>= 0.8.0'}
+    dependencies:
+      debug: 2.6.9
+      depd: 2.0.0
+      destroy: 1.2.0
+      encodeurl: 1.0.2
+      escape-html: 1.0.3
+      etag: 1.8.1
+      fresh: 0.5.2
+      http-errors: 2.0.0
+      mime: 1.6.0
+      ms: 2.1.3
+      on-finished: 2.4.1
+      range-parser: 1.2.1
+      statuses: 2.0.1
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /serve-static/1.13.2:
     resolution: {integrity: sha512-p/tdJrO4U387R9oMjb1oj7qSMaMfmOyd4j9hOFoxZe2baQszgHcSWjuya/CiT5kgZZKRudHNOA0pYXOl8rQ5nw==}
     engines: {node: '>= 0.8.0'}
@@ -8936,6 +9095,18 @@ packages:
       escape-html: 1.0.3
       parseurl: 1.3.3
       send: 0.16.2
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /serve-static/1.15.0:
+    resolution: {integrity: sha512-XGuRDNjXUijsUL0vl6nSD7cwURuzEgglbOaFuZM9g3kwDXOWVTck0jLzjPzGD+TazWbboZYu52/9/XPdUgne9g==}
+    engines: {node: '>= 0.8.0'}
+    dependencies:
+      encodeurl: 1.0.2
+      escape-html: 1.0.3
+      parseurl: 1.3.3
+      send: 0.18.0
     transitivePeerDependencies:
       - supports-color
     dev: false

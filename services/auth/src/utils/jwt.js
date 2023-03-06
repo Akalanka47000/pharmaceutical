@@ -3,14 +3,14 @@ import { moduleLogger } from '@sliit-foss/module-logger';
 import { errors } from './constants';
 import config from '../config';
 
-const logger = moduleLogger('JWT-UTIL');
+const logger = moduleLogger('Jwt-util');
 
 export const verify = (token, ignoreExpiry = false) => {
   try {
     const verificationMethod = ignoreExpiry ? 'decode' : 'verify';
     return jwt[verificationMethod](token, config.JWT_SECRET);
   } catch (error) {
-    logger.error(`JWT-VERIFY_FAILED - ${error.message}`);
+    logger.error(`Jwt verification failed - ${error.message}`);
     if (error.message === 'jwt expired') {
       throw errors.token_expired;
     }

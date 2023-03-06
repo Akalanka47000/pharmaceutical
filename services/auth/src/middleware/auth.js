@@ -1,22 +1,23 @@
 import { tracedAsyncHandler } from '@sliit-foss/functions';
-import { getUserByid } from '../services';
-import { blacklist, verify, errors } from '../utils';
+import { getUserById } from '../services';
+import { Blacklist, verify, errors } from '../utils';
 
-export const whitelistedRoutes = ['/v1/auth', '/v1/auth/refresh', '/system/health'];
+export const whitelistedRoutes = ['/v1/auth/login', '/v1/auth/register', '/v1/auth/refresh', '/system/health'];
 
-export const authorizer = tracedAsyncHandler(async function authorizer(req) {
+export const authorizer = tracedAsyncHandler(async function authorizer(req, _res) {
     if (whitelistedRoutes.includes(req.path)) {
-        return next();
+        return;
     }
     const token = req.headers.authorization?.replace('Bearer ', '')?.replace('null', '');
     if (!token) {
         throw errors.missing_token;
     }
     const decodedUser = verify(token);
-    const user = await getUserByid(decodedUser._id);
+    const user = await getUserById(decodedUser._id);
     if (!user) {
         throw errors.invalid_token;
     }
+    const blacklist = await Blacklist.getInstance();
     if (await blacklist.has(token)) {
         throw errors.cancelled_token;
     }

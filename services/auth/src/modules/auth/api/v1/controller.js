@@ -1,9 +1,10 @@
 import express from 'express';
 import { celebrate, Segments } from 'celebrate'
 import { tracedAsyncHandler, traced } from '@sliit-foss/functions';
-import { toSuccess, blacklist } from '../../../../utils';
-import { serviceLogin, serviceRegister, serviceRefreshToken } from './service';
+import { toSuccess } from '../../../../utils';
+import { serviceLogin, serviceRegister, serviceRefreshToken, serviceLogout } from './service';
 import { loginSchema, registerSchema, refreshTokenSchema } from './schema';
+import { BlackList } from 'jwt-blacklist';
 
 const auth = express.Router();
 
@@ -18,7 +19,7 @@ auth.post('/register', celebrate({ [Segments.BODY]: registerSchema }), tracedAsy
 }));
 
 auth.post('/refresh-token', celebrate({ [Segments.BODY]: refreshTokenSchema }), tracedAsyncHandler(async function controllerRefreshToken(req, res) {
-    const data = await traced(serviceRefreshToken)(req.body);
+    const data = await traced(serviceRefreshToken)(req.body.refresh_token);
     return toSuccess({ res, data, message: 'Token refresh successfull!' })
 }));
 
@@ -27,7 +28,7 @@ auth.get('/current', tracedAsyncHandler(async function controllerGetAuthUser(req
 }));
 
 auth.post('/logout', tracedAsyncHandler(async function controllerLogout(req, res) {
-    await traced(blacklist.add.bind(this, token))(req.token);
+    await traced(serviceLogout)(req.token);
     return toSuccess({ res, message: 'Logout successfull!' })
 }));
 

@@ -1,10 +1,10 @@
 import bcrypt from 'bcryptjs';
 import createError from "http-errors";
 import { traced } from '@sliit-foss/functions';
-import { getUserByEmail, getUserById } from '../../../../services'
-import { errors, verify, generateTokens } from '../../../../utils';
+import { createUser, getUserByEmail, getUserById } from '../../../../services'
+import { errors, verify, generateTokens, Blacklist } from '../../../../utils';
 
-export const serviceLogin = async ({email, password}) => {
+export const serviceLogin = async ({ email, password }) => {
     const user = await getUserByEmail(email);
     if (!user) {
         throw errors.invalid_email;
@@ -21,7 +21,7 @@ export const serviceLogin = async ({email, password}) => {
 
 export const serviceRegister = async ({ name, email, password }) => {
     const user = await getUserByEmail(email);
-    if (!user) {
+    if (user) {
         throw createError(400, "User already exists")
     }
     return createUser({ name, email, password });
@@ -38,4 +38,9 @@ export const serviceRefreshToken = async (token) => {
         throw errors.user_deactivated;
     }
     return traced(generateTokens)(user);
+}
+
+export const serviceLogout = async (token) => {
+    const blacklist = await Blacklist.getInstance();
+    return blacklist.add(token)
 }

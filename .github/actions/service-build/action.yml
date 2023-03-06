@@ -25,5 +25,5 @@ runs:
       shell: bash
 
     - name: Docker push
-      run: docker push ghcr.io/${{ github.repository_owner }}/${{ inputs.tag }}
+      run: docker push ghcr.io/akalanka47000/${{ inputs.tag }}
       shell: bash

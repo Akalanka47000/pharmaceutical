@@ -15,5 +15,5 @@ jobs:
       - uses: ./.github/actions/service-build
         with:
           service: user-service
-          tag: "user-service:${{ github.sha }}"
+          tag: "user-service:${{ github.sha }}-${{ github.run_attempt }}"
           access_token: ${{ secrets.REGISTRY_ACCESS_TOKEN }}

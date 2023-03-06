@@ -17,7 +17,11 @@ runs:
   using: composite
   steps:
     - name: Docker build
-      run: DOCKER_BUILDKIT=1 docker build -f ./workspace-scripts/services/build/docker-ci -t ${{ inputs.tag }}  --build-arg service=${{ inputs.service }} --build-arg dir=$(echo "${{ inputs.service }}" | cut -d'-' -f1) .
+      run: DOCKER_BUILDKIT=1 docker build -t ${{ inputs.service }} -f ./workspace-scripts/services/build/docker-ci  --build-arg service=${{ inputs.service }} --build-arg dir=$(echo "${{ inputs.service }}" | cut -d'-' -f1) .
+      shell: bash
+    
+    - name: Docker tag
+      run: docker tag ${{ inputs.service }} ghcr.io/akalanka47000/${{ inputs.tag }}
       shell: bash
 
     - name: Docker login

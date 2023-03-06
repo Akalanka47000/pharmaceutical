@@ -28,6 +28,7 @@ importers:
       dotenv-cli: 7.0.0
       esbuild: 0.17.5
       esbuild-plugin-glob: 2.2.1_esbuild@0.17.5
+      turbo: 1.7.3
     devDependencies:
       '@babel/cli': 7.17.10_@babel+core@7.17.12
       '@babel/core': 7.17.12
@@ -45,7 +46,6 @@ importers:
       prettier: 2.8.3
       rimraf: 4.1.2
       shx: 0.3.4
-      turbo: 1.7.3
 
   frontend:
     specifiers:
@@ -9832,7 +9832,7 @@ packages:
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
-    dev: true
+    dev: false
     optional: true
 
   /turbo-darwin-arm64/1.7.3:
@@ -9840,7 +9840,7 @@ packages:
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
-    dev: true
+    dev: false
     optional: true
 
   /turbo-linux-64/1.7.3:
@@ -9848,7 +9848,7 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
-    dev: true
+    dev: false
     optional: true
 
   /turbo-linux-arm64/1.7.3:
@@ -9856,7 +9856,7 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
-    dev: true
+    dev: false
     optional: true
 
   /turbo-windows-64/1.7.3:
@@ -9864,7 +9864,6 @@ packages:
     cpu: [x64]
     os: [win32]
     requiresBuild: true
-    dev: true
     optional: true
 
   /turbo-windows-arm64/1.7.3:
@@ -9872,7 +9871,7 @@ packages:
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
-    dev: true
+    dev: false
     optional: true
 
   /turbo/1.7.3:
@@ -9886,7 +9885,7 @@ packages:
       turbo-linux-arm64: 1.7.3
       turbo-windows-64: 1.7.3
       turbo-windows-arm64: 1.7.3
-    dev: true
+    dev: false
 
   /twilio/4.8.0:
     resolution: {integrity: sha512-jJaEyFGIiIAIfAWyq94g3uo2odTyo2opRN8hzpDHpbA4SYDfhxmm4E+Z0c7AP41HEdxzDyCwMkLNXh6fBpWRiw==}

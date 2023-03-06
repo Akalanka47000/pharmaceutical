@@ -34,12 +34,12 @@ RUN pnpm turbo run build --filter=$service
  
 FROM node:alpine AS runner
 
-ARG service
+ARG dir
 
 WORKDIR /app
  
-COPY --from=installer /app/services/$service/package.json .
-COPY --from=installer /app/services/$service/migrate-mongo-config.js .
-COPY --from=installer /app/services/$service/dist ./dist
+COPY --from=installer /app/services/$dir/package.json .
+COPY --from=installer /app/services/$dir/migrate-mongo-config.js .
+COPY --from=installer /app/services/$dir/dist ./dist
  
 CMD node dist/server.js

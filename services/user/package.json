@@ -11,7 +11,6 @@
     "dev": "sh ../../workspace-scripts/services/start-dev.sh",
     "start": "sh ../../workspace-scripts/services/start.sh",
     "build": "node ../../workspace-scripts/services/build/esbuild.js",
-    "build:docker": "docker build -f ../../workspace-scripts/services/build/docker",
     "lint": "sh ../../workspace-scripts/services/lint.sh"
   },
   "dependencies": {

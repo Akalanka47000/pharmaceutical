@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@app/constants": "workspace*",
+    "@app/middleware": "workspace*",
     "@sliit-foss/clusterizer": "1.1.1",
     "@sliit-foss/functions": "2.0.1",
     "@sliit-foss/module-logger": "1.1.2",

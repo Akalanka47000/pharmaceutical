@@ -5,8 +5,9 @@ import helmet from 'helmet';
 import context from 'express-http-context';
 import clusterize from '@sliit-foss/clusterizer';
 import { moduleLogger } from '@sliit-foss/module-logger';
-import { correlationId } from "./utils";
-import { authorizer, errorHandler, responseInterceptor } from './middleware';
+import { correlationId } from "@app/constants";
+import { errorHandler, responseInterceptor } from '@app/middleware';
+import { authorizer } from './middleware';
 import config from './config';
 import routes from './routes';
 

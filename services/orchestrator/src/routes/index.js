@@ -4,7 +4,7 @@ import orchestratorRoutes from '../modules/orchestrator';
 
 const router = express.Router();
 
-router.use(orchestratorRoutes);
 router.use(systemRoutes);
+router.use(orchestratorRoutes);
 
 export default router;

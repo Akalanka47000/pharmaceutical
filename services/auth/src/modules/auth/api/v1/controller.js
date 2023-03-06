@@ -1,7 +1,7 @@
 import express from 'express';
 import { celebrate, Segments } from 'celebrate'
 import { tracedAsyncHandler, traced } from '@sliit-foss/functions';
-import { toSuccess } from '../../../../utils';
+import { toSuccess } from '@app/middleware';
 import { serviceLogin, serviceRegister, serviceRefreshToken, serviceLogout } from './service';
 import { loginSchema, registerSchema, refreshTokenSchema } from './schema';
 

@@ -1,7 +1,7 @@
 {
-    "name": "@app/constants",
+    "name": "@app/middleware",
     "version": "0.0.0",
-    "description": "A collection of constants used in the application",
+    "description": "Middleware functions for the underlying microservices",
     "private": true,
     "main": "dist/index.js",
     "scripts": {
@@ -9,7 +9,10 @@
       "lint": "sh ../../workspace-scripts/services/lint.sh"
     },
     "dependencies": {
-      "celebrate": "15.0.1"
+      "@app/constants": "workspace*",
+      "@sliit-foss/module-logger": "1.1.2",
+      "celebrate": "15.0.1",
+      "express-http-context": "1.2.4"
     }
   }
   

@@ -1,5 +1,5 @@
 {
-  "name": "user-service",
+  "name": "email-service",
   "version": "1.0.0",
   "author": "FOSS",
   "engines": {
@@ -20,8 +20,6 @@
     "@sliit-foss/clusterizer": "1.1.1",
     "@sliit-foss/functions": "2.0.1",
     "@sliit-foss/module-logger": "1.1.2",
-    "@sliit-foss/mongoose-filter-query": "1.1.1",
-    "bcryptjs": "2.4.3",
     "celebrate": "15.0.1",
     "compression": "1.7.2",
     "express": "4.16.3",
@@ -29,10 +27,7 @@
     "helmet": "3.12.0",
     "http-errors": "2.0.0",
     "lodash": "4.17.10",
-    "migrate-mongo": "9.0.0",
-    "mongoose": "^6.3.4",
-    "mongoose-lean-defaults": "2.2.1",
-    "mongoose-paginate-v2": "1.6.3"
+    "nodemailer": "6.9.1"
   },
   "devDependencies": {
     "nodemon": "1.12.1"

@@ -73,6 +73,6 @@
     ],
     "import/order": 2,
     "import/first": 2,
-    "turbo/no-undeclared-env-vars": "off",
+    "turbo/no-undeclared-env-vars": "off"
   }
 }

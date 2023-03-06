@@ -1,8 +1,5 @@
 import createError from "http-errors";
 
-export const correlationId = 'x-correlation-id';
-export const hostName = 'x-host-name';
-
 export const errors = {
     missing_token: createError(401, 'Bearer token is missing'),
     invalid_token: createError(401, 'Token is invalid'),

@@ -36,4 +36,4 @@ RUN pnpm turbo run build --filter=$service
 
 EXPOSE 8080
 
-CMD pnpm turbo run start --filter=$service
+CMD node services/$($(echo "$service" | cut -d'-' -f1))/dist/server.js --enable-source-maps

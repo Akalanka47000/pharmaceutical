@@ -23,6 +23,7 @@ ARG service
 WORKDIR /app
 
 RUN yarn global add pnpm
+
 COPY .gitignore .gitignore
 COPY --from=builder /app/out/json/ .
 COPY --from=builder /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
@@ -36,4 +37,4 @@ RUN pnpm turbo run build --filter=$service
 
 EXPOSE 8080
 
-CMD node services/$(echo "$service" | cut -d'-' -f1)/dist/server.js --enable-source-maps
+CMD ["sh", "-c", "node services/$(echo "$service" | cut -d'-' -f1)/dist/server.js --enable-source-maps"]

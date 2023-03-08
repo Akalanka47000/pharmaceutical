@@ -58,7 +58,7 @@ const initialize = ({ service, routes, leadingMiddleware = [], cors: enableCors,
 
             if (!routes) {
                 routes = express.Router();
-                let root = stack().find((site) => site.getFileName().endsWith("server.js"))?.getFileName().replace("/server.js", "").replace("\\server.js", "");
+                const root = stack().find((site) => site.getFileName().endsWith("server.js"))?.getFileName()?.replace("/server.js", "")?.replace("\\server.js", "");
                 fs.readdirSync(`${root}/modules`)?.forEach((module) => {
                     fs.readdirSync(`${root}/modules/${module}/api`)?.forEach((v) => {
                         routes.use(`/${v}/${module}`, require(`${root}/modules/${module}/api/${v}/controller`).default)

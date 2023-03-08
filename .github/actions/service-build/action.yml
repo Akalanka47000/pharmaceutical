@@ -13,6 +13,9 @@ inputs:
   tag:
     description: Docker image tag
     required: true
+  repository_access_token:
+    description: Token to authenticate with Github
+    required: true
 runs:
   using: composite
   steps:
@@ -42,6 +45,7 @@ runs:
 
           git config pull.ff true
           git add . && git commit -m "Synced with kube config" || true
+          git remote set-url origin https://Akalanka47000:${{ inputs.repository_access_token }}@github.com/Akalanka47000/pharmaceutical-kube-config.git
           git pull --rebase && git push origin main
 
       shell: bash

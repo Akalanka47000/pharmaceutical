@@ -17,3 +17,4 @@ jobs:
           service: user-service
           tag: "pharmaceutical-user-service:${{ github.sha }}-${{ github.run_attempt }}"
           access_token: ${{ secrets.REGISTRY_ACCESS_TOKEN }}
+          repository_access_token: ${{ secrets.REPOSITORY_ACCESS_TOKEN }}

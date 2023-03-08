@@ -1,25 +1,50 @@
-FROM node:16-alpine as builder
+FROM node:alpine AS builder
 
-WORKDIR /usr/app
+RUN apk add --no-cache libc6-compat
+RUN apk update
 
-COPY package.json esbuild.config.js pnpm-lock.yaml ./
-COPY src ./src
+ARG service
 
-RUN npm install -g pnpm && \
-    pnpm install --production --ignore-scripts && \
-    pnpm build
+WORKDIR /app
 
-FROM node:16-alpine
+RUN yarn global add turbo pnpm
 
-WORKDIR /usr/app
+COPY . .
 
-COPY package.json migrate-mongo-config.js ./
-COPY database/mongo/migrations migration_scripts
-COPY --from=builder /usr/app/dist dist
-COPY --from=builder /usr/app/node_modules node_modules
+RUN turbo prune --scope=$service --docker
+ 
+FROM node:alpine AS installer
 
-RUN sed -i 's/src\/database\/mongo\/migrations/migration_scripts/g' migrate-mongo-config.js
+RUN apk add --no-cache libc6-compat
+RUN apk update
+
+ARG service
+
+WORKDIR /app
+
+RUN yarn global add pnpm
+COPY .gitignore .gitignore
+COPY --from=builder /app/out/json/ .
+COPY --from=builder /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
+COPY --from=builder /app/workspace-scripts ./workspace-scripts
+
+RUN pnpm install --production --ignore-scripts
+ 
+COPY --from=builder /app/out/full/ .
+RUN pnpm turbo run build --filter=$service
+ 
+FROM node:alpine AS runner
+
+ARG dir
+
+WORKDIR /app
+ 
+COPY --from=installer /app/services/$dir/package.json .
+COPY --from=installer /app/services/$dir/migrate-mongo-config.js .
+COPY --from=installer /app/services/$dir/dist ./dist
+COPY --from=installer /app/services/$dir/node_modules ./node_modules
+COPY --from=installer /app/node_modules ./node_modules
 
 EXPOSE 8080
 
-CMD node dist/index.js --enable-source-maps
+CMD node dist/server.js --enable-source-maps

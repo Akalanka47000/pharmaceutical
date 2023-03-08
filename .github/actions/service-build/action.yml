@@ -35,7 +35,7 @@ runs:
     - name: Update kube-config
       run: |
           git clone https://github.com/Akalanka47000/pharmaceutical-kube-config.git && cd pharmaceutical-kube-config
-          sed -i "s/.*ghcr.io.*/          image: ghcr.io\/akalanka47000\/${{ inputs.tag }}/" deployment.yml
+          sed -i "s/.*ghcr.io.*/          image: ghcr.io\/akalanka47000\/${{ inputs.tag }}/" services/${{ inputs.service }}/deployment.yml
 
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"

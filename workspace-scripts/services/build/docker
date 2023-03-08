@@ -48,4 +48,6 @@ COPY --from=installer /app/node_modules ./node_modules
 
 EXPOSE 8080
 
-CMD node dist/server.js --enable-source-maps
+CMD echo 123
+
+# CMD node dist/server.js --enable-source-maps

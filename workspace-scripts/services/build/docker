@@ -19,6 +19,7 @@ RUN apk add --no-cache libc6-compat
 RUN apk update
 
 ARG service
+ARG dir
 
 WORKDIR /app
 
@@ -37,4 +38,4 @@ RUN pnpm turbo run build --filter=$service
 
 EXPOSE 8080
 
-CMD exec "node services/$(echo "$service" | cut -d'-' -f1)/dist/server.js --enable-source-maps"
+CMD node services/$dir/dist/server.js --enable-source-maps

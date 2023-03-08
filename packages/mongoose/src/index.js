@@ -3,9 +3,9 @@ import { moduleLogger } from "@sliit-foss/module-logger";
 
 const logger = moduleLogger("Mongoose-Connector");
 
-export const connect = () => {
+export const connect = async () => {
     try {
-        mongoose.connect(process.env.DB_URL, {
+        await mongoose.connect(process.env.DB_URL, {
             keepAlive: true,
             socketTimeoutMS: 30000,
         });

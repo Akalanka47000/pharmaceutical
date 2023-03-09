@@ -17,7 +17,7 @@ import { connect as connectDatabase } from '@app/mongoose';
 const initialize = ({ service, routes, leadingMiddleware = [], cors: enableCors, translations, database, config }) => {
     const logger = moduleLogger('Server');
     clusterize(
-        async () => {
+        () => {
             const app = express();
 
             app.use(helmet());
@@ -51,7 +51,7 @@ const initialize = ({ service, routes, leadingMiddleware = [], cors: enableCors,
             }
 
             if (database) {
-                await connectDatabase()
+                connectDatabase()
             }
 
             app.use('/system', expressHealth());

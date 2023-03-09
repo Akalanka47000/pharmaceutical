@@ -44,7 +44,7 @@ runs:
           git config --global user.name "github-actions[bot]"
 
           git config pull.ff true
-          git add . && git commit -m "Synced with kube config" || true
+          git add . && git commit -m "Synced ${{ inputs.service }} kube config" || true
           git remote set-url origin https://Akalanka47000:${{ inputs.repository_access_token }}@github.com/Akalanka47000/pharmaceutical-kube-config.git
           git pull --rebase && git push origin main
 

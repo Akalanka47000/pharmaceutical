@@ -5,6 +5,7 @@ on:
       - main
     paths:
       - services/sms/**
+      - packages/**
   workflow_dispatch:
 
 jobs:

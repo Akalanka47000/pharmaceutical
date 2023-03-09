@@ -5,6 +5,7 @@ on:
       - main
     paths:
       - services/email/**
+      - packages/**
   workflow_dispatch:
 
 jobs:

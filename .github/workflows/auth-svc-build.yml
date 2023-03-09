@@ -5,6 +5,7 @@ on:
       - main
     paths:
       - services/auth/**
+      - packages/**
   workflow_dispatch:
 
 jobs:

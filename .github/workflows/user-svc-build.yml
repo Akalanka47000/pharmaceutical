@@ -5,6 +5,7 @@ on:
       - main
     paths:
       - services/user/**
+      - packages/**
   workflow_dispatch:
 
 jobs:

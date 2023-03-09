@@ -5,6 +5,7 @@ on:
       - main
     paths:
       - services/orchestrator/**
+      - packages/**
   workflow_dispatch:
 
 jobs:

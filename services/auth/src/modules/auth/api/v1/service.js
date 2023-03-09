@@ -42,6 +42,6 @@ export const serviceRefreshToken = async (token) => {
     return traced(generateTokens)(user);
 }
 
-export const serviceLogout = async (token) => {
+export const serviceLogout = (token) => {
     return Blacklist.add(token)
 }

@@ -10,7 +10,7 @@ export class Blacklist {
         return !!(await redis.get(`access-token-blacklist:${token}`))
     }
 
-    static async add(token) {
+    static add(token) {
         return redis.set(`access-token-blacklist:${token}`, "1", 3600)
     }
 }

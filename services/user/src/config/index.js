@@ -12,7 +12,7 @@ class Base {
   }
   static get values() {
     return {
-      HOST: process.env.HOST ?? 'localhost',
+      HOST: process.env.HOST ?? '0.0.0.0',
       PORT: process.env.PORT ?? 2000,
       DB_URL: process.env.DB_URL,
     };

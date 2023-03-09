@@ -6,7 +6,6 @@ const logger = moduleLogger('Config');
 class Base {
   static get schema() {
     return {
-      HOST: Joi.string().optional(),
       PORT: Joi.number().optional(),
       AUTH_SERVICE_BASE_URL: Joi.string().required(),
       USER_SERVICE_BASE_URL: Joi.string().required(),
@@ -17,7 +16,6 @@ class Base {
   }
   static get values() {
     return {
-      HOST: process.env.HOST ?? 'localhost',
       PORT: process.env.PORT ?? 2002,
       AUTH_SERVICE_BASE_URL: process.env.AUTH_SERVICE_BASE_URL,
       USER_SERVICE_BASE_URL: process.env.USER_SERVICE_BASE_URL,

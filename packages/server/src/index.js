@@ -72,8 +72,10 @@ const initialize = ({ service, routes, leadingMiddleware = [], cors: enableCors,
 
             app.use(errorHandler)
 
-            app.listen(config.PORT, config.HOST, () => {
-                logger.info(`${service} listening on ${config.HOST}:${config.PORT}`);
+            const HOST = config.HOST ?? "0.0.0.0"
+
+            app.listen(config.PORT, HOST, () => {
+                logger.info(`${service} listening on ${HOST}:${config.PORT}`);
             });
         },
         { logger, workers: 1 },

@@ -5,14 +5,12 @@ const logger = moduleLogger('Config');
 class Base {
   static get schema() {
     return {
-      HOST: Joi.string().optional(),
       PORT: Joi.number().optional(),
       DB_URL: Joi.string().required(),
     };
   }
   static get values() {
     return {
-      HOST: process.env.HOST ?? '0.0.0.0',
       PORT: process.env.PORT ?? 2000,
       DB_URL: process.env.DB_URL,
     };

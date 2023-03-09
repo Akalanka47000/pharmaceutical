@@ -6,7 +6,6 @@ const logger = moduleLogger('Config');
 class Base {
   static get schema() {
     return {
-      HOST: Joi.string().optional(),
       PORT: Joi.number().optional(),
       JWT_SECRET: Joi.string().required(),
       ACCESS_TOKEN_EXPIRY: Joi.string().optional(),
@@ -17,7 +16,7 @@ class Base {
   }
   static get values() {
     return {
-      HOST: process.env.HOST ?? 'localhost',
+  
       PORT: process.env.PORT ?? 2001,
       JWT_SECRET: process.env.JWT_SECRET,
       ACCESS_TOKEN_EXPIRY: process.env.ACCESS_TOKEN_EXPIRY ?? '1h',

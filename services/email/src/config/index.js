@@ -5,7 +5,6 @@ const logger = moduleLogger('Config');
 class Base {
   static get schema() {
     return {
-      HOST: Joi.string().optional(),
       PORT: Joi.number().optional(),
       MAIL_HOST: Joi.string().required(),
       MAIL_USER: Joi.string().required(),
@@ -14,7 +13,6 @@ class Base {
   }
   static get values() {
     return {
-      HOST: process.env.HOST ?? 'localhost',
       PORT: process.env.PORT ?? 2003,
       MAIL_HOST: process.env.MAIL_HOST,
       MAIL_USER: process.env.MAIL_USER,

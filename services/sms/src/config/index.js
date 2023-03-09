@@ -5,7 +5,6 @@ const logger = moduleLogger('Config');
 class Base {
   static get schema() {
     return {
-      HOST: Joi.string().optional(),
       PORT: Joi.number().optional(),
       TWILIO_ACCOUNT_SID: Joi.string().required(),
       TWILIO_AUTH_TOKEN: Joi.string().required(),
@@ -14,7 +13,6 @@ class Base {
   }
   static get values() {
     return {
-      HOST: process.env.HOST ?? 'localhost',
       PORT: process.env.PORT ?? 2004,
       TWILIO_ACCOUNT_SID: process.env.TWILIO_ACCOUNT_SID,
       TWILIO_AUTH_TOKEN: process.env.TWILIO_AUTH_TOKEN,

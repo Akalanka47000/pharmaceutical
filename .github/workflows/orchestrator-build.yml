@@ -1,10 +1,10 @@
-name: user-svc-build
+name: orchestrator-build
 on:
   push:
     branches:
       - main
     paths:
-      - services/user/**
+      - services/orchestrator/**
   workflow_dispatch:
 
 jobs:
@@ -14,7 +14,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/service-build
         with:
-          service: user-service
-          tag: "pharmaceutical-user-service:${{ github.sha }}-${{ github.run_attempt }}"
+          service: orchestrator
+          tag: "pharmaceutical-orchestrator:${{ github.sha }}-${{ github.run_attempt }}"
           access_token: ${{ secrets.REGISTRY_ACCESS_TOKEN }}
           repository_access_token: ${{ secrets.REPOSITORY_ACCESS_TOKEN }}

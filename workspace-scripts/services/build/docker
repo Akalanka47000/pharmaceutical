@@ -24,7 +24,6 @@ ARG dir
 WORKDIR /app
 
 RUN yarn global add pnpm
-RUN apk add git
 
 COPY .gitignore .gitignore
 COPY --from=builder /app/out/json/ .

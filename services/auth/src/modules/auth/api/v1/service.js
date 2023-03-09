@@ -43,6 +43,5 @@ export const serviceRefreshToken = async (token) => {
 }
 
 export const serviceLogout = async (token) => {
-    const blacklist = await Blacklist.getInstance();
-    return blacklist.add(token)
+    return Blacklist.add(token)
 }

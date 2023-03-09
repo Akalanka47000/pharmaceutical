@@ -19,8 +19,7 @@ export const authorizer = tracedAsyncHandler(async function authorizer(req) {
     if (!user) {
         throw errors.invalid_token;
     }
-    const blacklist = await Blacklist.getInstance();
-    if (await blacklist.has(token)) {
+    if (await Blacklist.has(token)) {
         throw errors.cancelled_token;
     }
     if (!user.is_active) {

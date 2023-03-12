@@ -211,6 +211,39 @@ importers:
     devDependencies:
       nodemon: 1.12.1
 
+  services/delivery:
+    specifiers:
+      '@app/constants': workspace*
+      '@app/middleware': workspace*
+      '@app/server': workspace*
+      '@sliit-foss/functions': 2.0.1
+      '@sliit-foss/module-logger': 1.1.2
+      '@sliit-foss/mongoose-filter-query': 1.1.1
+      celebrate: 15.0.1
+      express: 4.16.3
+      express-http-context: 1.2.4
+      http-errors: 2.0.0
+      lodash: 4.17.10
+      mongoose: ^6.3.4
+      mongoose-paginate-v2: 1.6.3
+      nodemon: 1.12.1
+    dependencies:
+      '@app/constants': link:../../packages/constants
+      '@app/middleware': link:../../packages/middleware
+      '@app/server': link:../../packages/server
+      '@sliit-foss/functions': 2.0.1
+      '@sliit-foss/module-logger': 1.1.2
+      '@sliit-foss/mongoose-filter-query': 1.1.1
+      celebrate: 15.0.1
+      express: 4.16.3
+      express-http-context: 1.2.4
+      http-errors: 2.0.0
+      lodash: 4.17.10
+      mongoose: 6.10.1
+      mongoose-paginate-v2: 1.6.3
+    devDependencies:
+      nodemon: 1.12.1
+
   services/email:
     specifiers:
       '@app/middleware': workspace*

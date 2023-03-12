@@ -7,9 +7,6 @@ inputs:
   access_token:
     description: Token to authenticate with the container registry
     required: true
-  sha:
-    description: Commit sha which triggered the job
-    required: true
   tag:
     description: Docker image tag
     required: true

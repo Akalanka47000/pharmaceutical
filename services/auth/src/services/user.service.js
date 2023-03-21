@@ -16,6 +16,10 @@ export const getUserByEmail = async (email, v = "v1") => {
     return head(users);
 };
 
+export const verifyUser = (verificationCode, v = "v1") => {
+    return connector.patch(`/api/${v}/users?filter[verification_code]=${verificationCode}`, { is_verified: true, verification_code: null }).then(connector.resolve);
+};
+
 export const getUserById = (id, v = "v1") => {
     return connector.get(`/api/${v}/users/${id}`).then(connector.resolve);
 };

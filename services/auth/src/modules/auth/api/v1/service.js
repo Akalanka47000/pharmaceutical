@@ -1,10 +1,12 @@
 /* eslint-disable import/named */
 
+import crypto from 'crypto';
 import bcrypt from 'bcryptjs';
 import createError from "http-errors";
 import { traced } from '@sliit-foss/functions';
-import { createUser, getUserByEmail, getUserById } from '../../../../services'
+import { createUser, getUserByEmail, getUserById, sendVerificationEmail, verifyUser } from '../../../../services'
 import { errors, verify, generateTokens, Blacklist } from '../../../../utils';
+import config from '../../../../config';
 
 export const serviceLogin = async ({ email, password }) => {
     const user = await getUserByEmail(email);
@@ -18,6 +20,9 @@ export const serviceLogin = async ({ email, password }) => {
     if (!isMatch) {
         throw errors.invalid_password;
     }
+    if (!user.is_verified) {
+        throw errors.unverified_user;
+    }
     return traced(generateTokens)(user);
 }
 
@@ -26,7 +31,18 @@ export const serviceRegister = async ({ name, email, password, address }) => {
     if (user) {
         throw createError(400, "User already exists")
     }
-    return createUser({ name, email, password, address });
+    const code = crypto.randomUUID()
+    sendVerificationEmail({
+        template: "email_verification",
+        data: {
+            verification_url: `${config.FRONTEND_BASE_URL}/user/verify?code=${code}`
+        },
+        options: {
+            to: email,
+            subject: "Verify user account",
+        }
+    })
+    return createUser({ name, email, password, address, verification_code: code });
 }
 
 export const serviceRefreshToken = async (token) => {
@@ -40,6 +56,14 @@ export const serviceRefreshToken = async (token) => {
         throw errors.user_deactivated;
     }
     return traced(generateTokens)(user);
+}
+
+export const serviceVerifyUser = async (code) => {
+    const result = await verifyUser(code);
+    if (!result.matchedCount) {
+        throw errors.invalid_code;
+    }
+    return
 }
 
 export const serviceLogout = (token) => {

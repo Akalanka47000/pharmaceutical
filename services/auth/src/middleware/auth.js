@@ -1,13 +1,12 @@
 /* eslint-disable import/named */
 
 import { tracedAsyncHandler } from '@sliit-foss/functions';
+import { protectedRoutes } from '@app/constants'
 import { getUserById } from '../services';
 import { Blacklist, verify, errors } from '../utils';
 
-export const whitelistedRoutes = ['/v1/auth/login', '/v1/auth/register', '/v1/auth/refresh', '/v1/system/health'];
-
 export const authorizer = tracedAsyncHandler(async function authorizer(req) {
-    if (whitelistedRoutes.includes(req.path)) {
+    if (protectedRoutes.includes(req.path)) {
         return;
     }
     const token = req.headers.authorization?.replace('Bearer ', '')?.replace('null', '');

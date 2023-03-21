@@ -31,6 +31,14 @@ const UserSchema = new Schema(
         is_active: {
             type: SchemaTypes.Boolean,
             default: true,
+        },
+        is_verified: {
+            type: SchemaTypes.Boolean,
+            default: false,
+        },
+        verification_code: {
+            type: SchemaTypes.String,
+            unique: true,
         }
     },
     {

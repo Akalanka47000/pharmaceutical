@@ -2,7 +2,7 @@ import express from 'express';
 import { celebrate, Segments } from 'celebrate'
 import { tracedAsyncHandler, traced } from '@sliit-foss/functions';
 import { toSuccess } from '@app/middleware';
-import { serviceLogin, serviceRegister, serviceRefreshToken, serviceLogout } from './service';
+import { serviceLogin, serviceRegister, serviceRefreshToken, serviceVerifyUser, serviceLogout } from './service';
 import { loginSchema, registerSchema, refreshTokenSchema } from './schema';
 
 const auth = express.Router();
@@ -20,6 +20,11 @@ auth.post('/register', celebrate({ [Segments.BODY]: registerSchema }), tracedAsy
 auth.post('/refresh-token', celebrate({ [Segments.BODY]: refreshTokenSchema }), tracedAsyncHandler(async function controllerRefreshToken(req, res) {
     const data = await traced(serviceRefreshToken)(req.body.refresh_token);
     return toSuccess({ res, data, message: 'Token refresh successfull!' })
+}));
+
+auth.get('/verify/:code', tracedAsyncHandler(async function controllerVerifyUser(req, res) {
+    await traced(serviceVerifyUser)(req.params.code);
+    return toSuccess({ res, message: 'User verified successfully!' })
 }));
 
 auth.get('/current', tracedAsyncHandler(function controllerGetAuthUser(req, res) {

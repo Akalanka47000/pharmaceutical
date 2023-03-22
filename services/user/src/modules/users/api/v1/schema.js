@@ -15,5 +15,5 @@ export const updateUserSchema = Joi.object({
   password: Joi.string().optional(),
   address: Joi.string().optional(),
   is_verified: Joi.boolean().optional(),
-  verification_code: Joi.string().optional(),
+  verification_code: Joi.string().optional().allow(null),
 });

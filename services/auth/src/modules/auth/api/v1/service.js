@@ -6,7 +6,7 @@ import createError from "http-errors";
 import { traced } from '@sliit-foss/functions';
 import { createUser, getUserByEmail, getUserById, sendVerificationEmail, verifyUser } from '../../../../services'
 import { errors, verify, generateTokens, Blacklist } from '../../../../utils';
-import config from '../../../../config';
+import { constructVerificationEmailPayload } from './mappers';
 
 export const serviceLogin = async ({ email, password }) => {
     const user = await getUserByEmail(email);
@@ -32,16 +32,7 @@ export const serviceRegister = async ({ name, email, password, address }) => {
         throw createError(400, "User already exists")
     }
     const code = crypto.randomUUID()
-    sendVerificationEmail({
-        template: "email_verification",
-        data: {
-            verification_url: `${config.FRONTEND_BASE_URL}/user/verify?code=${code}`
-        },
-        options: {
-            to: email,
-            subject: "Verify user account",
-        }
-    })
+    sendVerificationEmail(constructVerificationEmailPayload(email, code))
     return createUser({ name, email, password, address, verification_code: code });
 }
 

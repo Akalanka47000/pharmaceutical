@@ -8,7 +8,7 @@ import { getAuthUser } from '../services';
 const logger = moduleLogger('Auth-middleware');
 
 export const authorizer = tracedAsyncHandler(async function authorizer(req) {
-    if (protectedRoutes.includes(req.path)) {
+    if (protectedRoutes.find(route => req.path.match(new RegExp(route)))) {
         return;
     }
     context.set('headers', req.headers);

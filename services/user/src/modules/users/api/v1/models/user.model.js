@@ -38,7 +38,10 @@ const UserSchema = new Schema(
         },
         verification_code: {
             type: SchemaTypes.String,
-            unique: true,
+            index: {
+                unique: true,
+                partialFilterExpression: { verification_code: { $type: "string" } }
+            }
         }
     },
     {

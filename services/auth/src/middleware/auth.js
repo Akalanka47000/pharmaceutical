@@ -6,7 +6,7 @@ import { getUserById } from '../services';
 import { Blacklist, verify, errors } from '../utils';
 
 export const authorizer = tracedAsyncHandler(async function authorizer(req) {
-    if (protectedRoutes.includes(req.path)) {
+    if (protectedRoutes.find(route => req.path.match(new RegExp(route)))) {
         return;
     }
     const token = req.headers.authorization?.replace('Bearer ', '')?.replace('null', '');

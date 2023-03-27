@@ -1,1 +1,1 @@
-export * from './nodemailer.service'
+export * from './nodemailer.service';

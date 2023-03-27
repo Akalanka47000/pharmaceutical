@@ -5,10 +5,10 @@ import routes from './routes';
 import config from './config';
 
 initializeServer({
-  service: "Orchestrator",
+  service: 'Orchestrator',
   routes,
   leadingMiddleware: [authorizer, rateLimiter],
   cors: true,
   translations,
-  config
-})
+  config,
+});

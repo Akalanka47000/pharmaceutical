@@ -1,7 +1,7 @@
-import crypto from "crypto";
-import { useEffect, useState } from "react";
-import { AiOutlineClose } from "react-icons/ai";
-import { twMerge } from "tailwind-merge";
+import crypto from 'crypto';
+import { useEffect, useState } from 'react';
+import { AiOutlineClose } from 'react-icons/ai';
+import { twMerge } from 'tailwind-merge';
 
 const wrapperId = crypto.randomUUID();
 const inputId = crypto.randomUUID();
@@ -20,8 +20,8 @@ const Dropdown = ({ options, onChange, ...props }) => {
   };
 
   useEffect(() => {
-    document.removeEventListener("click", clickListener);
-    document.addEventListener("click", clickListener);
+    document.removeEventListener('click', clickListener);
+    document.addEventListener('click', clickListener);
   });
 
   const onSelect = (option) => {
@@ -31,25 +31,20 @@ const Dropdown = ({ options, onChange, ...props }) => {
           value: option?.key,
         },
       },
-      props.filterkey
+      props.filterkey,
     );
     setSelectedOption(option?.key);
   };
 
   return (
-    <div
-      id={wrapperId}
-      className={`${props.wrapperclasses || ""} w-full relative`}
-    >
+    <div id={wrapperId} className={`${props.wrapperclasses || ''} w-full relative`}>
       <input
         id={id}
         className={twMerge(
           `w-full h-14 sm:h-16 bg-transparent border-[1px] border-gray-500 focus:border-primary outline-none rounded-md text-gray-100 px-4 py-2 text-base font-normal hover:text-white transition duration-300 cursor-pointer hide-blink ${props.className}`,
-          props.className
+          props.className,
         )}
-        value={
-          options.find((opt) => opt.key === selectedOption)?.label || "Select"
-        }
+        value={options.find((opt) => opt.key === selectedOption)?.label || 'Select'}
         onClick={() => {
           setShowItems(!showItems);
         }}
@@ -85,17 +80,9 @@ const Dropdown = ({ options, onChange, ...props }) => {
       )}
       {selectedOption && (
         <div
-          className={`w-fit h-full absolute right-3 top-0 flex justify-center items-center ${
-            props.className.includes("hidden") ||
-            props.className.includes("opacity-0")
-              ? "hidden opacity-0"
-              : ""
-          }`}
+          className={`w-fit h-full absolute right-3 top-0 flex justify-center items-center ${props.className.includes('hidden') || props.className.includes('opacity-0') ? 'hidden opacity-0' : ''}`}
         >
-          <AiOutlineClose
-            className="w-[1.2rem] h-[1.2rem] text-gray-100 cursor-pointer"
-            onClick={onSelect}
-          />
+          <AiOutlineClose className="w-[1.2rem] h-[1.2rem] text-gray-100 cursor-pointer" onClick={onSelect} />
         </div>
       )}
     </div>

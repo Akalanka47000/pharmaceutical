@@ -1,8 +1,8 @@
-import { motion } from "framer-motion";
-import { ToastContainer } from "react-toastify";
-import { Loader } from "../common";
-import Footer from "./footer";
-import Navbar from "./navbar";
+import { motion } from 'framer-motion';
+import { ToastContainer } from 'react-toastify';
+import { Loader } from '../common';
+import Footer from './footer';
+import Navbar from './navbar';
 
 const Layout = ({ children }) => {
   return (

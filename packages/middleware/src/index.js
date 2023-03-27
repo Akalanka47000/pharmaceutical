@@ -1,2 +1,2 @@
 export * from './error-handler';
-export * from './response'
+export * from './response';

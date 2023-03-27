@@ -3,7 +3,7 @@ import { authorizer } from './middleware';
 import config from './config';
 
 initializeServer({
-  service: "Auth service",
+  service: 'Auth service',
   leadingMiddleware: [authorizer],
-  config
-})
+  config,
+});

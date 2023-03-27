@@ -9,5 +9,5 @@ export const sendEmailSchema = Joi.object({
     bcc: Joi.array().items(Joi.string().email()),
     subject: Joi.string().required(),
     attachments: Joi.array().optional(),
-  }
+  },
 });

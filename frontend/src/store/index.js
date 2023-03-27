@@ -1,5 +1,5 @@
-import { configureStore } from "@reduxjs/toolkit";
-import uiSlice from "./ui";
+import { configureStore } from '@reduxjs/toolkit';
+import uiSlice from './ui';
 
 export function makeStore() {
   return configureStore({

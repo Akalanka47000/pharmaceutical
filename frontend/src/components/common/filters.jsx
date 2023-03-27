@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Input, Dropdown } from ".";
+import { useState, useEffect } from 'react';
+import { Input, Dropdown } from '.';
 
 const Filters = ({ filters, setFilterQuery }) => {
   const [filtersLocalState, setFiltersLocalState] = useState(filters);
@@ -7,12 +7,10 @@ const Filters = ({ filters, setFilterQuery }) => {
   useEffect(() => {
     const query = filtersLocalState.reduce((acc, curr) => {
       if (curr.value) {
-        acc += `filter[${curr.key}]=${
-          curr.options ? curr.value : `/${curr.value}/`
-        }&`;
+        acc += `filter[${curr.key}]=${curr.options ? curr.value : `/${curr.value}/`}&`;
       }
       return acc;
-    }, "");
+    }, '');
     setFilterQuery(query);
   }, [filtersLocalState]);
 
@@ -23,7 +21,7 @@ const Filters = ({ filters, setFilterQuery }) => {
           filter.value = e.target.value;
         }
         return filter;
-      })
+      }),
     );
   };
 
@@ -33,20 +31,10 @@ const Filters = ({ filters, setFilterQuery }) => {
       <div className="w-full flex justify-start items-center gap-6">
         {filtersLocalState.map((filter, index) => {
           return (
-            <div
-              key={`filter-${filter.key}-${index}`}
-              className="w-1/2 h-full flex flex-col justify-center items-start"
-            >
-              <span className="text-md text-white mt-2 mb-3">
-                {filter.label}
-              </span>
+            <div key={`filter-${filter.key}-${index}`} className="w-1/2 h-full flex flex-col justify-center items-start">
+              <span className="text-md text-white mt-2 mb-3">{filter.label}</span>
               {filter.options ? (
-                <Dropdown
-                  filterkey={filter.key}
-                  options={filter.options}
-                  className="h-12 sm:h-14"
-                  onChange={onFilterChange}
-                />
+                <Dropdown filterkey={filter.key} options={filter.options} className="h-12 sm:h-14" onChange={onFilterChange} />
               ) : (
                 <Input
                   className="h-12 sm:h-14"

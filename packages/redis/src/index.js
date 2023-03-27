@@ -11,7 +11,7 @@ export const redlock = new Redlock([redis]);
 redis.on('connect', () => logger.info('Redis connected'));
 redis.on('error', (err) => logger.error(`Redis error - message: ${err.message}`, err));
 
-redis.setKey = redis.set
+redis.setKey = redis.set;
 
 redis.set = (key, value, ttl) => redis.setKey(key, value, 'EX', ttl ?? 30);
 

@@ -16,7 +16,7 @@ class Base {
       PORT: process.env.PORT ?? 2003,
       MAIL_HOST: process.env.MAIL_HOST,
       MAIL_USER: process.env.MAIL_USER,
-      MAIL_PASSWORD: process.env.MAIL_PASSWORD
+      MAIL_PASSWORD: process.env.MAIL_PASSWORD,
     };
   }
 }
@@ -26,7 +26,7 @@ const config = Base.values;
 const { error } = Joi.object(Base.schema).validate(config);
 
 if (error) {
-  logger.error(`Environment validation failed. \nDetails - ${error.details[0].message}\nExiting...`)
+  logger.error(`Environment validation failed. \nDetails - ${error.details[0].message}\nExiting...`);
   process.exit(1);
 }
 

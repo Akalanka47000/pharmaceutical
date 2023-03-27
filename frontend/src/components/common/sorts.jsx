@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { MdOutlineCircle, MdArrowDropDownCircle } from "react-icons/md";
+import { useState, useEffect } from 'react';
+import { MdOutlineCircle, MdArrowDropDownCircle } from 'react-icons/md';
 
 const Sorts = ({ sorts, setSortQuery }) => {
   const [sortLocalState, setSortLocalState] = useState(sorts);
@@ -10,7 +10,7 @@ const Sorts = ({ sorts, setSortQuery }) => {
         acc += `sort[${curr.key}]=${curr.direction}&`;
       }
       return acc;
-    }, "");
+    }, '');
     setSortQuery(query);
   }, [sortLocalState]);
 
@@ -21,7 +21,7 @@ const Sorts = ({ sorts, setSortQuery }) => {
           sort.direction = direction;
         }
         return sort;
-      })
+      }),
     );
   };
 
@@ -30,10 +30,7 @@ const Sorts = ({ sorts, setSortQuery }) => {
       <div className="w-full flex justify-start items-center gap-6">
         {sortLocalState.map((sort, index) => {
           return (
-            <div
-              key={`sort-${sort.key}-${index}`}
-              className="w-1/2 md:w-1/4 h-full flex flex-col justify-center items-start"
-            >
+            <div key={`sort-${sort.key}-${index}`} className="w-1/2 md:w-1/4 h-full flex flex-col justify-center items-start">
               <Sort sort={sort} onSortChange={onSortChange} />
             </div>
           );
@@ -44,9 +41,7 @@ const Sorts = ({ sorts, setSortQuery }) => {
 };
 
 const Sort = ({ sort, onSortChange }) => {
-  const [directionLocalState, setDirectionLocalState] = useState(
-    sort.direction
-  );
+  const [directionLocalState, setDirectionLocalState] = useState(sort.direction);
 
   useEffect(() => {
     onSortChange(sort.key, directionLocalState);
@@ -64,19 +59,8 @@ const Sort = ({ sort, onSortChange }) => {
 
   return (
     <div className="w-full h-full flex justify-start items-center">
-      <div
-        className="text-2xl text-white mr-2 cursor-pointer"
-        onClick={setSortOrder}
-      >
-        {directionLocalState === 0 ? (
-          <MdOutlineCircle />
-        ) : (
-          <MdArrowDropDownCircle
-            className={`text-primary transform ${
-              directionLocalState === 1 ? "" : "rotate-180"
-            }`}
-          />
-        )}
+      <div className="text-2xl text-white mr-2 cursor-pointer" onClick={setSortOrder}>
+        {directionLocalState === 0 ? <MdOutlineCircle /> : <MdArrowDropDownCircle className={`text-primary transform ${directionLocalState === 1 ? '' : 'rotate-180'}`} />}
       </div>
       <span className="text-md text-white font-semibold">{sort.label}</span>
     </div>

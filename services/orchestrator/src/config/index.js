@@ -11,7 +11,7 @@ class Base {
       USER_SERVICE_BASE_URL: Joi.string().required(),
       EMAIL_SERVICE_BASE_URL: Joi.string().required(),
       SMS_SERVICE_BASE_URL: Joi.string().required(),
-      REDIS_CONNECTION_STRING: Joi.string().required()
+      REDIS_CONNECTION_STRING: Joi.string().required(),
     };
   }
   static get values() {
@@ -21,7 +21,7 @@ class Base {
       USER_SERVICE_BASE_URL: process.env.USER_SERVICE_BASE_URL,
       EMAIL_SERVICE_BASE_URL: process.env.EMAIL_SERVICE_BASE_URL,
       SMS_SERVICE_BASE_URL: process.env.SMS_SERVICE_BASE_URL,
-      REDIS_CONNECTION_STRING: process.env.REDIS_CONNECTION_STRING
+      REDIS_CONNECTION_STRING: process.env.REDIS_CONNECTION_STRING,
     };
   }
 }
@@ -31,7 +31,7 @@ const config = Base.values;
 const { error } = Joi.object(Base.schema).validate(config);
 
 if (error) {
-  logger.error(`Environment validation failed. \nDetails - ${error.details[0].message}\nExiting...`)
+  logger.error(`Environment validation failed. \nDetails - ${error.details[0].message}\nExiting...`);
   process.exit(1);
 }
 

@@ -1,17 +1,17 @@
-import axios from "axios";
-import { toast } from "react-toastify";
-import store from "../../store";
-import { toggleLoader } from "../../store/ui";
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import store from '../../store';
+import { toggleLoader } from '../../store/ui';
 
 export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_SERVER_URL,
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
 });
 
 axiosInstance.interceptors.request.use((config) => {
-  config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
+  config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
   return config;
 });
 
@@ -25,7 +25,7 @@ export const apiRequest = async (request, showLoader = true) => {
     .catch((error) => {
       const message = error.response.data.message;
       if (error.response.status === 403) {
-        if (localStorage.getItem("token")) {
+        if (localStorage.getItem('token')) {
           toast.error(message);
         }
       } else {

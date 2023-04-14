@@ -104,7 +104,7 @@ importers:
       eslint-config-prettier: 2.9.0_eslint@8.33.0
       eslint-config-react-app: 7.0.1_inuomjydv4ni2zx6bjy3c4chp4
       postcss: 8.4.21
-      tailwindcss: 3.1.5
+      tailwindcss: 3.1.5_postcss@8.4.21
       typescript: 4.5.2
       vite: 2.9.9
 
@@ -209,6 +209,45 @@ importers:
     devDependencies:
       nodemon: 1.12.1
 
+  services/buyer:
+    specifiers:
+      '@app/constants': workspace*
+      '@app/middleware': workspace*
+      '@app/server': workspace*
+      '@sliit-foss/functions': 2.0.1
+      '@sliit-foss/module-logger': 1.1.2
+      '@sliit-foss/mongoose-filter-query': 1.1.1
+      bcryptjs: 2.4.3
+      celebrate: 15.0.1
+      express: 4.16.3
+      express-http-context: 1.2.4
+      http-errors: 2.0.0
+      lodash: 4.17.10
+      migrate-mongo: 9.0.0
+      mongoose: ^6.3.4
+      mongoose-lean-defaults: 2.2.1
+      mongoose-paginate-v2: 1.6.3
+      nodemon: 1.12.1
+    dependencies:
+      '@app/constants': link:../../packages/constants
+      '@app/middleware': link:../../packages/middleware
+      '@app/server': link:../../packages/server
+      '@sliit-foss/functions': 2.0.1
+      '@sliit-foss/module-logger': 1.1.2
+      '@sliit-foss/mongoose-filter-query': 1.1.1
+      bcryptjs: 2.4.3
+      celebrate: 15.0.1
+      express: 4.16.3
+      express-http-context: 1.2.4
+      http-errors: 2.0.0
+      lodash: 4.17.10
+      migrate-mongo: 9.0.0
+      mongoose: 6.10.1
+      mongoose-lean-defaults: 2.2.1_mongoose@6.10.1
+      mongoose-paginate-v2: 1.6.3
+    devDependencies:
+      nodemon: 1.12.1
+
   services/delivery:
     specifiers:
       '@app/constants': workspace*
@@ -303,6 +342,84 @@ importers:
       http-errors: 2.0.0
       lodash: 4.17.10
       rate-limit-redis: 3.0.1_express-rate-limit@6.7.0
+    devDependencies:
+      nodemon: 1.12.1
+
+  services/product:
+    specifiers:
+      '@app/constants': workspace*
+      '@app/middleware': workspace*
+      '@app/server': workspace*
+      '@sliit-foss/functions': 2.0.1
+      '@sliit-foss/module-logger': 1.1.2
+      '@sliit-foss/mongoose-filter-query': 1.1.1
+      bcryptjs: 2.4.3
+      celebrate: 15.0.1
+      express: 4.16.3
+      express-http-context: 1.2.4
+      http-errors: 2.0.0
+      lodash: 4.17.10
+      migrate-mongo: 9.0.0
+      mongoose: ^6.3.4
+      mongoose-lean-defaults: 2.2.1
+      mongoose-paginate-v2: 1.6.3
+      nodemon: 1.12.1
+    dependencies:
+      '@app/constants': link:../../packages/constants
+      '@app/middleware': link:../../packages/middleware
+      '@app/server': link:../../packages/server
+      '@sliit-foss/functions': 2.0.1
+      '@sliit-foss/module-logger': 1.1.2
+      '@sliit-foss/mongoose-filter-query': 1.1.1
+      bcryptjs: 2.4.3
+      celebrate: 15.0.1
+      express: 4.16.3
+      express-http-context: 1.2.4
+      http-errors: 2.0.0
+      lodash: 4.17.10
+      migrate-mongo: 9.0.0
+      mongoose: 6.10.1
+      mongoose-lean-defaults: 2.2.1_mongoose@6.10.1
+      mongoose-paginate-v2: 1.6.3
+    devDependencies:
+      nodemon: 1.12.1
+
+  services/seller:
+    specifiers:
+      '@app/constants': workspace*
+      '@app/middleware': workspace*
+      '@app/server': workspace*
+      '@sliit-foss/functions': 2.0.1
+      '@sliit-foss/module-logger': 1.1.2
+      '@sliit-foss/mongoose-filter-query': 1.1.1
+      bcryptjs: 2.4.3
+      celebrate: 15.0.1
+      express: 4.16.3
+      express-http-context: 1.2.4
+      http-errors: 2.0.0
+      lodash: 4.17.10
+      migrate-mongo: 9.0.0
+      mongoose: ^6.3.4
+      mongoose-lean-defaults: 2.2.1
+      mongoose-paginate-v2: 1.6.3
+      nodemon: 1.12.1
+    dependencies:
+      '@app/constants': link:../../packages/constants
+      '@app/middleware': link:../../packages/middleware
+      '@app/server': link:../../packages/server
+      '@sliit-foss/functions': 2.0.1
+      '@sliit-foss/module-logger': 1.1.2
+      '@sliit-foss/mongoose-filter-query': 1.1.1
+      bcryptjs: 2.4.3
+      celebrate: 15.0.1
+      express: 4.16.3
+      express-http-context: 1.2.4
+      http-errors: 2.0.0
+      lodash: 4.17.10
+      migrate-mongo: 9.0.0
+      mongoose: 6.10.1
+      mongoose-lean-defaults: 2.2.1_mongoose@6.10.1
+      mongoose-paginate-v2: 1.6.3
     devDependencies:
       nodemon: 1.12.1
 
@@ -6249,7 +6366,7 @@ packages:
       react-dom: 18.0.0_react@18.0.0
       react-icons: 4.8.0_react@18.0.0
       react-indiana-drag-scroll: 2.2.0_zpnidt7m3osuk7shl3s4oenomq
-      tailwindcss: 3.1.5
+      tailwindcss: 3.1.5_postcss@8.4.21
     transitivePeerDependencies:
       - '@swc/core'
       - '@swc/wasm'
@@ -9573,10 +9690,12 @@ packages:
     resolution: {integrity: sha512-lfpys05uZMcVGIbgrrM/HlQGYKiPIcUhs76H1VrXo0gerpYkoLk4zjQTppdyAcBcmpzlzXJw7X0JniUKOr2hkg==}
     dev: false
 
-  /tailwindcss/3.1.5:
+  /tailwindcss/3.1.5_postcss@8.4.21:
     resolution: {integrity: sha512-bC/2dy3dGPqxMWAqFSRgQxVCfmO/31ZbeEp8s9DMDh4zgPZ5WW1gxRJkbBkXcTUIzaSUdhWrcsrSOe32ccgB4w==}
     engines: {node: '>=12.13.0'}
     hasBin: true
+    peerDependencies:
+      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3

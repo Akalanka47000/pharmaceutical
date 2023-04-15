@@ -1,39 +1,39 @@
-import mongoose from 'mongoose';
-import Seller from './api/v1/models/seller.js';
+import { Seller } from './api/v1/models';
 
-//create seller
-export const createSeller = async (business_name, license_number, email, phone, address, nic_Owner) => {
+export const createSeller = (business_name, license_number, email, phone, address, nic_owner) => {
   const sellerRepo = new Seller({
     business_name,
     license_number,
     email,
     phone,
     address,
-    nic_Owner,
+    nic_owner,
   });
-  await sellerRepo.save();
-  return { msg: 'seller added' };
+  return sellerRepo.save();
 };
 
-//get all sellers
-export const getAllSeller = async () => {
-  return await Seller.find().lean();
+export const getAllSeller = ({ filters = {}, sorts = {}, page, limit }) => {
+  if (page && limit) {
+    return Seller.paginate(filters, {
+      page,
+      limit,
+      sorts,
+      lean: true,
+    });
+  }
+  return Seller.find(filters).sort(sorts).lean();
 };
 
-//get single seller
-export const getSingleSeller = async (id) => {
-  return await Seller.findById(mongoose.Types.ObjectId(id));
+export const getSingleSeller = (id) => {
+  return Seller.findById(id).lean();
 };
 
-//delete single seller
-export const deleteSingleSeller = async (id) => {
-  return await Seller.findByIdAndDelete(mongoose.Types.ObjectId(id));
+export const deleteSingleSeller = (id) => {
+  return Seller.findByIdAndDelete(id);
 };
 
-//update single seller
-export const updateSingleSeller = async (id, pr) => {
-  const sellerUpdateRepo = await Seller.findByIdAndUpdate(id, pr, {
+export const updateSingleSeller = (id, pr) => {
+  return Seller.findByIdAndUpdate(id, pr, {
     new: true,
-  });
-  return sellerUpdateRepo;
+  }).lean();
 };

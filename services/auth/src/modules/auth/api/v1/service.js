@@ -32,8 +32,9 @@ export const serviceRegister = async (user) => {
     throw createError(400, 'User already exists');
   }
   const code = crypto.randomUUID();
-  sendVerificationEmail(constructVerificationEmailPayload(user.email, code));
-  return createUser({ ...user, verification_code: code });
+  return createUser({ ...user, verification_code: code }).then(() => {
+    sendVerificationEmail(constructVerificationEmailPayload(user.email, code));
+  });
 };
 
 export const serviceRefreshToken = async (token) => {

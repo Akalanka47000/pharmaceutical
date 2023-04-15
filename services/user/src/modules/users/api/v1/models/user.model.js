@@ -52,27 +52,11 @@ const UserSchema = new Schema(
       },
     },
     business: {
-      name: {
-        type: String,
-        required: true,
-      },
-      email: {
-        type: String,
-        required: true,
-      },
-      license_number: {
-        type: String,
-        required: true,
-      },
-      owner_nic: {
-        type: String,
-        required: true,
-        unique: true,
-      },
-      is_approved: {
-        type: Boolean,
-        default: false,
-      },
+      name: String,
+      email: String,
+      license_number: String,
+      owner_nic: String,
+      is_approved: Boolean,
     },
   },
   {

@@ -19,10 +19,7 @@ export const registerSchema = Joi.object({
         return err;
       }),
     ),
-  role: Joi.string()
-    .valid(...Object.values(roles))
-    .optional()
-    .default(roles.buyer),
+  role: Joi.string().valid(roles.buyer, roles.seller).optional().default(roles.buyer),
   mobile: Joi.string()
     .pattern(/^[0-9]\d{9}$/)
     .required(),

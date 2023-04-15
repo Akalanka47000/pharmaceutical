@@ -43,6 +43,13 @@ runs:
           git config pull.ff true
           git add . && git commit -m "Synced ${{ inputs.service }} kube config" || true
           git remote set-url origin https://Akalanka47000:${{ inputs.repository_access_token }}@github.com/Akalanka47000/pharmaceutical-kube-config.git
-          git pull --rebase && git push origin main
+          
+          n=0
+          until [ "$n" -ge 3 ]
+          do
+            git pull --rebase && git push origin main && break
+            n=$((n+1)) 
+            sleep 15
+          done
 
       shell: bash

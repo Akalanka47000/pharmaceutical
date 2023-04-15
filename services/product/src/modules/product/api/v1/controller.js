@@ -4,12 +4,11 @@ import { tracedAsyncHandler, traced } from '@sliit-foss/functions';
 import { default as filterQuery } from '@sliit-foss/mongoose-filter-query';
 import { objectIdSchema } from '@app/constants';
 import { toSuccess } from '@app/middleware';
-import { createProductSrc, getAllProductSrc, getSingleProductSrc, deleteSingleProductSrc, updateSingleProductSrc, searchProductSrc } from './service.js';
+import { createProductSrc, getAllProductSrc, getSingleProductSrc, deleteSingleProductSrc, updateSingleProductSrc } from './service';
 import { createProductSchema, updateProductSchema } from './schema';
 
 const product = express.Router();
 
-// Create a new product
 product.post(
   '/',
   celebrate({ [Segments.BODY]: createProductSchema }),
@@ -18,77 +17,59 @@ product.post(
     return toSuccess({
       res,
       data: product,
-      message: 'Product successfully created',
+      message: 'Product successfully added',
     });
   }),
 );
 
-//GET all products
 product.get(
   '/',
   filterQuery,
-  tracedAsyncHandler(async function getAllProduct(req, res) {
-    const product = await getAllProductSrc();
+  tracedAsyncHandler(async function getAllProductsController(req, res) {
+    const product = await traced(getAllProductSrc(req.query.filter, req.query.sort, req.query.page, req.query.limit));
     return toSuccess({
       res,
       data: product,
-      message: 'products fetched',
+      message: 'Products fetched successfully',
     });
   }),
 );
 
-//Get Single product
 product.get(
   '/:id',
   celebrate({ [Segments.PARAMS]: objectIdSchema() }),
-  tracedAsyncHandler(async function getAproduct(req, res) {
-    const product = await getSingleProductSrc(req.params.id);
+  tracedAsyncHandler(async function getSingleProductController(req, res) {
+    const product = await traced(getSingleProductSrc)(req.params.id);
     return toSuccess({
       res,
       data: product,
-      massage: 'product successfully fetched',
+      message: 'Product successfully fetched',
     });
   }),
 );
 
-//Delete single product
 product.delete(
   '/:id',
   celebrate({ [Segments.PARAMS]: objectIdSchema() }),
-  tracedAsyncHandler(async function singleProductDelete(req, res) {
-    const product = await deleteSingleProductSrc(req.params.id, res);
+  tracedAsyncHandler(async function singleProductDeleteController(req, res) {
+    const product = await traced(deleteSingleProductSrc)(req.params.id);
     return toSuccess({
       res,
       data: product,
-      massage: 'product successfully deleted',
+      message: 'Product successfully deleted',
     });
   }),
 );
 
-//Update single product
 product.patch(
   '/:id',
   celebrate({ [Segments.PARAMS]: objectIdSchema(), [Segments.BODY]: updateProductSchema }),
-  tracedAsyncHandler(async function singleProductUpdate(req, res) {
-    const product = await updateSingleProductSrc(req.params.id, req.body);
+  tracedAsyncHandler(async function singleProductUpdateController(req, res) {
+    const product = await traced(updateSingleProductSrc)(req.params.id, req.body);
     return toSuccess({
       res,
       data: product,
-      massage: 'product successfully updated',
-    });
-  }),
-);
-
-//search products
-product.get(
-  '/search/:key',
-  tracedAsyncHandler(async function searchProductCntrl(req, res) {
-    const key = req.params.key;
-    const product = await searchProductSrc(key);
-    return toSuccess({
-      res,
-      data: product,
-      massage: 'product(s) available',
+      message: 'Product successfully updated',
     });
   }),
 );

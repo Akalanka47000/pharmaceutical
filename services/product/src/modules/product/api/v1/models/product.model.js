@@ -1,8 +1,9 @@
 import mongoose from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
 
-const productSchema = new mongoose.Schema(
+const ProductSchema = new mongoose.Schema(
   {
-    product_Name: {
+    name: {
       type: String,
       required: true,
     },
@@ -14,11 +15,11 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    ageLimit: {
+    age_limit: {
       type: String,
       required: true,
     },
-    markupPrice: {
+    markup_price: {
       type: Number,
       required: true,
     },
@@ -26,7 +27,7 @@ const productSchema = new mongoose.Schema(
       type: Date,
       required: true,
     },
-    manu_date: {
+    manufactured_date: {
       type: Date,
       required: true,
     },
@@ -38,15 +39,12 @@ const productSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    seller_Name: {
-      type: String,
+    seller: {
+      type: mongoose.SchemaTypes.ObjectId,
       required: true,
+      ref: 'User',
     },
-    status: {
-      type: String,
-      required: true,
-    },
-    sell_price: {
+    selling_price: {
       type: Number,
       required: true,
     },
@@ -57,6 +55,12 @@ const productSchema = new mongoose.Schema(
   },
 );
 
-const Product = mongoose.model('Product', productSchema);
+ProductSchema.index({ createdAt: 1 });
 
-export default Product;
+ProductSchema.plugin(mongoosePaginate);
+
+const Product = mongoose.model('Product', ProductSchema);
+
+Product.syncIndexes();
+
+export { Product };

@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
 
 const SellerSchema = new mongoose.Schema(
   {
@@ -7,26 +8,17 @@ const SellerSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    business_email: {
+      type: String,
+      required: true,
+    },
     license_number: {
       type: String,
       required: true,
     },
-    email: {
+    owner_nic: {
       type: String,
       required: true,
-    },
-    phone: {
-      type: Number,
-      required: true,
-      unique: true,
-    },
-    address: {
-      type: String,
-      required: true,
-    },
-    nic_Owner: {
-      type: String,
-      require: true,
       unique: true,
     },
   },
@@ -36,5 +28,12 @@ const SellerSchema = new mongoose.Schema(
   },
 );
 
+SellerSchema.index({ createdAt: 1 });
+
+SellerSchema.plugin(mongoosePaginate);
+
 const Seller = mongoose.model('Seller', SellerSchema);
-export default Seller;
+
+Seller.syncIndexes();
+
+export { Seller };

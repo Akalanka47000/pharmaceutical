@@ -1,80 +1,69 @@
 import express from 'express';
-import { tracedAsyncHandler } from '@sliit-foss/functions';
+import { tracedAsyncHandler, traced } from '@sliit-foss/functions';
 import { default as filterQuery } from '@sliit-foss/mongoose-filter-query';
 import { toSuccess } from '@app/middleware';
 import { createSellerSrc, getAllSellerSrc, getSingleSellerSrc, deleteSingleSellerSrc, updateSingleSellerSrc } from './service';
 
 const seller = express.Router();
 
-const asyncHandler = () => {};
-
-// Create a new seller
 seller.post(
   '/',
-  tracedAsyncHandler(async (_req, res) => {
-    const seller = await createSellerSrc(_req.body);
+  tracedAsyncHandler(async function createSeller(req, res) {
+    const seller = await traced(createSellerSrc)(req.body);
     return toSuccess({
       res,
       status: 201,
       data: seller,
-      massage: 'Seller successfully created',
+      message: 'Seller successfully created',
     });
   }),
 );
 
-//Get All Sellers
 seller.get(
   '/',
   filterQuery,
   tracedAsyncHandler(async function getAllSellers(req, res) {
-    const seller = await getAllSellerSrc();
+    const seller = await traced(getAllSellerSrc)(req.query.filter, req.query.sort, req.query.page, req.query.limit);
     return toSuccess({
       res,
-      status: 200,
       data: seller,
-      massage: 'Sellers successfully fetched',
+      message: 'Sellers successfully fetched',
     });
   }),
 );
 
-//Get Single Seller
 seller.get(
   '/:id',
-  tracedAsyncHandler(async function getAseller(req, res) {
-    const seller = await getSingleSellerSrc(req.params.id);
+  tracedAsyncHandler(async function getSeller(req, res) {
+    const seller = await traced(getSingleSellerSrc)(req.params.id);
     return toSuccess({
       res,
-      status: 200,
       data: seller,
-      massage: 'Seller successfully fetched',
+      message: 'Seller successfully fetched',
     });
   }),
 );
 
-//Delete A Supplier
 seller.delete(
   '/:id',
-  tracedAsyncHandler(async function singleSellerdelete(req, res) {
-    const seller = await deleteSingleSellerSrc(req.params.id, res);
+  tracedAsyncHandler(async function singleSellerDelete(req, res) {
+    const seller = await traced(deleteSingleSellerSrc)(req.params.id);
     return toSuccess({
       res,
-      status: 200,
       data: seller,
-      massage: 'Seller successfully deleted',
+      message: 'Seller successfully deleted',
     });
   }),
 );
 
-//Update Supplier Data
 seller.patch(
   '/:id',
   tracedAsyncHandler(async function singleSellerUpdate(req, res) {
-    const seller = await updateSingleSellerSrc(req.params.id, req.body);
+    const seller = await traced(updateSingleSellerSrc)(req.params.id, req.body);
     return toSuccess({
       res,
-      status: 200,
       data: seller,
-      massage: 'Seller successfully updated',
+      message: 'Seller successfully updated',
     });
   }),
 );

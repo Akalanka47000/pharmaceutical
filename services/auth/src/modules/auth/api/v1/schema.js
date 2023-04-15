@@ -1,4 +1,5 @@
 import { Joi } from 'celebrate';
+import { roles } from '@app/constants';
 
 export const loginSchema = Joi.object({
   email: Joi.string().email().required(),
@@ -18,7 +19,25 @@ export const registerSchema = Joi.object({
         return err;
       }),
     ),
-  address: Joi.string().optional(),
+  role: Joi.string()
+    .valid(...Object.values(roles))
+    .optional()
+    .default(roles.buyer),
+  mobile: Joi.string()
+    .pattern(/^[0-9]\d{9}$/)
+    .required(),
+  address: Joi.string().required(),
+  address_district: Joi.string().optional(),
+  business: Joi.object({
+    name: Joi.string().required(),
+    email: Joi.string().email().required(),
+    license_number: Joi.string().required(),
+    owner_nic: Joi.string().required(),
+  }).when('role', {
+    is: roles.seller,
+    then: Joi.required(),
+    otherwise: Joi.optional(),
+  }),
 });
 
 export const refreshTokenSchema = Joi.object({

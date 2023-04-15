@@ -27,9 +27,11 @@ const UserSchema = new Schema(
     },
     mobile: {
       type: SchemaTypes.String,
+      required: true,
     },
     address: {
       type: SchemaTypes.String,
+      required: true,
     },
     address_district: {
       type: SchemaTypes.String,
@@ -47,6 +49,29 @@ const UserSchema = new Schema(
       index: {
         unique: true,
         partialFilterExpression: { verification_code: { $type: 'string' } },
+      },
+    },
+    business: {
+      name: {
+        type: String,
+        required: true,
+      },
+      email: {
+        type: String,
+        required: true,
+      },
+      license_number: {
+        type: String,
+        required: true,
+      },
+      owner_nic: {
+        type: String,
+        required: true,
+        unique: true,
+      },
+      is_approved: {
+        type: Boolean,
+        default: false,
       },
     },
   },

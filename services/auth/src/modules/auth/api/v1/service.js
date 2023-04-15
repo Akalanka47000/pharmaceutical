@@ -26,14 +26,14 @@ export const serviceLogin = async ({ email, password }) => {
   return traced(generateTokens)(user);
 };
 
-export const serviceRegister = async ({ name, email, password, address }) => {
-  const user = await getUserByEmail(email);
-  if (user) {
+export const serviceRegister = async (user) => {
+  const existingUser = await getUserByEmail(user.email);
+  if (existingUser) {
     throw createError(400, 'User already exists');
   }
   const code = crypto.randomUUID();
-  sendVerificationEmail(constructVerificationEmailPayload(email, code));
-  return createUser({ name, email, password, address, verification_code: code });
+  sendVerificationEmail(constructVerificationEmailPayload(user.email, code));
+  return createUser({ ...user, verification_code: code });
 };
 
 export const serviceRefreshToken = async (token) => {

@@ -10,10 +10,18 @@ export const createUserSchema = Joi.object({
     .optional(),
   mobile: Joi.string()
     .pattern(/^[0-9]\d{9}$/)
-    .optional(),
-  address: Joi.string().optional(),
+    .required(),
+  address: Joi.string().required(),
   address_district: Joi.string().optional(),
+  is_active: Joi.boolean().optional(),
   verification_code: Joi.string().required(),
+  business: Joi.object({
+    name: Joi.string().required(),
+    email: Joi.string().email().required(),
+    license_number: Joi.string().required(),
+    owner_nic: Joi.string().required(),
+    is_approved: Joi.boolean().optional(),
+  }).optional(),
 });
 
 export const updateUserSchema = Joi.object({
@@ -21,9 +29,17 @@ export const updateUserSchema = Joi.object({
   password: Joi.string().optional(),
   address: Joi.string().optional(),
   address_district: Joi.string().optional(),
+  is_active: Joi.boolean().optional(),
   is_verified: Joi.boolean().optional(),
   mobile: Joi.string()
     .pattern(/^[0-9]\d{9}$/)
     .optional(),
   verification_code: Joi.string().optional().allow(null),
+  business: Joi.object({
+    name: Joi.string().optional(),
+    email: Joi.string().email().optional(),
+    license_number: Joi.string().optional(),
+    owner_nic: Joi.string().optional(),
+    is_approved: Joi.boolean().optional(),
+  }).optional(),
 });

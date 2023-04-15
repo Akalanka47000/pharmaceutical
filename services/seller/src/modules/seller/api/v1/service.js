@@ -13,8 +13,8 @@ export const getSingleSellerSrc = (id) => {
   return traced(getSingleSeller)(id);
 };
 
-export const deleteSingleSellerSrc = (id, body) => {
-  return traced(deleteSingleSeller)(id, body);
+export const deleteSingleSellerSrc = (id) => {
+  return traced(deleteSingleSeller)(id);
 };
 
 export const updateSingleSellerSrc = (id, body) => {

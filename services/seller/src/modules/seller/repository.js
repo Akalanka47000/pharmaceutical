@@ -1,15 +1,7 @@
 import { Seller } from './api/v1/models';
 
-export const createSeller = (business_name, license_number, email, phone, address, nic_owner) => {
-  const sellerRepo = new Seller({
-    business_name,
-    license_number,
-    email,
-    phone,
-    address,
-    nic_owner,
-  });
-  return sellerRepo.save();
+export const createSeller = (seller) => {
+  return Seller.create(seller);
 };
 
 export const getAllSeller = ({ filters = {}, sorts = {}, page, limit }) => {

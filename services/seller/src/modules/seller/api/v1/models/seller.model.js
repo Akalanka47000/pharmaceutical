@@ -8,24 +8,15 @@ const SellerSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    business_email: {
+      type: String,
+      required: true,
+    },
     license_number: {
       type: String,
       required: true,
     },
-    email: {
-      type: String,
-      required: true,
-    },
-    phone: {
-      type: Number,
-      required: true,
-      unique: true,
-    },
-    address: {
-      type: String,
-      required: true,
-    },
-    nic_owner: {
+    owner_nic: {
       type: String,
       required: true,
       unique: true,

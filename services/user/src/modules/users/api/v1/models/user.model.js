@@ -25,7 +25,13 @@ const UserSchema = new Schema(
       enum: Object.values(roles),
       default: roles.buyer,
     },
+    mobile: {
+      type: SchemaTypes.String,
+    },
     address: {
+      type: SchemaTypes.String,
+    },
+    address_district: {
       type: SchemaTypes.String,
     },
     is_active: {

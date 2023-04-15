@@ -1,16 +1,13 @@
 import { Joi } from 'celebrate';
+
 export const createSellerSchema = Joi.object({
   business_name: Joi.string().required(),
+  business_email: Joi.string().email().required(),
   license_number: Joi.string().required(),
-  email: Joi.string().email().required(),
-  phone: Joi.string().number().required(),
-  address: Joi.string().required(),
-  nic_owner: Joi.string().optional(),
+  owner_nic: Joi.string().optional(),
 });
 
 export const updateSellerSchema = Joi.object({
   business_name: Joi.string().optional(),
-  email: Joi.string().email().optional(),
-  phone: Joi.string().number().optional(),
-  address: Joi.string().optional(),
+  business_email: Joi.string().email().optional(),
 });

@@ -18,64 +18,59 @@ buyer.post(
       res,
       status: 201,
       data: buyer,
-      massage: 'buyer successfully created',
+      message: 'Buyer successfully created',
     });
   }),
 );
 
-//Get All Sellers
 buyer.get(
   '/',
   filterQuery,
   tracedAsyncHandler(async function getAllBuyers(req, res) {
-    const buyer = await traced(getAllBuyerSrc)();
+    const buyer = await traced(getAllBuyerSrc)(req.query.filter, req.query.sort, req.query.page, req.query.limit);
     return toSuccess({
       res,
       data: buyer,
-      massage: 'buyer successfully fetched',
+      message: 'Buyers successfully fetched',
     });
   }),
 );
 
-//Get Single Seller
 buyer.get(
   '/:id',
   celebrate({ [Segments.PARAMS]: objectIdSchema() }),
   tracedAsyncHandler(async function getABuyer(req, res) {
-    const buyer = await getSingleBuyerrSrc(req.params.id);
+    const buyer = await traced(getSingleBuyerrSrc)(req.params.id);
     return toSuccess({
       res,
       data: buyer,
-      massage: 'buyer successfully fetched',
+      message: 'Buyer successfully fetched',
     });
   }),
 );
 
-//Delete A Supplier
 buyer.delete(
   '/:id',
   celebrate({ [Segments.PARAMS]: objectIdSchema() }),
   tracedAsyncHandler(async function singleBuyerDelete(req, res) {
-    const buyer = await deleteSingleBuyerSrc(req.params.id, res);
+    const buyer = await traced(deleteSingleBuyerSrc)(req.params.id);
     return toSuccess({
       res,
       data: buyer,
-      massage: 'buyer successfully deleted',
+      message: 'Buyer successfully deleted',
     });
   }),
 );
 
-//Update Supplier Data
 buyer.patch(
   '/:id',
-  filterQuery,
-  celebrate({ [Segments.BODY]: updateBuyerSchema }),
+  celebrate({ [Segments.PARAMS]: objectIdSchema(), [Segments.BODY]: updateBuyerSchema }),
   tracedAsyncHandler(async function singleBuyerUpdate(req, res) {
-    const buyer = await updateSingleBuyerSrc(req.params.id, req.body);
+    const buyer = await traced(updateSingleBuyerSrc)(req.params.id, req.body);
     return toSuccess({
       res,
       data: buyer,
-      massage: 'buyer successfully updated',
+      message: 'Buyer successfully updated',
     });
   }),
 );

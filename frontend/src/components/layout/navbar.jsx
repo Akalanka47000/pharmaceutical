@@ -5,6 +5,12 @@ import { isEmpty } from 'lodash';
 import { Button } from '../common';
 import { logout } from '../../services';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+
+const NavLink = ({ path, label }) => {
+  const location = useLocation()
+  return <Navbar.Link href={path}><span className={`hover:text-black hover:font-semibold ${location.pathname === path ? "text-black font-semibold" : ""}`}>{label}</span></Navbar.Link>
+}
 
 
 const Header = () => {
@@ -44,16 +50,14 @@ const Header = () => {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link href="/" active={true}>
-          Home
-        </Navbar.Link>
-        <Navbar.Link href="/navbars">About</Navbar.Link>
-        <Navbar.Link href="/navbars">Services</Navbar.Link>
-        <Navbar.Link href="/navbars">Pricing</Navbar.Link>
-        <Navbar.Link href="/navbars">Contact</Navbar.Link>
+        <NavLink path="/" label="Home"/>
+        <NavLink path="/about" label="About"/>
+        <NavLink path="/services" label="Services"/>
+        <NavLink path="/pricing" label="Pricing"/>
+        <NavLink path="/contact" label="Contact"/>
         {user?.role === "admin" && (
           <>
-            <Navbar.Link href="/users">Users</Navbar.Link>
+            <NavLink path="/users" label="Users"/>
           </>
         )}
       </Navbar.Collapse>

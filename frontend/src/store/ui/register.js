@@ -6,7 +6,7 @@ const initialState = {
     email: '',
     password: '',
     address: '',
-    role: '',
+    role: 'buyer',
     business: {
       name: '',
       email: '',
@@ -14,6 +14,16 @@ const initialState = {
       owner_nic: '',
     },
   },
+  allowedRoles: [
+    {
+      key: 'buyer',
+      label: 'Buyer',
+    },
+    {
+      key: 'seller',
+      label: 'Seller',
+    },
+  ],
 };
 
 export const slice = createSlice({

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Table, Pagination } from 'flowbite-react';
-import { debounce } from 'lodash';
+import { debounce, startCase } from 'lodash';
 import { Button, Filters, NoRecords, Sorts } from '../components/common';
 import { default as Layout } from '../components/layout';
 import { UserModal } from '../components/users';
@@ -70,6 +70,7 @@ const Users = () => {
                       <Table.HeadCell>Email</Table.HeadCell>
                       <Table.HeadCell>Mobile</Table.HeadCell>
                       <Table.HeadCell>Address</Table.HeadCell>
+                      <Table.HeadCell>Role</Table.HeadCell>
                       <Table.HeadCell>
                         <span className="sr-only">Edit</span>
                       </Table.HeadCell>
@@ -82,6 +83,7 @@ const Users = () => {
                             <Table.Cell>{user.email ?? '--'}</Table.Cell>
                             <Table.Cell>{user.mobile ?? '--'}</Table.Cell>
                             <Table.Cell>{user.address ?? '--'}</Table.Cell>
+                            <Table.Cell>{startCase(user.role)}</Table.Cell>
                             <Table.Cell>
                               <a onClick={() => toggleActiveState(user)} className="cursor-pointer font-medium hover:underline">
                                 {user.is_active ? <span className={'text-red-500'}>Deactivate</span> : <span className="text-green-500">Activate</span>}

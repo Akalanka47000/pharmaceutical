@@ -12,7 +12,6 @@ export const createUserSchema = Joi.object({
     .pattern(/^[0-9]\d{9}$/)
     .required(),
   address: Joi.string().required(),
-  address_district: Joi.string().optional(),
   is_active: Joi.boolean().optional(),
   verification_code: Joi.string().required(),
   business: Joi.object({
@@ -28,7 +27,6 @@ export const updateUserSchema = Joi.object({
   name: Joi.string().optional(),
   password: Joi.string().optional(),
   address: Joi.string().optional(),
-  address_district: Joi.string().optional(),
   is_active: Joi.boolean().optional(),
   is_verified: Joi.boolean().optional(),
   mobile: Joi.string()

@@ -24,7 +24,6 @@ export const registerSchema = Joi.object({
     .pattern(/^[0-9]\d{9}$/)
     .required(),
   address: Joi.string().required(),
-  address_district: Joi.string().optional(),
   business: Joi.object({
     name: Joi.string().required(),
     email: Joi.string().email().required(),

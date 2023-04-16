@@ -33,9 +33,6 @@ const UserSchema = new Schema(
       type: SchemaTypes.String,
       required: true,
     },
-    address_district: {
-      type: SchemaTypes.String,
-    },
     is_active: {
       type: SchemaTypes.Boolean,
       default: true,

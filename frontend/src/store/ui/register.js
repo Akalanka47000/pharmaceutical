@@ -2,25 +2,30 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   formData: {
+    name: '',
     email: '',
     password: '',
+    address: '',
+    role: '',
+    business: {
+      name: '',
+      email: '',
+      license_number: '',
+      owner_nic: '',
+    },
   },
-  rememberMe: false,
 };
 
 export const slice = createSlice({
-  name: 'login',
+  name: 'register',
   initialState,
   reducers: {
     setFormData(state, action) {
       state.formData = action.payload;
     },
-    toggleRememberMe(state) {
-      state.rememberMe = !state.rememberMe;
-    },
   },
 });
 
-export const { setFormData, toggleRememberMe } = slice.actions;
+export const { setFormData } = slice.actions;
 
 export default slice.reducer;

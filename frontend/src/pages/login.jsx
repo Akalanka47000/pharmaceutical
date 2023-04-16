@@ -44,7 +44,6 @@ const Login = () => {
         <form className="flex flex-col " onSubmit={onSubmit}>
           <Input type="text" id="email" placeholder="Email" required value={formData.email} onChange={handleInputChange} prefixIcon={<MailIcon />} />
           <Input id="password" type="password" placeholder="Password" required value={formData.password} onChange={handleInputChange} prefixIcon={<KeyIcon />} />
-
           <div className="flex justify-between mt-4">
             <div className="flex items-center">
               <Checkbox checked={rememberMe} toggle={() => dispatch(toggleRememberMe())} />
@@ -55,7 +54,7 @@ const Login = () => {
           <div className="group flex justify-end items-center mt-6">
             <div className="flex justify-center items-center">
               <p className="text-sm mr-2 font-semibold">{`Don't have an account yet -->`}</p>
-              <Link className="cursor-pointer text-sm text-primary-base hover:text-primary-hover group-hover:mr-2 transition-all duration-300" to="register">
+              <Link className="cursor-pointer text-sm text-primary-base hover:text-primary-hover group-hover:mr-2 transition-all duration-300" to="/register">
                 Register
               </Link>
             </div>

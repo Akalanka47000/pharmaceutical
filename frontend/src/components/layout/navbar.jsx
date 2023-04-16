@@ -8,20 +8,23 @@ import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
 const NavLink = ({ path, label }) => {
-  const location = useLocation()
-  return <Navbar.Link href={path}><span className={`hover:text-black hover:font-semibold ${location.pathname === path ? "text-black font-semibold" : ""}`}>{label}</span></Navbar.Link>
-}
-
+  const location = useLocation();
+  return (
+    <Navbar.Link href={path}>
+      <span className={`hover:text-black hover:font-semibold ${location.pathname === path ? 'text-black font-semibold' : ''}`}>{label}</span>
+    </Navbar.Link>
+  );
+};
 
 const Header = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const user = useSelector((store) => store.data.user.authUser);
 
   const logoutClick = () => {
-    logout()
-    navigate("/login")
-  }
+    logout();
+    navigate('/login');
+  };
 
   return (
     <Navbar fluid={true} rounded={false} class="border-gray-200 bg-white px-2 py-4 dark:border-gray-700 dark:bg-gray-800 sm:px-4">
@@ -50,14 +53,14 @@ const Header = () => {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <NavLink path="/" label="Home"/>
-        <NavLink path="/about" label="About"/>
-        <NavLink path="/services" label="Services"/>
-        <NavLink path="/pricing" label="Pricing"/>
-        <NavLink path="/contact" label="Contact"/>
-        {user?.role === "admin" && (
+        <NavLink path="/" label="Home" />
+        <NavLink path="/about" label="About" />
+        <NavLink path="/services" label="Services" />
+        <NavLink path="/pricing" label="Pricing" />
+        <NavLink path="/contact" label="Contact" />
+        {user?.role === 'admin' && (
           <>
-            <NavLink path="/users" label="Users"/>
+            <NavLink path="/users" label="Users" />
           </>
         )}
       </Navbar.Collapse>

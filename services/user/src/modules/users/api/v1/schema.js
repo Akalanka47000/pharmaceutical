@@ -13,7 +13,8 @@ export const createUserSchema = Joi.object({
     .required(),
   address: Joi.string().required(),
   is_active: Joi.boolean().optional(),
-  verification_code: Joi.string().required(),
+  is_verified: Joi.boolean().optional(),
+  verification_code: Joi.string().optional(),
   business: Joi.object({
     name: Joi.string().required(),
     email: Joi.string().email().required(),

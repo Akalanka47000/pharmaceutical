@@ -31,7 +31,7 @@ const Filters = ({ filters, setFilterQuery }) => {
       <Accordion alwaysOpen={true}>
         <Accordion.Panel className="outline-none focus:ring-0">
           <Accordion.Title>
-          <span className="text-2xl text-gray-700 font-semibold">Filters</span>
+            <span className="text-2xl text-gray-700 font-semibold">Filters</span>
           </Accordion.Title>
           <Accordion.Content>
             <div className="w-full flex justify-start items-center flex-wrap gap-x-6">
@@ -59,7 +59,6 @@ const Filters = ({ filters, setFilterQuery }) => {
           </Accordion.Content>
         </Accordion.Panel>
       </Accordion>
-
     </div>
   );
 };

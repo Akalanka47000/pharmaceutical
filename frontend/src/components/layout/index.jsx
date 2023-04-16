@@ -7,7 +7,7 @@ import Navbar from './navbar';
 const Layout = ({ children }) => {
   return (
     <motion.main
-      className="bg-black font-inter overflow-x-hidden"
+      className="bg-white font-inter overflow-x-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, transition: { duration: 0.3 } }}

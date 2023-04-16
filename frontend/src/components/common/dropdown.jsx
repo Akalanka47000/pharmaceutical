@@ -1,10 +1,10 @@
-import crypto from 'crypto';
+import { v4 as uuidv4 } from 'uuid';
 import { useEffect, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { twMerge } from 'tailwind-merge';
 
-const wrapperId = crypto.randomUUID();
-const inputId = crypto.randomUUID();
+const wrapperId = uuidv4();
+const inputId = uuidv4();
 
 const Dropdown = ({ options, onChange, ...props }) => {
   const [selectedOption, setSelectedOption] = useState(props.default || null);

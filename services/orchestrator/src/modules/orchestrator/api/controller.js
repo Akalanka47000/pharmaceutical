@@ -11,7 +11,7 @@ const connector = serviceConnector({ service: 'Proxy' });
 
 orchestrator.all(
   '/:api_version/:module*',
-  tracedAsyncHandler(function attachMiddleware(req, res, next) {
+  (req, res, next) => {
     switch (req.params.module) {
       case 'users':
         return permittedRoles([roles.admin])(req, res, next);
@@ -21,7 +21,7 @@ orchestrator.all(
       default:
         return;
     }
-  }),
+  },
 );
 
 orchestrator.all(

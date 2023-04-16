@@ -42,6 +42,11 @@ const Header = () => {
         <Navbar.Link href="/navbars">Services</Navbar.Link>
         <Navbar.Link href="/navbars">Pricing</Navbar.Link>
         <Navbar.Link href="/navbars">Contact</Navbar.Link>
+        {user?.role === "admin" && (
+          <>
+            <Navbar.Link href="/users">Users</Navbar.Link>
+          </>
+        )}
       </Navbar.Collapse>
     </Navbar>
   );

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import store from '../../store';
-import { toggleLoader } from '../../store/ui';
+import { default as store } from '../../store';
+import { toggleLoader } from '../../store/ui/global';
 
 export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_SERVER_URL,

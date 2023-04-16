@@ -36,7 +36,5 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 input:-internal-autofill-selected {
-  background-color: #ff0000 !important;
-  color-scheme: dark !important;
-  border: 1px solid #0070f3 !important;
+  border: 1px solid rgb(17, 24, 39) !important;
 }

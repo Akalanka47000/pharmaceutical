@@ -1,12 +1,11 @@
-/* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   showLoader: false,
 };
 
-export const uiSlice = createSlice({
-  name: 'ui',
+export const slice = createSlice({
+  name: 'global',
   initialState,
   reducers: {
     toggleLoader(state, action) {
@@ -15,6 +14,6 @@ export const uiSlice = createSlice({
   },
 });
 
-export const { toggleLoader } = uiSlice.actions;
+export const { toggleLoader } = slice.actions;
 
-export default uiSlice.reducer;
+export default slice.reducer;

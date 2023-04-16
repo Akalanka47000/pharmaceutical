@@ -4,7 +4,7 @@ import { Loader } from '../common';
 import Footer from './footer';
 import Navbar from './navbar';
 
-const Layout = ({ children }) => {
+export const Layout = ({ children }) => {
   return (
     <motion.main
       className="bg-white font-inter overflow-x-hidden"

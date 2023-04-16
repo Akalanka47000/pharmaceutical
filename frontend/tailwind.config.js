@@ -18,16 +18,22 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: '#0070F3',
-        secondary: '#00DFD8',
-        'nav-links-unselected': '#888888',
-        'gray-light': '#D9D9D9',
-        'profile-card': 'rgba(255, 255, 255, 0.02)',
-        card: '#181818',
+        primary: {
+          base: 'rgb(17 24 39)',
+          hover: 'rgb(31 41 55)',
+        },
       },
       fontFamily: {
         inter: ['Inter', 'sans-serif'],
         poppins: ['Poppins', 'sans-serif'],
+      },
+      scale: {
+        101: '1.01',
+        102: '1.02',
+      },
+      boxShadow: {
+        ds1: '10px 4px 20px rgba(0, 0, 0, 0.25)',
+        ds2: '0px 0px 20px rgba(155, 155, 155, 0.2)',
       },
       height: {},
     },

@@ -23,3 +23,7 @@ export const getCurrentUser = async (showLoader) => {
 export const verify = async (code, showLoader) => {
   return await apiRequest(() => axiosInstance.get(`/api/v1/auth/verify/${code}`), showLoader);
 };
+
+export const logout = async (showLoader) => {
+  return await apiRequest(() => axiosInstance.post(`/api/v1/auth/logout`), showLoader);
+};

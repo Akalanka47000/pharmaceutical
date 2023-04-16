@@ -38,7 +38,7 @@ const Login = () => {
   };
 
   return (
-    <Layout title="Home">
+    <Layout title="Login" hideHeader hideFooter>
       <div className="w-full py-12 px-7 md:px-12 rounded-2xl">
         <div className="flex justify-center items-center">
           <div className="w-11/12 sm:w-7/12 xl:w-4/12 2xl:w-3/12 mb-10">

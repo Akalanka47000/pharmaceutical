@@ -21,7 +21,7 @@ auth.post(
   celebrate({ [Segments.BODY]: registerSchema }),
   tracedAsyncHandler(async function controllerRegister(req, res) {
     const data = await traced(serviceRegister)(req.body);
-    return toSuccess({ res, data, message: 'Registration successfull!' });
+    return toSuccess({ res, data, message: 'Registration successfull! Please check your email to verify your account' });
   }),
 );
 

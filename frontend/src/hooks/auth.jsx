@@ -1,15 +1,30 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { default as jwtDecode } from 'jwt-decode';
+import { setAuthUser } from '../store/data/user';
 
 const blacklistedPaths = [];
 
 const useAuth = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  useEffect(() => {
-    if (!localStorage.getItem('token') && blacklistedPaths.includes(window.location.pathname.split('/')[1])) {
+
+  const dispatch = useDispatch();
+
+  const checkUser = () => {
+    const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+    if (!token && blacklistedPaths.includes(window.location.pathname.split('/')[1])) {
       navigate('/login');
     }
+    if (token) {
+      const user = jwtDecode(token);
+      dispatch(setAuthUser(user));
+    }
+  };
+
+  useEffect(() => {
+    checkUser();
   }, [location]);
 };
 

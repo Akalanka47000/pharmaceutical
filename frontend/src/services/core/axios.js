@@ -18,10 +18,7 @@ axiosInstance.interceptors.request.use((config) => {
 export const apiRequest = async (request, showLoader = true) => {
   store.dispatch(toggleLoader(showLoader));
   const response = await request()
-    .then((res) => ({
-      ...res.data,
-      success: true,
-    }))
+    .then((res) => res.data)
     .catch((error) => {
       const message = error.response.data.message;
       if (error.response.status === 403) {
@@ -31,10 +28,7 @@ export const apiRequest = async (request, showLoader = true) => {
       } else {
         toast.error(message);
       }
-      return {
-        success: false,
-        message: message,
-      };
+      return null;
     });
   store.dispatch(toggleLoader(false));
   return response;

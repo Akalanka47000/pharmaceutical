@@ -23,7 +23,11 @@ export const serviceLogin = async ({ email, password }) => {
   if (!user.is_verified) {
     throw errors.unverified_user;
   }
-  return traced(generateTokens)(user);
+  const tokens = await traced(generateTokens)(user);
+  return {
+    user,
+    ...tokens,
+  };
 };
 
 export const serviceRegister = async (user) => {

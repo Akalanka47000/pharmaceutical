@@ -3,8 +3,11 @@ import { ToastContainer } from 'react-toastify';
 import { Loader } from '../common';
 import Footer from './footer';
 import Navbar from './navbar';
+import { useAuth } from '../../hooks';
 
 export const Layout = ({ children }) => {
+  useAuth();
+
   return (
     <motion.main
       className="bg-white font-inter overflow-x-hidden"

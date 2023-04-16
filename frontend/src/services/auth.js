@@ -19,3 +19,7 @@ export const resetPassword = async (code, data, showLoader) => {
 export const getCurrentUser = async (showLoader) => {
   return await apiRequest(() => axiosInstance.get(`/api/v1/auth/current`), showLoader);
 };
+
+export const verify = async (code, showLoader) => {
+  return await apiRequest(() => axiosInstance.get(`/api/v1/auth/verify/${code}`), showLoader);
+};

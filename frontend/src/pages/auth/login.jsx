@@ -1,12 +1,12 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { KeyIcon, MailIcon } from '@heroicons/react/solid';
-import { Input, Button, Checkbox, Lottie } from '../components/common';
-import { Layout } from '../components/layout';
-import { login } from '../services';
-import { setFormData, toggleRememberMe } from '../store/ui/login';
-import { setUser } from '../store/data/user';
-import LoginAnimation from '../../public/assets/animations/login.json';
+import { Input, Button, Checkbox, Lottie } from '../../components/common';
+import { Layout } from '../../components/layout';
+import { login } from '../../services';
+import { setFormData, toggleRememberMe } from '../../store/ui/login';
+import { setAuthUser } from '../../store/data/user';
+import LoginAnimation from '../../../public/assets/animations/login.json';
 
 const Login = () => {
   const navigateTo = useNavigate();
@@ -26,11 +26,15 @@ const Login = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const res = await login({ email: formData.email, password: formData.password });
-    if (rememberMe) localStorage.setItem('token', res.data.access_token);
-    else sessionStorage.setItem('token', res.data.access_token);
-    dispatch(setUser(res.data.user));
-    navigateTo('/');
+    await login({ email: formData.email, password: formData.password }).then((data) => {
+      if (data) {
+        if (rememberMe) localStorage.setItem('token', data.data.access_token);
+        else sessionStorage.setItem('token', data.data.access_token);
+        dispatch(setAuthUser(data.data.user));
+        dispatch(setFormData({}));
+        navigateTo('/');
+      }
+    });
   };
 
   return (

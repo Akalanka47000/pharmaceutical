@@ -2,12 +2,12 @@ import { useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { KeyIcon, MailIcon, UserIcon, LocationMarkerIcon, PhoneIcon, OfficeBuildingIcon, DocumentTextIcon } from '@heroicons/react/solid';
-import { Input, Button, Lottie, Dropdown, Divider } from '../components/common';
-import { Layout } from '../components/layout';
-import { register } from '../services';
-import { setFormData } from '../store/ui/register';
-import toast from '../libs/toastify';
-import LoginAnimation from '../../public/assets/animations/login.json';
+import { Input, Button, Lottie, Dropdown, Divider } from '../../components/common';
+import { Layout } from '../../components/layout';
+import { register } from '../../services';
+import { setFormData } from '../../store/ui/register';
+import toast from '../../libs/toastify';
+import LoginAnimation from '../../../public/assets/animations/login.json';
 
 const Register = () => {
   const navigateTo = useNavigate();
@@ -50,10 +50,13 @@ const Register = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     await register({ ...formData, business: formData.role === 'seller' ? formData.business : undefined }).then((data) => {
-      navigateTo('/login');
-      setTimeout(() => {
-        toast.success(data.message);
-      }, 300);
+      if (data) {
+        navigateTo('/login');
+        dispatch(setFormData({}));
+        setTimeout(() => {
+          toast.success(data.message);
+        }, 300);
+      }
     });
   };
 

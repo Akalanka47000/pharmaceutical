@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 import Product from './api/v1/models/product.js';
 
-//create product
 export const createProduct = async (product_Name, type, measurement_unit, ageLimit, markupPrice, exp_date, manu_date, description, quantity, seller_Name, status, sell_price) => {
   const productRepo = new Product({
     product_Name,
@@ -38,7 +37,6 @@ export const getAllProduct = async () => {
   });
 };
 
-//get single product
 export const getSingleProduct = async (id) => {
   const product = await Product.findById(mongoose.Types.ObjectId(id)).lean();
 
@@ -55,12 +53,10 @@ export const getSingleProduct = async (id) => {
   };
 };
 
-//delete single product
 export const deleteSingleProduct = (id) => {
   return Product.findByIdAndDelete(mongoose.Types.ObjectId(id));
 };
 
-//update single product
 export const updateSingleProduct = async (id, pr) => {
   const productUpdateRepo = await Product.findByIdAndUpdate(id, pr, {
     new: true,
@@ -68,7 +64,6 @@ export const updateSingleProduct = async (id, pr) => {
   return productUpdateRepo;
 };
 
-//search products
 export const searchProducts = async (key) => {
   const products = await Product.find({
     $or: [{ product_Name: { $regex: key, $options: 'i' } }, { type: { $regex: key, $options: 'i' } }, { seller_Name: { $regex: key, $options: 'i' } }],

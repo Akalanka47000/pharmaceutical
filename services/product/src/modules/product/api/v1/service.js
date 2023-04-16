@@ -1,5 +1,3 @@
-//service
-
 import { createProduct, getAllProduct, getSingleProduct, deleteSingleProduct, updateSingleProduct, searchProducts } from '../../repository.js';
 
 export const createProductSrc = async ({ product_Name, type, measurement_unit, ageLimit, markupPrice, exp_date, manu_date, description, quantity, seller_Name, status, sell_price }) => {

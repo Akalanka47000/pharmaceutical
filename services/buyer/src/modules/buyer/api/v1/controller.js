@@ -23,7 +23,6 @@ buyer.post(
   }),
 );
 
-//Get All Sellers
 buyer.get(
   '/',
   filterQuery,
@@ -37,7 +36,6 @@ buyer.get(
   }),
 );
 
-//Get Single Seller
 buyer.get(
   '/:id',
   celebrate({ [Segments.PARAMS]: objectIdSchema() }),
@@ -51,7 +49,6 @@ buyer.get(
   }),
 );
 
-//Delete A Supplier
 buyer.delete(
   '/:id',
   celebrate({ [Segments.PARAMS]: objectIdSchema() }),
@@ -65,7 +62,6 @@ buyer.delete(
   }),
 );
 
-//Update Supplier Data
 buyer.patch(
   '/:id',
   filterQuery,

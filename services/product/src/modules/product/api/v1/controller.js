@@ -23,7 +23,7 @@ product.post(
   }),
 );
 
-//GET all products
+// GET all products
 product.get(
   '/',
   filterQuery,
@@ -37,7 +37,7 @@ product.get(
   }),
 );
 
-//Get Single product
+// Get Single product
 product.get(
   '/:id',
   celebrate({ [Segments.PARAMS]: objectIdSchema() }),
@@ -51,7 +51,7 @@ product.get(
   }),
 );
 
-//Delete single product
+// Delete single product
 product.delete(
   '/:id',
   celebrate({ [Segments.PARAMS]: objectIdSchema() }),
@@ -65,7 +65,7 @@ product.delete(
   }),
 );
 
-//Update single product
+// Update single product
 product.patch(
   '/:id',
   celebrate({ [Segments.PARAMS]: objectIdSchema(), [Segments.BODY]: updateProductSchema }),
@@ -79,7 +79,7 @@ product.patch(
   }),
 );
 
-//search products
+// search products
 product.get(
   '/search/:key',
   tracedAsyncHandler(async function searchProductCntrl(req, res) {

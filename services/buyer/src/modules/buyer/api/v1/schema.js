@@ -1,5 +1,4 @@
 import { Joi } from 'celebrate';
-//import { roles } from '@app/constants';
 
 export const createBuyerSchema = Joi.object({
   buyer_name: Joi.string().required(),

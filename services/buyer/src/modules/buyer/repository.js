@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 import Buyer from './api/v1/models/buyer';
 
-//create buyer
 export const createBuyer = async (buyer_name, nic, email_address, mobileNumber, address, address_district, credentialID) => {
   const buyerRepo = new Buyer({
     buyer_name,
@@ -16,14 +15,12 @@ export const createBuyer = async (buyer_name, nic, email_address, mobileNumber, 
   return { msg: 'buyer added' };
 };
 
-//Get Data Of One buyer
 export const getSingleBuyer = async (id) => {
-  //check for valid objectId
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return { msg: 'No buyer is available with this id' };
   }
   try {
-    //Check if Supplier exists
+    // Check if Supplier exists
     if ((await Buyer.findById(mongoose.Types.ObjectId(id))) == null) {
       return { msg: 'No buyer is available with this id' };
     }
@@ -33,19 +30,16 @@ export const getSingleBuyer = async (id) => {
   }
 };
 
-//get all buyers
 export const getAllBuyer = async () => {
   return await Buyer.find().lean();
 };
 
-//delete single seller
-export const deleteSingleBuyer = async (id) => {
-  return await Buyer.findByIdAndDelete(mongoose.Types.ObjectId(id));
+export const deleteSingleBuyer = (id) => {
+  return Buyer.findByIdAndDelete(mongoose.Types.ObjectId(id));
 };
 
-//update single seller
-export const updateSingleBuyer = async (id, pr) => {
-  const buyerUpdateRepo = await Buyer.findByIdAndUpdate(id, pr, {
+export const updateSingleBuyer = (id, pr) => {
+  const buyerUpdateRepo = Buyer.findByIdAndUpdate(id, pr, {
     new: true,
   });
   return buyerUpdateRepo;

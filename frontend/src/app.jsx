@@ -8,7 +8,7 @@ const App = () => {
     <Provider store={store}>
       <div className="App">
         <BrowserRouter>
-          <AnimatedRoutes />
+        <AnimatedRoutes />
         </BrowserRouter>
       </div>
     </Provider>

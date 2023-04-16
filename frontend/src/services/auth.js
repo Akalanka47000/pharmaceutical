@@ -20,6 +20,10 @@ export const getCurrentUser = async (showLoader) => {
   return await apiRequest(() => axiosInstance.get(`/api/v1/auth/current`), showLoader);
 };
 
+export const refreshToken = async (data, showLoader) => {
+  return await apiRequest(() => axiosInstance.post(`/api/v1/auth/refresh-token`, data), showLoader);
+};
+
 export const verify = async (code, showLoader) => {
   return await apiRequest(() => axiosInstance.get(`/api/v1/auth/verify/${code}`), showLoader);
 };

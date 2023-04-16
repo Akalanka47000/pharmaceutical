@@ -14,7 +14,7 @@ const Input = ({ placeholder, type, required, prefixIcon, value, ...props }) => 
         className={twMerge(
           `w-full shadow-ds2 pr-4 py-2.5 lg:py-3.5 ${
             prefixIcon ? 'pl-14 group-hover:pl-16' : 'pl-4'
-          } text-sm font-semibold bg-transparent border-2 text-gray-800 border-gray-400 focus:border-gray-900 focus:ring-0 focus:ring-offset-0 rounded-md transition-all duration-300`,
+          } text-sm font-semibold bg-transparent border-2 text-gray-800 border-gray-400 focus:border-gray-900 focus:ring-0 outline-none focus:ring-offset-0 rounded-md transition-all duration-300`,
           props.className,
         )}
         placeholder={placeholder}

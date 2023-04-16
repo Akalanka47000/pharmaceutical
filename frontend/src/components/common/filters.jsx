@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Input, Dropdown } from '.';
+import { Accordion } from 'flowbite-react';
 
 const Filters = ({ filters, setFilterQuery }) => {
   const [filtersLocalState, setFiltersLocalState] = useState(filters);
@@ -7,7 +8,7 @@ const Filters = ({ filters, setFilterQuery }) => {
   useEffect(() => {
     const query = filtersLocalState.reduce((acc, curr) => {
       if (curr.value) {
-        acc += `filter[${curr.key}]=${curr.options ? curr.value : `/${curr.value}/`}&`;
+        acc += `filter[${curr.key}]=reg(${curr.options ? curr.value : `${curr.value}`})&`;
       }
       return acc;
     }, '');
@@ -27,28 +28,38 @@ const Filters = ({ filters, setFilterQuery }) => {
 
   return (
     <div className="w-full mb-4">
-      <span className="text-3xl text-white font-semibold">Filters</span>
-      <div className="w-full flex justify-start items-center gap-6">
-        {filtersLocalState.map((filter, index) => {
-          return (
-            <div key={`filter-${filter.key}-${index}`} className="w-1/2 h-full flex flex-col justify-center items-start">
-              <span className="text-md text-white mt-2 mb-3">{filter.label}</span>
-              {filter.options ? (
-                <Dropdown filterkey={filter.key} options={filter.options} className="h-12 sm:h-14" onChange={onFilterChange} />
-              ) : (
-                <Input
-                  className="h-12 sm:h-14"
-                  value={filter.value}
-                  placeholder="Search"
-                  onChange={(e) => {
-                    onFilterChange(e, filter.key);
-                  }}
-                />
-              )}
+      <Accordion alwaysOpen={true}>
+        <Accordion.Panel className="outline-none focus:ring-0">
+          <Accordion.Title>
+          <span className="text-2xl text-gray-700 font-semibold">Filters</span>
+          </Accordion.Title>
+          <Accordion.Content>
+            <div className="w-full flex justify-start items-center flex-wrap gap-x-6">
+              {filtersLocalState.map((filter, index) => {
+                return (
+                  <div key={`filter-${filter.key}-${index}`} className="w-full md:w-auto h-full flex flex-col justify-center items-start">
+                    <span className="text-md text-black mt-2 mb-1">{filter.label}</span>
+                    {filter.options ? (
+                      <Dropdown filterkey={filter.key} options={filter.options} className="h-12 sm:h-12" onChange={onFilterChange} />
+                    ) : (
+                      <Input
+                        wrapperclasses="w-full md:w-auto"
+                        className="h-12 sm:h-12"
+                        value={filter.value}
+                        placeholder="Search"
+                        onChange={(e) => {
+                          onFilterChange(e, filter.key);
+                        }}
+                      />
+                    )}
+                  </div>
+                );
+              })}
             </div>
-          );
-        })}
-      </div>
+          </Accordion.Content>
+        </Accordion.Panel>
+      </Accordion>
+
     </div>
   );
 };

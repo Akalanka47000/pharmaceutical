@@ -28,8 +28,9 @@ const Login = () => {
     e.preventDefault();
     await login({ email: formData.email, password: formData.password }).then((data) => {
       if (data) {
-        if (rememberMe) localStorage.setItem('token', data.data.access_token);
-        else sessionStorage.setItem('token', data.data.access_token);
+        const store = rememberMe ? localStorage : sessionStorage;
+        store.setItem('access_token', data.data.access_token);
+        store.setItem('refresh_token', data.data.refresh_token);
         dispatch(setAuthUser(data.data.user));
         dispatch(setFormData({}));
         navigateTo('/');

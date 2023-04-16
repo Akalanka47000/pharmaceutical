@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Navbar } from 'flowbite-react';
 import { isEmpty } from 'lodash';
@@ -5,11 +6,19 @@ import { Button } from '../common';
 import { logout } from '../../services';
 import { Link } from 'react-router-dom';
 
+
 const Header = () => {
+  const navigate = useNavigate()
+
   const user = useSelector((store) => store.data.user.authUser);
 
+  const logoutClick = () => {
+    logout()
+    navigate("/login")
+  }
+
   return (
-    <Navbar fluid={true} rounded={true}>
+    <Navbar fluid={true} rounded={false} class="border-gray-200 bg-white px-2 py-4 dark:border-gray-700 dark:bg-gray-800 sm:px-4">
       <Navbar.Brand href="/">
         <img src="public/assets/logo.png" className="mr-3 h-6 sm:h-9" alt="Pharmaceutical Logo" />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white ml-2">Pharmaceutical</span>
@@ -27,7 +36,7 @@ const Header = () => {
             </>
           )}
           {!isEmpty(user) && (
-            <Button className="py-1.5 px-6" onClick={logout}>
+            <Button className="py-1.5 px-6" onClick={logoutClick}>
               Logout
             </Button>
           )}

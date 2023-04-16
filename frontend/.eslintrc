@@ -4,5 +4,6 @@
     "no-unused-vars": "error",
     "react-hooks/exhaustive-deps": "off",
     "jsx-a11y/alt-text": "off"
-  }
+  },
+  "root": true
 }

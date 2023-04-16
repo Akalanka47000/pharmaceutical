@@ -1,24 +1,19 @@
-import mongoose from 'mongoose';
-import Product from './api/v1/models/product.js';
+import { Order } from './api/v1/models';
 
-//create product
-export const createProduct = async (product_Name, type, measurement_unit, ageLimit, markupPrice, exp_date, manu_date, description, quantity, seller_Name, status, sell_price) => {
-  const productRepo = new Product({
-    product_Name,
-    type,
-    measurement_unit,
-    ageLimit,
-    markupPrice,
-    exp_date,
-    manu_date,
-    description,
+//create Order
+export const createOrder = async (product_ID, quantity, payment_method, delivery_type, delivery_cost, discounts, total_price, status) => {
+  const productOrder = new Order({
+    product_ID,
     quantity,
-    seller_Name,
-    status: 'available',
-    sell_price: markupPrice + 0.25 * markupPrice,
+    payment_method,
+    delivery_type,
+    delivery_cost,
+    discounts,
+    total_price,
+    status: 'pending',
   });
-  await productRepo.save();
-  return { msg: 'product added' };
+  await productOrder.save();
+  return { msg: 'order added' };
 };
 
 export const getAllProduct = async () => {
@@ -56,8 +51,8 @@ export const getSingleProduct = async (id) => {
 };
 
 //delete single product
-export const deleteSingleProduct = (id) => {
-  return Product.findByIdAndDelete(mongoose.Types.ObjectId(id));
+export const deleteSingleProduct = async (id) => {
+  return await Product.findByIdAndDelete(mongoose.Types.ObjectId(id));
 };
 
 //update single product

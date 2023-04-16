@@ -20,7 +20,7 @@ export const createBuyer = async (buyer_name, nic, email_address, mobileNumber, 
 export const getSingleBuyer = async (id) => {
   //check for valid objectId
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return { msg: 'No supplier is available with this id' };
+    return { msg: 'No buyer is available with this id' };
   }
   try {
     //Check if Supplier exists
@@ -37,11 +37,6 @@ export const getSingleBuyer = async (id) => {
 export const getAllBuyer = async () => {
   return await Buyer.find().lean();
 };
-
-//get single seller
-// export const getSingleBuyer = async (id) => {
-//   return await Seller.findById(mongoose.Types.ObjectId(id));
-// };
 
 //delete single seller
 export const deleteSingleBuyer = async (id) => {

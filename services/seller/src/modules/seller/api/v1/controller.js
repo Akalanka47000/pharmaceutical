@@ -6,8 +6,6 @@ import { createSellerSrc, getAllSellerSrc, getSingleSellerSrc, deleteSingleSelle
 
 const seller = express.Router();
 
-const asyncHandler = () => {};
-
 // Create a new seller
 seller.post(
   '/',

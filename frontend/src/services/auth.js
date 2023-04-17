@@ -9,11 +9,11 @@ export const register = async (data, showLoader) => {
 };
 
 export const forgotPassword = async (data, showLoader) => {
-  return await apiRequest(() => axiosInstance.post(`/api/v1/auth/forgot_password`, data), showLoader);
+  return await apiRequest(() => axiosInstance.post(`/api/v1/auth/forgot-password`, data), showLoader);
 };
 
 export const resetPassword = async (code, data, showLoader) => {
-  return await apiRequest(() => axiosInstance.post(`/api/v1/auth/reset_password/${code}`, data), showLoader);
+  return await apiRequest(() => axiosInstance.post(`/api/v1/auth/reset-password/${code}`, data), showLoader);
 };
 
 export const getCurrentUser = async (showLoader) => {

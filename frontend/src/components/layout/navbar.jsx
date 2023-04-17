@@ -39,9 +39,6 @@ const Header = () => {
               <Link to="/login">
                 <Button className="py-1.5 px-6">Login</Button>
               </Link>
-              <Link to="/register">
-                <Button className="py-1.5 px-6">Register</Button>
-              </Link>
             </>
           )}
           {!isEmpty(user) && (

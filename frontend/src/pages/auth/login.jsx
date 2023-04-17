@@ -54,6 +54,9 @@ const Login = () => {
               <Checkbox checked={rememberMe} toggle={() => dispatch(toggleRememberMe())} />
               <p className="text-sm ml-2 font-semibold">Remember Me</p>
             </div>
+            <Link to="/forgot-password" className="text-sm ml-2 font-semibold">
+              Forgot Password
+            </Link>
           </div>
           <Button className="px-12 py-3.5 mt-5">Login</Button>
           <div className="group flex justify-end items-center mt-6">

@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { forgotPassword } from '../../services/auth';
 import { Button, Input, Lottie } from '../../components/common';
-import Layout from '../../components/layout';
+import { Layout } from '../../components/layout';
 import Forgotten from '../../../public/assets/animations/forget-password.json';
 
 const ForgotPassword = () => {
@@ -12,13 +12,15 @@ const ForgotPassword = () => {
     e.preventDefault();
     await forgotPassword({
       email: e.target.email.value,
-    }).then(() => {
-      toast.success('An email has been sent with a link to reset your password!', {
-        autoClose: 3500,
-      });
-      setTimeout(() => {
-        navigate('/login');
-      }, 3500);
+    }).then((data) => {
+      if (data) {
+        toast.success('An email has been sent with a link to reset your password!', {
+          autoClose: 3500,
+        });
+        setTimeout(() => {
+          navigate('/login');
+        }, 3500);
+      }
     });
   };
 

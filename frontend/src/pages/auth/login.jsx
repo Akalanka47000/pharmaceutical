@@ -46,7 +46,7 @@ const Login = () => {
             <Lottie animationData={LoginAnimation} />
           </div>
         </div>
-        <form className="flex flex-col " onSubmit={onSubmit}>
+        <form className="flex flex-col" onSubmit={onSubmit}>
           <Input type="text" id="email" placeholder="Email" required value={formData.email} onChange={handleInputChange} prefixIcon={<MailIcon />} />
           <Input id="password" type="password" placeholder="Password" required value={formData.password} onChange={handleInputChange} prefixIcon={<KeyIcon />} />
           <div className="flex justify-between mt-4">

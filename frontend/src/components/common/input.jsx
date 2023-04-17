@@ -1,6 +1,11 @@
 import { twMerge } from 'tailwind-merge';
 
-const Input = ({ placeholder, type, required, prefixIcon, value, ...props }) => {
+const Text = (props) => <input {...props} />;
+
+const TextArea = (props) => <textarea {...props} />;
+
+const Input = ({ placeholder, type, required, prefixIcon, value, textarea, ...props }) => {
+  const Element = textarea ? TextArea : Text;
   return (
     <div className={twMerge('relative my-2 group', props.wrapperclasses || '')}>
       {prefixIcon && (
@@ -8,7 +13,7 @@ const Input = ({ placeholder, type, required, prefixIcon, value, ...props }) => 
           <div className="w-5 h-5 text-white">{prefixIcon}</div>
         </div>
       )}
-      <input
+      <Element
         {...props}
         type={type || 'text'}
         className={twMerge(

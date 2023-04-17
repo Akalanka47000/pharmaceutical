@@ -10,6 +10,7 @@ const ProductSchema = new mongoose.Schema(
     type: {
       type: String,
       required: true,
+      enum: ['supplements and herbs', 'Sports and nutrition', 'Beauty', 'Bath'],
     },
     measurement_unit: {
       type: String,
@@ -47,6 +48,17 @@ const ProductSchema = new mongoose.Schema(
     selling_price: {
       type: Number,
       required: true,
+    },
+    sold_amount: {
+      type: Number,
+      default: 0,
+    },
+    images: {
+      type: Array,
+    },
+    ratings: {
+      star: Number,
+      postedby: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     },
   },
   {

@@ -1,51 +1,51 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    filters: [
+  filters: [
+    {
+      key: 'name',
+      label: 'Name',
+    },
+    {
+      key: 'email',
+      label: 'Email',
+    },
+    {
+      key: 'address',
+      label: 'Address',
+    },
+    {
+      key: 'mobile',
+      label: 'Mobile',
+    },
+    {
+      key: 'role',
+      label: 'Role',
+      options: [
         {
-            key: 'name',
-            label: 'Name',
+          key: 'admin',
+          label: 'Admin',
         },
         {
-            key: 'email',
-            label: 'Email',
+          key: 'buyer',
+          label: 'Buyer',
         },
         {
-            key: 'address',
-            label: 'Address',
+          key: 'seller',
+          label: 'Seller',
         },
-        {
-            key: 'mobile',
-            label: 'Mobile',
-        },
-        {
-            key: 'role',
-            label: 'Role',
-            options: [
-                {
-                    key: 'admin',
-                    label: 'Admin',
-                },
-                {
-                    key: 'buyer',
-                    label: 'Buyer',
-                },
-                {
-                    key: 'seller',
-                    label: 'Seller',
-                },
-            ],
-        },
-    ],
-    sorts: [],
+      ],
+    },
+  ],
+  sorts: [],
 };
 
 export const slice = createSlice({
-    name: 'users',
-    initialState,
-    reducers: {},
+  name: 'users',
+  initialState,
+  reducers: {},
 });
 
-export const { } = slice.actions;
+export const {} = slice.actions;
 
 export default slice.reducer;

@@ -44,6 +44,20 @@ const Users = () => {
     });
   };
 
+  const approveSeller = async (user) => {
+    await updateUser(user._id, {
+      business: {
+        ...user.business,
+        is_approved: true,
+      },
+    }).then((data) => {
+      if (data) {
+        toast.success(`Seller registration approved`);
+        refresh();
+      }
+    });
+  };
+
   return (
     <Layout title="Bashaway | Users">
       <div className="w-screen min-h-screen flex flex-col justify-center items-center">
@@ -71,6 +85,7 @@ const Users = () => {
                       <Table.HeadCell>Mobile</Table.HeadCell>
                       <Table.HeadCell>Address</Table.HeadCell>
                       <Table.HeadCell>Role</Table.HeadCell>
+                      <Table.HeadCell>Registration Status</Table.HeadCell>
                       <Table.HeadCell>
                         <span className="sr-only">Edit</span>
                       </Table.HeadCell>
@@ -85,14 +100,34 @@ const Users = () => {
                             <Table.Cell>{user.address ?? '--'}</Table.Cell>
                             <Table.Cell>{startCase(user.role)}</Table.Cell>
                             <Table.Cell>
+                              <span className="font-medium text-sm">
+                                {user.role != 'seller' || (user.role == 'seller' && user.business?.is_approved) ? (
+                                  <span className={'bg-green-400 text-white py-1.5 rounded-full px-4 cursor-default'}>Success</span>
+                                ) : (
+                                  <span
+                                    onClick={approveSeller.bind(this, user)}
+                                    className={'bg-red-500 hover:bg-red-600 transition-all duration-300 text-white py-1.5 rounded-full px-4 cursor-pointer'}
+                                  >
+                                    Approve
+                                  </span>
+                                )}
+                              </span>
+                            </Table.Cell>
+                            <Table.Cell>
                               <a onClick={() => toggleActiveState(user)} className="cursor-pointer font-medium hover:underline">
                                 {user.is_active ? <span className={'text-red-500'}>Deactivate</span> : <span className="text-green-500">Activate</span>}
                               </a>
                             </Table.Cell>
                             <Table.Cell>
-                              <a className="font-medium text-primary-base hover:underline cursor-pointer" onClick={() => setUserToEdit({ ...user })}>
-                                {user.role === 'admin' ? 'Edit' : '---'}
-                              </a>
+                              <span className="font-medium text-primary-base cursor-default">
+                                {user.role === 'admin' ? (
+                                  <span className="hover:underline cursor-pointer" onClick={() => setUserToEdit({ ...user })}>
+                                    Edit
+                                  </span>
+                                ) : (
+                                  '---'
+                                )}
+                              </span>
                             </Table.Cell>
                           </Table.Row>
                         );

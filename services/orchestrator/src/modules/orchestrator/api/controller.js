@@ -1,9 +1,9 @@
 import express from 'express';
 import serviceConnector from '@sliit-foss/service-connector';
 import { tracedAsyncHandler } from '@sliit-foss/functions';
-import { roles } from '@app/constants';
 import { serviceHosts } from '../constants';
 import { permittedRoles } from '../../../middleware';
+import { routeGuards } from './middleware';
 
 const orchestrator = express.Router();
 
@@ -12,7 +12,7 @@ const connector = serviceConnector({ service: 'Proxy' });
 orchestrator.all('/:api_version/:module*', (req, res, next) => {
   switch (req.params.module) {
     case 'users':
-      return permittedRoles([roles.admin])(req, res, next);
+      return routeGuards[req.params.module](req, res, next);
     case 'emails':
     case 'sms':
       return permittedRoles([])(req, res, next);

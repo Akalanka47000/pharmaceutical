@@ -6,6 +6,6 @@ const connector = serviceConnector({
   service: 'Email-Service',
 });
 
-export const sendVerificationEmail = (payload, v = 'v1') => {
+export const sendEmail = (payload, v = 'v1') => {
   return connector.post(`/api/${v}/emails`, payload).then(connector.resolve);
 };

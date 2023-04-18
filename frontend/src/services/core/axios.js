@@ -23,14 +23,9 @@ export const apiRequest = async (request, showLoader = true) => {
     .catch(async (error) => {
       const message = error.response.data.message;
       if (error.response.status === 403) {
-        if (localStorage.getItem('token')) {
-          toast.error(message);
-        }
+        if (localStorage.getItem('access_token')) toast.error(message);
       } else if (error.response.status === 401 && error.response.data.message === 'Token has expired') {
-        const { data } = await refreshToken({ refresh_token: localStorage.getItem('refresh_token') || sessionStorage.getItem('refresh_token') });
-        const store = localStorage.getItem('refresh_token') ? localStorage : sessionStorage;
-        store.setItem('access_token', data.access_token);
-        store.setItem('refresh_token', data.refresh_token);
+        await refreshToken();
         return await apiRequest(request, showLoader);
       } else {
         toast.error(message);

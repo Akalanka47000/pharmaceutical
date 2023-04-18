@@ -19,7 +19,7 @@ const Filters = ({ filters, setFilterQuery }) => {
     setFiltersLocalState(
       filtersLocalState.map((filter) => {
         if (filter.key === key) {
-          filter.value = e.target.value;
+          return { ...filter, value: e.target.value };
         }
         return filter;
       }),

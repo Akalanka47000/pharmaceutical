@@ -13,7 +13,7 @@ const useAuth = () => {
   const dispatch = useDispatch();
 
   const checkUser = () => {
-    const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+    const token = localStorage.getItem('access_token') || sessionStorage.getItem('access_token');
     if (!token && blacklistedPaths.includes(window.location.pathname.split('/')[1])) {
       navigate('/login');
     }

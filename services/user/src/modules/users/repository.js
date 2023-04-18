@@ -12,6 +12,10 @@ export function getUserById(id) {
   return User.findById(id).lean();
 }
 
+export function getUserBy(filters) {
+  return User.findOne(filters).lean();
+}
+
 export function getUsersByRole(role) {
   return User.findOne({ role }).lean();
 }

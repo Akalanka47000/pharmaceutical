@@ -21,6 +21,7 @@ export const createUserSchema = Joi.object({
     license_number: Joi.string().required(),
     owner_nic: Joi.string().required(),
     is_approved: Joi.boolean().optional(),
+    bank_account: Joi.string().optional(),
   }).optional(),
 });
 
@@ -40,5 +41,6 @@ export const updateUserSchema = Joi.object({
     license_number: Joi.string().optional(),
     owner_nic: Joi.string().optional(),
     is_approved: Joi.boolean().optional(),
+    bank_account: Joi.string().optional(),
   }).optional(),
 });

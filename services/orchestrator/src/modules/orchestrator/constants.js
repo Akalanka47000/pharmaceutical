@@ -5,4 +5,5 @@ export const serviceHosts = {
   users: config.USER_SERVICE_BASE_URL,
   emails: config.EMAIL_SERVICE_BASE_URL,
   sms: config.SMS_SERVICE_BASE_URL,
+  products: config.PRODUCT_SERVICE_BASE_URL,
 };

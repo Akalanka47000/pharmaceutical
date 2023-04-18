@@ -54,6 +54,7 @@ const UserSchema = new Schema(
       license_number: String,
       owner_nic: String,
       is_approved: Boolean,
+      bank_account: String,
     },
   },
   {

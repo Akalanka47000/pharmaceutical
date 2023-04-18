@@ -9,7 +9,7 @@ export const getAllUsers = async (filterQuery = '', sortQuery = '', page) => {
 };
 
 export const updateUser = async (id, data) => {
-  return await apiRequest(() => axiosInstance.put(`/api/v1/users/${id}`, data));
+  return await apiRequest(() => axiosInstance.patch(`/api/v1/users/${id}`, data));
 };
 
 export const deleteUser = async (id) => {

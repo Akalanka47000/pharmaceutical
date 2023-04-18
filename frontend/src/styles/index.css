@@ -39,10 +39,10 @@ input:-internal-autofill-selected {
   border: 1px solid rgb(17, 24, 39) !important;
 }
 
-*[data-testid="table-element"] {
-  width:100%;
+*[data-testid='table-element'] {
+  width: 100%;
 }
 
-*[data-testid="table-element"] th {
+*[data-testid='table-element'] th {
   text-align: left;
 }

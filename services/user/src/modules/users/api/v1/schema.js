@@ -13,13 +13,15 @@ export const createUserSchema = Joi.object({
     .required(),
   address: Joi.string().required(),
   is_active: Joi.boolean().optional(),
-  verification_code: Joi.string().required(),
+  is_verified: Joi.boolean().optional(),
+  verification_code: Joi.string().optional(),
   business: Joi.object({
     name: Joi.string().required(),
     email: Joi.string().email().required(),
     license_number: Joi.string().required(),
     owner_nic: Joi.string().required(),
     is_approved: Joi.boolean().optional(),
+    bank_account: Joi.string().optional(),
   }).optional(),
 });
 
@@ -39,5 +41,6 @@ export const updateUserSchema = Joi.object({
     license_number: Joi.string().optional(),
     owner_nic: Joi.string().optional(),
     is_approved: Joi.boolean().optional(),
+    bank_account: Joi.string().optional().allow('', null),
   }).optional(),
 });

@@ -1,5 +1,5 @@
-import { Triangle } from 'react-loader-spinner';
 import { useSelector } from 'react-redux';
+import { CirclesWithBar } from 'react-loader-spinner';
 
 const Loader = () => {
   const { showLoader } = useSelector((state) => state.ui.global);
@@ -9,7 +9,7 @@ const Loader = () => {
         showLoader ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`}
     >
-      <Triangle height="110" width="110" color="#000000" ariaLabel="triangle-loading" wrapperStyle={{}} wrapperClassName="" visible={true} />
+      <CirclesWithBar height="110" width="110" color="#000000" ariaLabel="triangle-loading" wrapperStyle={{}} wrapperClassName="" visible={true} />
     </div>
   );
 };

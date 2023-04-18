@@ -42,11 +42,11 @@ const Login = () => {
     <Layout title="Login" hideHeader hideFooter>
       <div className="w-full py-12 px-7 md:px-12 rounded-2xl">
         <div className="flex justify-center items-center">
-          <div className="w-11/12 sm:w-7/12 xl:w-4/12 2xl:w-3/12 mb-10">
+          <div className="w-11/12 sm:w-7/12 xl:w-4/12 2xl:w-[27%] mb-10">
             <Lottie animationData={LoginAnimation} />
           </div>
         </div>
-        <form className="flex flex-col " onSubmit={onSubmit}>
+        <form className="flex flex-col" onSubmit={onSubmit}>
           <Input type="text" id="email" placeholder="Email" required value={formData.email} onChange={handleInputChange} prefixIcon={<MailIcon />} />
           <Input id="password" type="password" placeholder="Password" required value={formData.password} onChange={handleInputChange} prefixIcon={<KeyIcon />} />
           <div className="flex justify-between mt-4">
@@ -54,6 +54,9 @@ const Login = () => {
               <Checkbox checked={rememberMe} toggle={() => dispatch(toggleRememberMe())} />
               <p className="text-sm ml-2 font-semibold">Remember Me</p>
             </div>
+            <Link to="/forgot-password" className="text-sm ml-2 font-semibold">
+              Forgot Password
+            </Link>
           </div>
           <Button className="px-12 py-3.5 mt-5">Login</Button>
           <div className="group flex justify-end items-center mt-6">

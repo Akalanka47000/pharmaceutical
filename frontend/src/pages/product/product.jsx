@@ -5,16 +5,6 @@ import Layout from '../../components/layout';
 
 const Products = () => {
   const [products, setProducts] = useState(null);
-  // const [page, setPage] = useState(1);
-  // const [filterQuery, setFilterQuery] = useState('');
-  // const [sortQuery, setSortQuery] = useState('');
-
-  //   useEffect(() => {
-  //     getAllProducts(filterQuery, sortQuery, page).then(({ data }) => {
-  //       setProducts(data);
-  //     });
-  //   }, []);
-
   useEffect(() => {
     const AllProducts = async () => {
       const response = await fetch('http://localhost:8082/api/v1/product/');

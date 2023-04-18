@@ -1,6 +1,6 @@
 import express from 'express';
 import stripe from 'stripe';
-import { tracedAsyncHandler, traced } from '@sliit-foss/functions';
+import { tracedAsyncHandler } from '@sliit-foss/functions';
 import { toSuccess } from '@app/middleware';
 
 const payment = express.Router();

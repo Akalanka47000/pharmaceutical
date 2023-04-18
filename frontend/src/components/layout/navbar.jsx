@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Navbar } from 'flowbite-react';
+import { UserIcon, LogoutIcon } from '@heroicons/react/solid';
 import { isEmpty } from 'lodash';
 import { Button } from '../common';
 import { logout } from '../../services';
@@ -42,9 +43,14 @@ const Header = () => {
             </>
           )}
           {!isEmpty(user) && (
-            <Button className="py-1.5 px-6" onClick={logoutClick}>
-              Logout
-            </Button>
+            <>
+              <Link to="/profile" className="py-1.5 px-1.5 rounded-full mr-2 md:mr-3 shadow-lg border-2 border-primary-base">
+                <UserIcon className="h-5 w-5" />
+              </Link>
+              <Button className="py-2 px-3 md:px-6" onClick={logoutClick}>
+                <LogoutIcon className="h-5 w-5" />
+              </Button>
+            </>
           )}
         </div>
         <Navbar.Toggle />

@@ -41,6 +41,6 @@ export const updateUserSchema = Joi.object({
     license_number: Joi.string().optional(),
     owner_nic: Joi.string().optional(),
     is_approved: Joi.boolean().optional(),
-    bank_account: Joi.string().optional(),
+    bank_account: Joi.string().optional().allow('', null),
   }).optional(),
 });

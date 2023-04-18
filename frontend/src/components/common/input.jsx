@@ -4,7 +4,7 @@ const Text = (props) => <input {...props} />;
 
 const TextArea = (props) => <textarea {...props} />;
 
-const Input = ({ placeholder, type, required, prefixIcon, value, textarea, ...props }) => {
+const Input = ({ placeholder, type, required, prefixIcon, value, label, textarea, ...props }) => {
   const Element = textarea ? TextArea : Text;
   return (
     <div className={twMerge('relative my-2 group', props.wrapperclasses || '')}>
@@ -13,6 +13,7 @@ const Input = ({ placeholder, type, required, prefixIcon, value, textarea, ...pr
           <div className="w-5 h-5 text-white">{prefixIcon}</div>
         </div>
       )}
+      {label && <div className="mb-3 font-semibold">{placeholder}</div>}
       <Element
         {...props}
         type={type || 'text'}

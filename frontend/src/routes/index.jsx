@@ -1,7 +1,7 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { useAuth } from '../hooks';
-import { Home, Login, Register, Verify, ForgotPassword, ResetPassword, Users, Contact, NotFound } from '../pages';
+import { Home, Login, Register, Verify, ForgotPassword, ResetPassword, Users, Contact, Profile, NotFound } from '../pages';
 
 const AnimatedRoutes = () => {
   useAuth();
@@ -19,6 +19,7 @@ const AnimatedRoutes = () => {
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/users" element={<Users />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>

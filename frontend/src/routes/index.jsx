@@ -2,7 +2,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { useAuth } from '../hooks';
 import { Home, Login, Register, Verify, Users, NotFound } from '../pages';
-
+import Products from '../pages/product/product.jsx';
 const AnimatedRoutes = () => {
   useAuth();
 
@@ -16,6 +16,7 @@ const AnimatedRoutes = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/verify" element={<Verify />} />
         <Route path="/users" element={<Users />} />
+        <Route path="/products" element={<Products />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>

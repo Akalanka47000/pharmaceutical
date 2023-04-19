@@ -6,7 +6,7 @@ const Lottie = ({ animationData }) => {
     loop: true,
     autoplay: true,
   };
-  return <ReactLottie options={options} />;
+  return <ReactLottie options={options} isClickToPauseDisabled={true} />;
 };
 
 export default Lottie;

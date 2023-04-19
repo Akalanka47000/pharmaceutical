@@ -1,28 +1,45 @@
 //import { axiosInstance } from './core/axios';
 import { useEffect, useState } from 'react';
 import Layout from '../../components/layout';
-//import { getAllProducts } from '../../services/product.js';
+import { getAllProducts } from '../../services/product.js';
 
 const Products = () => {
-  const [products, setProducts] = useState(null);
-  useEffect(() => {
-    const AllProducts = async () => {
-      const response = await fetch('http://localhost:8082/api/v1/product/');
-      const json = await response.json();
+  // const [products, setProducts] = useState(null);
+  // useEffect(() => {
+  //   const AllProducts = async () => {
+  //     const response = await getAllProducts();
+  //     console.log(response);
+  //     if (response) {
+  //       setProducts(response.data.docs);
+  //     }
+  //   };
 
-      if (response.ok) {
-        setProducts(json);
-      }
-    };
-
-    AllProducts();
-  }, []);
+  //   AllProducts();
+  //   console.log(products);
+  // }, []);
 
   return (
     <div className="product">
+      {/* add */}
       <Layout title="Home">
-        <h2> Products </h2>
-        {products && products.map((product) => <p key={product._id}>{product.name}</p>)}
+        <div>
+          <h4> Best Sellers</h4>
+          <div>
+            {/* cards */}
+            <div>
+              <img src="" alt=""></img>
+              <div>
+                <span> Vitamin B</span>
+                <span> Mal mal pharmacy</span>
+              </div>
+            </div>
+          </div>
+          <h4> Our Products</h4>
+          <div></div>
+          <div>
+            <div>Load more</div>
+          </div>
+        </div>
       </Layout>
     </div>
   );

@@ -11,7 +11,7 @@ payment.post(
   tracedAsyncHandler(async function controllerInitiatePayments(req, res) {
     const paymentIntent = await stripeInstance.paymentIntents.create({
       amount: 100000,
-      currency: "lkr",
+      currency: 'lkr',
       payment_method: 'pm_card_visa',
     });
 

@@ -46,27 +46,27 @@ const Profile = () => {
   return (
     <Layout title="Profile">
       <div class="flex flex-col justify-center items-start px-6 md:px-[4.3rem] py-4 md:py-8">
-        <div className="font-semibold text-3xl">Edit Profile</div>
+        <div class="font-semibold text-3xl">Edit Profile</div>
 
-        <form className={`w-full min-h-[70vh] flex flex-col justify-center items-center ${user?.role === 'seller' ? 'mt-12' : 'mt-3'}`} onSubmit={onSubmit}>
-          <div className="flex justify-center items-center">
-            <div className={`w-9/12 sm:w-7/12 ${user?.role === 'seller' ? '2xl:w-6/12' : '2xl:w-full'} mb-10`}>
+        <form class={`w-full min-h-[70vh] flex flex-col justify-center items-center ${user?.role === 'seller' ? 'mt-12' : 'mt-3'}`} onSubmit={onSubmit}>
+          <div class="flex justify-center items-center">
+            <div class={`w-9/12 sm:w-7/12 ${user?.role === 'seller' ? '2xl:w-6/12' : '2xl:w-full'} mb-10`}>
               <Lottie animationData={ProfileAnimation} />
             </div>
           </div>
-          <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-x-3">
+          <div class="w-full flex flex-col lg:flex-row justify-between items-center gap-x-3">
             <Input type="text" id="name" placeholder="Name" required value={formData.name} label onChange={handleInputChange} wrapperclasses="w-full" />
             <Input type="text" id="address" placeholder="Address" required value={formData.address} label onChange={handleInputChange} wrapperclasses="w-full" />
           </div>
-          <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-x-3">
+          <div class="w-full flex flex-col lg:flex-row justify-between items-center gap-x-3">
             <Input type="text" id="mobile" placeholder="Mobile" required value={formData.mobile} label onChange={handleInputChange} wrapperclasses="w-full" />
             <Input id="password" type="password" placeholder="Password" value={formData.password} label onChange={handleInputChange} wrapperclasses="w-full" />
           </div>
           {user?.role === 'seller' && (
             <>
-              <span className="w-full text-center font-semibold mt-12">Business Details</span>
+              <span class="w-full text-center font-semibold mt-12">Business Details</span>
               <Divider className="my-8" />
-              <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-x-3">
+              <div class="w-full flex flex-col lg:flex-row justify-between items-center gap-x-3">
                 <Input type="text" id="bank_account" placeholder="Bank Account" value={formData.business?.bank_account} label onChange={handleBusinessInputChange} wrapperclasses="w-full" />
               </div>
             </>

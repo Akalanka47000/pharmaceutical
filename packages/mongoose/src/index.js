@@ -22,3 +22,20 @@ export const connect = async () => {
 
   process.on('exit', () => mongoose.disconnect());
 };
+
+export const aggregatePopulate = (...attributes) =>
+  attributes.reduce((acc, attr) => {
+    acc = [
+      ...acc,
+      {
+        $lookup: {
+          from: attr[0],
+          localField: attr[1],
+          foreignField: '_id',
+          as: attr[1],
+        },
+      },
+      { $unwind: `$${attr[1]}` },
+    ];
+    return acc;
+  }, []);

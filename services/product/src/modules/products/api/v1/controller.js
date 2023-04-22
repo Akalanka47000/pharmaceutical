@@ -13,7 +13,7 @@ product.post(
   '/',
   celebrate({ [Segments.BODY]: createProductSchema }),
   tracedAsyncHandler(async function createProductController(req, res) {
-    const product = await traced(createProductSrc)(req.body);
+    const product = await traced(createProductSrc)(req.body, req.headers['x-user-id']);
     return toSuccess({
       res,
       data: product,
@@ -26,7 +26,7 @@ product.get(
   '/',
   filterQuery,
   tracedAsyncHandler(async function getAllProductsController(req, res) {
-    const product = await traced(getAllProductSrc(req.query.filter, req.query.sort, req.query.page, req.query.limit));
+    const product = await traced(getAllProductSrc)(req.query.filter, req.query.sort, req.query.page, req.query.limit);
     return toSuccess({
       res,
       data: product,

@@ -40,29 +40,29 @@ const Login = () => {
 
   return (
     <Layout title="Login" hideHeader hideFooter>
-      <div className="w-full py-12 px-7 md:px-12 rounded-2xl">
-        <div className="flex justify-center items-center">
-          <div className="w-11/12 sm:w-7/12 xl:w-4/12 2xl:w-[27%] mb-10">
+      <div class="w-full py-12 px-7 md:px-12 rounded-2xl">
+        <div class="flex justify-center items-center">
+          <div class="w-11/12 sm:w-7/12 xl:w-4/12 2xl:w-[27%] mb-10">
             <Lottie animationData={LoginAnimation} />
           </div>
         </div>
-        <form className="flex flex-col" onSubmit={onSubmit}>
+        <form class="flex flex-col" onSubmit={onSubmit}>
           <Input type="text" id="email" placeholder="Email" required value={formData.email} onChange={handleInputChange} prefixIcon={<MailIcon />} />
           <Input id="password" type="password" placeholder="Password" required value={formData.password} onChange={handleInputChange} prefixIcon={<KeyIcon />} />
-          <div className="flex justify-between mt-4">
-            <div className="flex items-center">
+          <div class="flex justify-between mt-4">
+            <div class="flex items-center">
               <Checkbox checked={rememberMe} toggle={() => dispatch(toggleRememberMe())} />
-              <p className="text-sm ml-2 font-semibold">Remember Me</p>
+              <p class="text-sm ml-2 font-semibold">Remember Me</p>
             </div>
-            <Link to="/forgot-password" className="text-sm ml-2 font-semibold">
+            <Link to="/forgot-password" class="text-sm ml-2 font-semibold">
               Forgot Password
             </Link>
           </div>
           <Button className="px-12 py-3.5 mt-5">Login</Button>
-          <div className="group flex justify-end items-center mt-6">
-            <div className="flex justify-center items-center">
-              <p className="text-sm mr-2 font-semibold">{`Don't have an account yet -->`}</p>
-              <Link className="cursor-pointer text-sm text-primary-base hover:text-primary-hover group-hover:mr-2 transition-all duration-300" to="/register">
+          <div class="group flex justify-end items-center mt-6">
+            <div class="flex justify-center items-center">
+              <p class="text-sm mr-2 font-semibold">{`Don't have an account yet -->`}</p>
+              <Link class="cursor-pointer text-sm text-primary-base hover:text-primary-hover group-hover:mr-2 transition-all duration-300" to="/register">
                 Register
               </Link>
             </div>

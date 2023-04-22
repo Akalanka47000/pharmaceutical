@@ -62,7 +62,7 @@ const UserModal = ({ user, show, setShow, refresh = () => {} }) => {
       <Modal.Header color="white">{!isEmpty(user) ? 'Update' : 'Add'} Admin User</Modal.Header>
       <Modal.Body>
         <form>
-          <div className="flex flex-col mb-4">
+          <div class="flex flex-col mb-4">
             <Input placeholder="Name" name="name" value={formData.name} className="h-12 sm:h-14 light" theme="light" required="true" onChange={onChange} />
             {isEmpty(user) && <Input placeholder="Email" name="email" value={formData.email} className="h-12 sm:h-14 light" theme="light" required="true" onChange={onChange} />}
             <Input placeholder="Mobile" name="mobile" value={formData.mobile} className="h-12 sm:h-14 light" theme="light" required="true" onChange={onChange} />

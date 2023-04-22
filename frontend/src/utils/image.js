@@ -1,4 +1,4 @@
-export const base64EncodeImage = (e) => {
+const base64EncodeImage = (e) => {
   return new Promise((resolve, reject) => {
     if (e?.[0]) {
       const reader = new FileReader();
@@ -6,9 +6,12 @@ export const base64EncodeImage = (e) => {
         const image = new Image();
         image.src = e.target.result;
         image.onload = () => resolve(e.target.result);
+        console.log(reader.result);
       };
       reader.readAsDataURL(e[0]);
     }
     reject('Error reading image data');
   });
 };
+
+export default base64EncodeImage;

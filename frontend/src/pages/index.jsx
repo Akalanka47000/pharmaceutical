@@ -5,7 +5,9 @@ export { default as Login } from './auth/login';
 export { default as Register } from './auth/register';
 export { default as Verify } from './auth/verify';
 export { default as Products } from './product/product.jsx';
+export { default as ProductForm } from './product/productAdd.jsx';
 export { default as Contact } from './contact';
 export { default as Profile } from './profile';
-
+export { default as ProductDetail } from './product/productDetail.jsx';
+export { default as Order } from './order/order.jsx';
 export * from './auth';

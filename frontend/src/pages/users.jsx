@@ -60,14 +60,14 @@ const Users = () => {
 
   return (
     <Layout title="Bashaway | Users">
-      <div className="w-screen min-h-screen flex flex-col justify-center items-center">
+      <div class="w-screen min-h-screen flex flex-col justify-center items-center">
         {userRes && (
           <>
-            <div className="w-11/12 flex flex-col justify-center items-start mt-12">
+            <div class="w-11/12 flex flex-col justify-center items-start mt-12">
               <Filters filters={filters} setFilterQuery={setFilterQuery} />
               <Sorts sorts={sorts} setSortQuery={setSortQuery} />
             </div>
-            <div className="w-11/12 flex justify-end items-center mb-6">
+            <div class="w-11/12 flex justify-end items-center mb-6">
               <Button
                 className="px-12 py-2 font-semibold md:text-lg focus:outline-none focus:ring focus:ring-offset-1 bg-primary-base focus:ring-black focus:ring-opacity-10"
                 onClick={() => {
@@ -78,8 +78,8 @@ const Users = () => {
                 Add Admin User
               </Button>
             </div>
-            <div className="w-11/12 min-h-screen flex flex-col justify-between items-center mb-16">
-              <div className="w-full h-full flex flex-col justify-start items-center gap-y-6">
+            <div class="w-11/12 min-h-screen flex flex-col justify-between items-center mb-16">
+              <div class="w-full h-full flex flex-col justify-start items-center gap-y-6">
                 {userRes.docs?.length > 0 ? (
                   <Table striped={true} hoverable={true} class="w-full">
                     <Table.Head>
@@ -90,46 +90,43 @@ const Users = () => {
                       <Table.HeadCell>Role</Table.HeadCell>
                       <Table.HeadCell>Registration Status</Table.HeadCell>
                       <Table.HeadCell>
-                        <span className="sr-only">Edit</span>
+                        <span class="sr-only">Edit</span>
                       </Table.HeadCell>
                     </Table.Head>
-                    <Table.Body className="divide-y">
+                    <Table.Body class="divide-y">
                       {userRes.docs?.map((user) => {
                         return (
-                          <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">{user.name ?? '--'}</Table.Cell>
+                          <Table.Row class="bg-white dark:border-gray-700 dark:bg-gray-800">
+                            <Table.Cell class="whitespace-nowrap font-medium text-gray-900 dark:text-white">{user.name ?? '--'}</Table.Cell>
                             <Table.Cell>{user.email ?? '--'}</Table.Cell>
                             <Table.Cell>{user.mobile ?? '--'}</Table.Cell>
                             <Table.Cell>{user.address ?? '--'}</Table.Cell>
                             <Table.Cell>
-                              <a href="/tables" className="font-medium text-primary-base hover:underline">
+                              <a href="/tables" class="font-medium text-primary-base hover:underline">
                                 Edit
                               </a>
                             </Table.Cell>
                             <Table.Cell>{startCase(user.role)}</Table.Cell>
                             <Table.Cell>
-                              <span className="font-medium text-sm">
+                              <span class="font-medium text-sm">
                                 {user.role != 'seller' || (user.role == 'seller' && user.business?.is_approved) ? (
-                                  <span className={'bg-green-400 text-white py-1.5 rounded-full px-4 cursor-default'}>Success</span>
+                                  <span class={'bg-green-400 text-white py-1.5 rounded-full px-4 cursor-default'}>Success</span>
                                 ) : (
-                                  <span
-                                    onClick={approveSeller.bind(this, user)}
-                                    className={'bg-red-500 hover:bg-red-600 transition-all duration-300 text-white py-1.5 rounded-full px-4 cursor-pointer'}
-                                  >
+                                  <span onClick={approveSeller.bind(this, user)} class={'bg-red-500 hover:bg-red-600 transition-all duration-300 text-white py-1.5 rounded-full px-4 cursor-pointer'}>
                                     Approve
                                   </span>
                                 )}
                               </span>
                             </Table.Cell>
                             <Table.Cell>
-                              <a onClick={() => toggleActiveState(user)} className="cursor-pointer font-medium hover:underline">
-                                {user.is_active ? <span className={'text-red-500'}>Deactivate</span> : <span className="text-green-500">Activate</span>}
+                              <a onClick={() => toggleActiveState(user)} class="cursor-pointer font-medium hover:underline">
+                                {user.is_active ? <span class={'text-red-500'}>Deactivate</span> : <span class="text-green-500">Activate</span>}
                               </a>
                             </Table.Cell>
                             <Table.Cell>
-                              <span className="font-medium text-primary-base cursor-default">
+                              <span class="font-medium text-primary-base cursor-default">
                                 {user.role === 'admin' ? (
-                                  <span className="hover:underline cursor-pointer" onClick={() => setUserToEdit({ ...user })}>
+                                  <span class="hover:underline cursor-pointer" onClick={() => setUserToEdit({ ...user })}>
                                     Edit
                                   </span>
                                 ) : (
@@ -146,7 +143,7 @@ const Users = () => {
                   <NoRecords text="No Users Found" className="mt-12" />
                 )}
               </div>
-              <div className="w-full flex justify-end items-center mt-4 md:mt-0">
+              <div class="w-full flex justify-end items-center mt-4 md:mt-0">
                 <Pagination
                   currentPage={page}
                   onPageChange={(newPage) => {

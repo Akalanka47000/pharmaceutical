@@ -17,7 +17,7 @@ export const Layout = ({ children, hideHeader, hideFooter }) => {
       transition={{ duration: 0.3 }}
     >
       {!hideHeader && <Navbar />}
-      <div className="w-screen min-h-screen relative z-[5]">{children}</div>
+      <div class="w-screen min-h-screen relative z-[5]">{children}</div>
       {!hideFooter && <Footer />}
       <ToastContainer />
       <Loader />

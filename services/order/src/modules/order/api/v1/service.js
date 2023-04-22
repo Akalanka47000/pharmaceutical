@@ -1,7 +1,10 @@
 import { traced } from '@sliit-foss/functions';
 import { createOrder, getAllOrders, getSingleOrder, deleteSingleOrder, updateSingleOrder } from '../../repository';
+import { calculatePrice, calculateTotalPrice } from './helpers/index';
 
 export const serviceCreateOrder = (order) => {
+  traced(calculatePrice)(order);
+  traced(calculateTotalPrice)(order);
   return traced(createOrder)(order);
 };
 

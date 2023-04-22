@@ -38,10 +38,10 @@ const Dropdown = ({ options, onChange, ...props }) => {
   };
 
   return (
-    <div id={wrapperId} className={`${props.wrapperclasses || ''} w-full relative`}>
+    <div id={wrapperId} class={`${props.wrapperclasses || ''} w-full relative`}>
       <input
         id={id}
-        className={twMerge(
+        class={twMerge(
           `w-full shadow-ds2 pr-4 py-2.5 lg:py-3.5 pl-4 text-sm font-semibold bg-transparent border-2 text-gray-800 border-gray-400 focus:border-gray-900 focus:ring-0 focus:ring-offset-0 rounded-md cursor-pointer transition-all duration-300`,
           props.className,
         )}
@@ -53,18 +53,18 @@ const Dropdown = ({ options, onChange, ...props }) => {
       />
       {showItems && (
         <div
-          className="absolute w-full left-0 z-10 mt-2 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+          class="absolute w-full left-0 z-10 mt-2 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="menu-button"
           tabIndex="-1"
         >
-          <div className="py-1" role="none">
+          <div class="py-1" role="none">
             {options.map((option, index) => {
               return (
                 <div
                   key={`${option.key}-${index}`}
-                  className="text-gray-700 block px-4 py-2 text-sm cursor-pointer hover:bg-gray-100 hover:text-gray-900"
+                  class="text-gray-700 block px-4 py-2 text-sm cursor-pointer hover:bg-gray-100 hover:text-gray-900"
                   role="menuitem"
                   tabIndex="-1"
                   id="menu-item-0"
@@ -80,9 +80,7 @@ const Dropdown = ({ options, onChange, ...props }) => {
         </div>
       )}
       {selectedOption && (
-        <div
-          className={`w-fit h-full absolute right-3 top-0 flex justify-center items-center ${props.className.includes('hidden') || props.className.includes('opacity-0') ? 'hidden opacity-0' : ''}`}
-        >
+        <div class={`w-fit h-full absolute right-3 top-0 flex justify-center items-center ${props.className.includes('hidden') || props.className.includes('opacity-0') ? 'hidden opacity-0' : ''}`}>
           <AiOutlineClose className="w-[1.2rem] h-[1.2rem] text-gray-700 cursor-pointer" onClick={onSelect} />
         </div>
       )}

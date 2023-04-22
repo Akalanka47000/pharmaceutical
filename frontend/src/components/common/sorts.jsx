@@ -26,11 +26,11 @@ const Sorts = ({ sorts, setSortQuery }) => {
   };
 
   return (
-    <div className="w-full mt-4">
-      <div className="w-full flex justify-start items-center gap-6">
+    <div class="w-full mt-4">
+      <div class="w-full flex justify-start items-center gap-6">
         {sortLocalState.map((sort, index) => {
           return (
-            <div key={`sort-${sort.key}-${index}`} className="w-1/2 md:w-1/4 h-full flex flex-col justify-center items-start">
+            <div key={`sort-${sort.key}-${index}`} class="w-1/2 md:w-1/4 h-full flex flex-col justify-center items-start">
               <Sort sort={sort} onSortChange={onSortChange} />
             </div>
           );
@@ -58,11 +58,11 @@ const Sort = ({ sort, onSortChange }) => {
   };
 
   return (
-    <div className="w-full h-full flex justify-start items-center">
-      <div className="text-2xl text-white mr-2 cursor-pointer" onClick={setSortOrder}>
+    <div class="w-full h-full flex justify-start items-center">
+      <div class="text-2xl text-white mr-2 cursor-pointer" onClick={setSortOrder}>
         {directionLocalState === 0 ? <MdOutlineCircle /> : <MdArrowDropDownCircle className={`text-primary transform ${directionLocalState === 1 ? '' : 'rotate-180'}`} />}
       </div>
-      <span className="text-md text-white font-semibold">{sort.label}</span>
+      <span class="text-md text-white font-semibold">{sort.label}</span>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import { Joi } from 'celebrate';
 
 export const createProductSchema = Joi.object({
   name: Joi.string().required(),
-  type: Joi.string().valid('supplements and herbs', 'Sports and nutrition', 'Beauty', 'Bath').required(),
+  type: Joi.string().valid('Supplements and Herbs', 'Sports and Nutrition', 'Medicine', 'Beauty', 'Bath').required(),
   measurement_unit: Joi.string().required(),
   age_limit: Joi.string().required(),
   markup_price: Joi.number().required(),
@@ -11,6 +11,7 @@ export const createProductSchema = Joi.object({
   description: Joi.string().max(500).optional(),
   quantity: Joi.number().min(5).required(),
   seller: Joi.string().hex().length(24).required(),
+  image: Joi.string().optional(),
 });
 
 export const updateProductSchema = Joi.object({

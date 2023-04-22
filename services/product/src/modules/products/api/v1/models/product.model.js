@@ -10,7 +10,7 @@ const ProductSchema = new mongoose.Schema(
     type: {
       type: String,
       required: true,
-      enum: ['supplements and herbs', 'Sports and nutrition', 'Beauty', 'Bath'],
+      enum: ['Supplements and Herbs', 'Sports and Nutrition', 'Medicine', 'Beauty', 'Bath'],
     },
     measurement_unit: {
       type: String,
@@ -53,8 +53,8 @@ const ProductSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    images: {
-      type: Array,
+    image: {
+      type: String,
     },
     ratings: {
       star: Number,

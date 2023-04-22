@@ -27,18 +27,18 @@ const Filters = ({ filters, setFilterQuery }) => {
   };
 
   return (
-    <div className="w-full mb-4">
+    <div class="w-full mb-4">
       <Accordion alwaysOpen={true}>
         <Accordion.Panel className="outline-none focus:ring-0">
           <Accordion.Title>
-            <span className="text-2xl text-gray-700 font-semibold">Filters</span>
+            <span class="text-2xl text-gray-700 font-semibold">Filters</span>
           </Accordion.Title>
           <Accordion.Content>
-            <div className="w-full flex justify-start items-center flex-wrap gap-x-6">
+            <div class="w-full flex justify-start items-center flex-wrap gap-x-6">
               {filtersLocalState.map((filter, index) => {
                 return (
-                  <div key={`filter-${filter.key}-${index}`} className="w-full md:w-auto h-full flex flex-col justify-center items-start">
-                    <span className="text-md text-black mt-2 mb-1">{filter.label}</span>
+                  <div key={`filter-${filter.key}-${index}`} class="w-full md:w-auto h-full flex flex-col justify-center items-start">
+                    <span class="text-md text-black mt-2 mb-1">{filter.label}</span>
                     {filter.options ? (
                       <Dropdown filterkey={filter.key} options={filter.options} className="h-12 sm:h-12" onChange={onFilterChange} />
                     ) : (

@@ -6,11 +6,11 @@ const base64EncodeImage = (e) => {
         const image = new Image();
         image.src = e.target.result;
         image.onload = () => resolve(e.target.result);
-        console.log(reader.result);
       };
       reader.readAsDataURL(e[0]);
+    } else {
+      reject('Error reading image data');
     }
-    reject('Error reading image data');
   });
 };
 

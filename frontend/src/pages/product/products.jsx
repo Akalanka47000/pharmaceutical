@@ -9,7 +9,7 @@ function Products() {
   const [usualProducts, setProducts] = useState([]);
 
   useEffect(() => {
-    const AllProducts = async () => {
+    const allProducts = async () => {
       const response = await getAllProducts();
       const productList = response.data.docs;
       const bestSellers = productList.filter((product) => product.sold_amount > 5);
@@ -18,7 +18,7 @@ function Products() {
       const ourProducts = productList.filter((product) => product.sold_amount <= 5);
       setProducts(ourProducts);
     };
-    AllProducts();
+    allProducts();
   }, []);
 
   return (
@@ -30,7 +30,7 @@ function Products() {
             {bestSellingProducts &&
               bestSellingProducts.map((product) => (
                 <div class="card">
-                  <Link to={`/productDetail/${product._id}`}>
+                  <Link to={`/product-detail/${product._id}`}>
                     <img alt="Not available" class="img" src={product.image}></img>
                     <div m-3>
                       <span class="text-gray-600 text-xl p-4">{product.name}</span>
@@ -54,7 +54,7 @@ function Products() {
               usualProducts.map((product) => (
                 <div class="card">
                   <div>
-                    <Link to={`/productDetail/${product._id}`}>
+                    <Link to={`/product-detail/${product._id}`}>
                       <img alt="Not available" class="img" src={product.image}></img>
                       <div m-3>
                         <span class="text-gray-600 text-xl px-4 pt-4">{product.name}</span>

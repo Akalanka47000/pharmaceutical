@@ -14,10 +14,10 @@ const ResetPassword = () => {
       new_password: e.target.password.value,
     }).then((data) => {
       if (data) {
-        toast.success('Password reset successfully!', { autoClose: 3500 });
+        toast.success('Password reset successfully!', { autoClose: 2500 });
         setTimeout(() => {
           navigate('/login');
-        }, 3500);
+        }, 2500);
       }
     });
   };

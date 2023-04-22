@@ -15,11 +15,11 @@ const ForgotPassword = () => {
     }).then((data) => {
       if (data) {
         toast.success('An email has been sent with a link to reset your password!', {
-          autoClose: 3500,
+          autoClose: 2500,
         });
         setTimeout(() => {
           navigate('/login');
-        }, 3500);
+        }, 2500);
       }
     });
   };

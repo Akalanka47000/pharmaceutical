@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import { getSingleProduct, deleteProduct } from '../../services/product.js';
 
 function ProductDetail() {
-  const { productId } = useParams();
+  const { product_id: productId } = useParams();
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ function ProductDetail() {
                 <div class="block font-bold text-gray-600 text-6xl p-4">{product.name}</div>
                 <div class="block text-gray-600 text-lg p-4"> {product.seller}</div>
                 <div class="block text-gray-600 text-xl p-4">{product.description}</div>
-                <div class="block font-bold text-gray-600 text-xl p-4">Available Only {product.quantity} Products</div>
+                <div class="block font-bold text-gray-600 text-xl p-4">Available Only {product.stock} Products</div>
                 <p class="block font-bold text-gray-600 text-2xl p-4"> Rs {product.selling_price}</p>
                 <p class="text-base text-red-500 px-4 py-0 ">
                   <abbr title="Required field">*</abbr>

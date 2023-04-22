@@ -13,7 +13,7 @@ product.post(
   '/',
   celebrate({ [Segments.BODY]: createProductSchema }),
   tracedAsyncHandler(async function createProductController(req, res) {
-    const product = await traced(createProductSrc)(req.body);
+    const product = await traced(createProductSrc)(req.body, req.headers['x-user-id']);
     return toSuccess({
       res,
       data: product,

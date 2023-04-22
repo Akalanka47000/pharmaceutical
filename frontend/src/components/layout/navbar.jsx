@@ -30,16 +30,13 @@ const Header = () => {
   return (
     <Navbar fluid={true} rounded={false} class="border-gray-200 bg-white px-2 py-4 dark:border-gray-700 dark:bg-gray-800 sm:px-4">
       <Navbar.Brand href="/">
-        <img src="public/assets/logo.png" class="mr-3 h-6 sm:h-9" alt="Pharmaceutical Logo" />
+        <img src="/public/assets/logo.png" class="mr-3 h-6 sm:h-9" alt="Pharmaceutical Logo" />
         <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white ml-2">Pharmaceutical</span>
       </Navbar.Brand>
       <div class="flex md:order-2">
         <div class="flex justify-center items-center gap-x-2">
           {isEmpty(user) && (
             <>
-              <Link to="/productAdd">
-                <Button className="py-1.5 px-6">Add Product</Button>
-              </Link>
               <Link to="/login">
                 <Button className="py-1.5 px-6">Login</Button>
               </Link>
@@ -47,6 +44,9 @@ const Header = () => {
           )}
           {!isEmpty(user) && (
             <>
+              <Link to="/product-add">
+                <Button className="py-1.5 px-6">Add Product</Button>
+              </Link>
               <Link to="/profile" class="py-1.5 px-1.5 rounded-full mr-2 md:mr-3 shadow-lg border-2 border-primary-base">
                 <UserIcon className="h-5 w-5" />
               </Link>

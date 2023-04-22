@@ -5,4 +5,5 @@ export default combineReducers({
   login: (await import('./login')).default,
   register: (await import('./register')).default,
   users: (await import('./users')).default,
+  products: (await import('./products')).default,
 });

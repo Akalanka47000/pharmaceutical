@@ -6,7 +6,7 @@ import { twMerge } from 'tailwind-merge';
 const wrapperId = uuidv4();
 const inputId = uuidv4();
 
-const Dropdown = ({ options, onChange, ...props }) => {
+const Dropdown = ({ options, onChange, label, ...props }) => {
   const [selectedOption, setSelectedOption] = useState(props.default || null);
 
   const [showItems, setShowItems] = useState(false);
@@ -39,6 +39,7 @@ const Dropdown = ({ options, onChange, ...props }) => {
 
   return (
     <div id={wrapperId} class={`${props.wrapperclasses || ''} w-full relative`}>
+      {label && <div class="mb-3 font-semibold">{label}</div>}
       <input
         id={id}
         class={twMerge(
@@ -80,7 +81,11 @@ const Dropdown = ({ options, onChange, ...props }) => {
         </div>
       )}
       {selectedOption && (
-        <div class={`w-fit h-full absolute right-3 top-0 flex justify-center items-center ${props.className.includes('hidden') || props.className.includes('opacity-0') ? 'hidden opacity-0' : ''}`}>
+        <div
+          class={`w-fit h-full absolute right-3 ${label ? 'top-4' : 'top-0'} flex justify-center items-center ${
+            props.className.includes('hidden') || props.className.includes('opacity-0') ? 'hidden opacity-0' : ''
+          }`}
+        >
           <AiOutlineClose className="w-[1.2rem] h-[1.2rem] text-gray-700 cursor-pointer" onClick={onSelect} />
         </div>
       )}

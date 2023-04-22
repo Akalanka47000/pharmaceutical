@@ -36,7 +36,7 @@ const ProductSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    quantity: {
+    stock: {
       type: Number,
       required: true,
     },
@@ -49,17 +49,15 @@ const ProductSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    sold_amount: {
-      type: Number,
-      default: 0,
-    },
     image: {
       type: String,
     },
-    ratings: {
-      star: Number,
-      postedby: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    },
+    reviews: [
+      {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'Review',
+      },
+    ],
   },
   {
     versionKey: false,

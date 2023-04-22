@@ -1,7 +1,7 @@
 import { axiosInstance, apiRequest } from './core/axios';
 
-export const getSingleProduct = async (id, data) => {
-  return await apiRequest(() => axiosInstance.get(`/api/v1/products/${id}`, data));
+export const getSingleProduct = async (id) => {
+  return await apiRequest(() => axiosInstance.get(`/api/v1/products/${id}`));
 };
 export const getAllProducts = async (filterQuery = '', sortQuery = '', page = 1) => {
   return await apiRequest(() => axiosInstance.get(`/api/v1/products?${filterQuery}&${sortQuery}page=${page}&limit=${20}`));

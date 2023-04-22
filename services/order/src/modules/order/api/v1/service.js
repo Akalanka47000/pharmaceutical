@@ -1,10 +1,9 @@
 import { traced } from '@sliit-foss/functions';
 import { createOrder, getAllOrders, getSingleOrder, deleteSingleOrder, updateSingleOrder } from '../../repository';
-import { calculatePrice, calculateTotalPrice } from './helpers/index';
+import { calculateTotals } from './helpers/index';
 
-export const serviceCreateOrder = (order) => {
-  traced(calculatePrice)(order);
-  traced(calculateTotalPrice)(order);
+export const serviceCreateOrder = async (order) => {
+  await traced(calculateTotals)(order);
   return traced(createOrder)(order);
 };
 
@@ -20,6 +19,7 @@ export const serviceDeleteSingleOrder = (id) => {
   return traced(deleteSingleOrder)(id);
 };
 
-export const serviceUpdateSingleOrder = (id, payload) => {
+export const serviceUpdateSingleOrder = async (id, payload) => {
+  await traced(calculateTotals)(payload);
   return traced(updateSingleOrder)(id, payload);
 };

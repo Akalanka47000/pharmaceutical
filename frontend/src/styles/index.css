@@ -46,22 +46,3 @@ input:-internal-autofill-selected {
 *[data-testid='table-element'] th {
   text-align: left;
 }
-
-.card {
-  @apply bg-gray-100 rounded overflow-hidden shadow-md relative;
-}
-
-.badge {
-  @apply w-12 h-12 bg-slate-50 text-zinc-600 text-base font-bold rounded-full absolute top-0 ml-4 mt-4;
-}
-
-.img {
-  @apply w-full h-32 sm:h-48 object-cover;
-}
-
-.cartBtn {
-  @apply flex w-full bg-indigo-100 hover:bg-emerald-200 rounded-full py-2  uppercase text-base justify-center font-semibold cursor-pointer tracking-wider border-green-900 border-2;
-}
-.adminBtn {
-  @apply flex w-full pl-10 pr-10 bg-orange-300 hover:bg-orange-500 rounded-full py-2 uppercase text-base justify-center font-semibold cursor-pointer tracking-wider border-green-900 border-2;
-}

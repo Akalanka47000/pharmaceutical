@@ -1,0 +1,35 @@
+FROM node:alpine AS cleaner
+
+WORKDIR /app
+
+RUN yarn global add turbo pnpm
+
+COPY . .
+
+RUN turbo prune --scope=frontend --docker
+ 
+FROM node:alpine AS builder
+
+WORKDIR /app
+
+RUN yarn global add pnpm
+
+COPY .gitignore .gitignore
+COPY --from=cleaner /app/out/json/ .
+COPY --from=cleaner /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
+
+RUN pnpm install --production --ignore-scripts
+ 
+COPY --from=cleaner /app/out/full/ .
+
+RUN pnpm turbo run build --filter=frontend
+
+FROM nginx:1.23.4-alpine
+
+WORKDIR /usr/share/nginx/html
+
+RUN rm -rf ./*
+
+COPY --from=builder /app/frontend/dist .
+
+ENTRYPOINT [ "nginx", "-g", "daemon off;" ]

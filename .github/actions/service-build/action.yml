@@ -13,11 +13,14 @@ inputs:
   repository_access_token:
     description: Token to authenticate with Github
     required: true
+  dockerfile:
+    description: Path to docker file
+    default: "./workspace-scripts/services/build/docker"
 runs:
   using: composite
   steps:
     - name: Docker build
-      run: DOCKER_BUILDKIT=1 docker build -t ${{ inputs.service }} -f ./workspace-scripts/services/build/docker --build-arg service=${{ inputs.service }} --build-arg dir=$(echo "${{ inputs.service }}" | cut -d'-' -f1) .
+      run: DOCKER_BUILDKIT=1 docker build -t ${{ inputs.service }} -f ${{ inputs.dockerfile }} --build-arg service=${{ inputs.service }} --build-arg dir=$(echo "${{ inputs.service }}" | cut -d'-' -f1) .
       shell: bash
     
     - name: Docker tag

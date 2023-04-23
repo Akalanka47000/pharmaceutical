@@ -7,7 +7,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <div className="App">
-        <BrowserRouter>
+        <BrowserRouter basename="/">
           <AnimatedRoutes />
         </BrowserRouter>
       </div>

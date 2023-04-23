@@ -28,7 +28,7 @@ const Filters = ({ filters, setFilterQuery }) => {
 
   return (
     <div class="w-full mb-4">
-      <Accordion alwaysOpen={true}>
+      <Accordion alwaysOpen={true} collapseAll>
         <Accordion.Panel className="outline-none focus:ring-0">
           <Accordion.Title>
             <span class="text-2xl text-gray-700 font-semibold">Filters</span>

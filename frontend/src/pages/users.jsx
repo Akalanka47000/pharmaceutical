@@ -59,7 +59,7 @@ const Users = () => {
   };
 
   return (
-    <Layout title="Bashaway | Users">
+    <Layout title="Users">
       <div class="w-screen min-h-screen flex flex-col justify-center items-center">
         {userRes && (
           <>

@@ -44,9 +44,6 @@ const Header = () => {
           )}
           {!isEmpty(user) && (
             <>
-              <Link to="/product-add">
-                <Button className="py-1.5 px-6">Add Product</Button>
-              </Link>
               <Link to="/profile" class="py-1.5 px-1.5 rounded-full mr-2 md:mr-3 shadow-lg border-2 border-primary-base">
                 <UserIcon className="h-5 w-5" />
               </Link>

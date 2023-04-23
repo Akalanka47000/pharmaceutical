@@ -4,7 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Layout } from '../../components/layout';
 import { Button } from '../../components/common';
 import { setFormData } from '../../store/ui/products';
-import { getSingleProduct, deleteProduct } from '../../services/product.js';
+import { getSingleProduct, deleteProduct } from '../../services/product';
+
 function ProductDetail() {
   const { product_id: productId } = useParams();
   const [product, setProduct] = useState({});

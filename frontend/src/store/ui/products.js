@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const allowedTypes = ['Supplements and Herbs', 'Sports and Nutrition', 'Medicine', 'Beauty', 'Bath'].map((type) => ({ key: type, label: type }));
+
 const initialState = {
   formData: {
     name: '',
@@ -14,11 +16,16 @@ const initialState = {
   },
   filters: [
     { key: 'name', label: 'Name' },
+    {
+      key: 'type',
+      label: 'Type',
+      options: allowedTypes,
+    },
     { key: 'measurement_unit', label: 'Unit' },
     { key: 'description', label: 'Description' },
   ],
   sorts: [],
-  allowedTypes: ['Supplements and Herbs', 'Sports and Nutrition', 'Medicine', 'Beauty', 'Bath'].map((type) => ({ key: type, label: type })),
+  allowedTypes,
 };
 
 export const slice = createSlice({

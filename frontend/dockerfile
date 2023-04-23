@@ -25,7 +25,7 @@ RUN pnpm install --ignore-scripts
  
 COPY --from=cleaner /app/out/full/ .
 
-ENV VITE_SERVER_URL http://api.pharmaceutical.com
+ENV VITE_SERVER_URL http://pharmaceutical.com
 
 RUN pnpm turbo run build --filter=frontend
 

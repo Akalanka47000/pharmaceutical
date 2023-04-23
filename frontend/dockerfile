@@ -24,7 +24,7 @@ COPY --from=cleaner /app/out/full/ .
 
 ENV VITE_SERVER_URL http://orchestrator:8080
 
-RUN ls -all
+RUN cd frontend && ls -all && cd ..
 
 RUN pnpm turbo run build --filter=frontend
 

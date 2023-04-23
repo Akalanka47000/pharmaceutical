@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { MdPhotoCamera } from 'react-icons/md';
 import { Layout } from '../../components/layout';
 import { Button, Dropdown, Input } from '../../components/common';
-import { createProduct, getSingleProduct } from '../../services/product';
+import { createProduct, getSingleProduct, updateProduct } from '../../services/product';
 import { setFormData } from '../../store/ui/products';
 import { useEffectOnce } from '../../hooks';
 import toast from '../../libs/toastify';
@@ -40,15 +40,14 @@ const ProductForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createProduct(formData).then((data) => {
-      if (data) {
-        navigateTo('/');
-        setTimeout(() => {
-          dispatch(setFormData({}));
-          toast.success(data.message);
-        }, 300);
-      }
-    });
+    const data = await (productId ? updateProduct(productId, formData) : createProduct(formData));
+    if (data) {
+      navigateTo('/');
+      setTimeout(() => {
+        dispatch(setFormData({}));
+        toast.success(data.message);
+      }, 300);
+    }
   };
 
   return (

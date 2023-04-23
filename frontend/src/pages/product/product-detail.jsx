@@ -3,12 +3,15 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Layout } from '../../components/layout';
 import { Button } from '../../components/common';
+import { useEffectOnce } from '../../hooks';
 import { setFormData } from '../../store/ui/products';
 import { getSingleProduct, deleteProduct } from '../../services/product';
+import toast from '../../libs/toastify';
 
 function ProductDetail() {
   const { product_id: productId } = useParams();
   const [product, setProduct] = useState({});
+  const [cart, setCart] = useState([]);
 
   const navigate = useNavigate();
 
@@ -24,6 +27,10 @@ function ProductDetail() {
     singleProduct();
   }, [productId]);
 
+  useEffectOnce(() => {
+    setCart(localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []);
+  });
+
   const expiryDate = new Date(product.exp_date).toLocaleDateString();
   const manuDate = new Date(product.manufactured_date).toLocaleDateString();
 
@@ -32,7 +39,17 @@ function ProductDetail() {
     dispatch(setFormData({ ...product, exp_date: product.exp_date.substring(0, 10), manufactured_date: product.manufactured_date.substring(0, 10) }));
   };
 
-  const onClickAddToCart = () => {};
+  const onClickAddToCart = () => {
+    setCart([...cart, productId]);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    toast.success('Product added to cart successfully');
+  };
+
+  const onClickRemoveFromCart = () => {
+    setCart(cart.filter((product) => product !== productId));
+    localStorage.setItem('cart', JSON.stringify(cart));
+    toast.success('Product removed from cart successfully');
+  };
 
   return (
     <Layout title="Home">
@@ -80,8 +97,11 @@ function ProductDetail() {
                   </div>
                   <div class="relative z-0 mb-2 py-3 w-full group">{manuDate}</div>
                 </div>
-                <Button className="w-full py-4 text-base mt-4" onClick={onClickAddToCart}>
-                  Add to cart
+                <Button
+                  className={`w-full py-4 text-base mt-4 ${cart.includes(productId) ? '' : 'bg-green-500 hover:bg-green-400'}`}
+                  onClick={cart.includes(productId) ? onClickRemoveFromCart : onClickAddToCart}
+                >
+                  {cart.includes(productId) ? 'Remove from cart' : 'Add to cart'}
                 </Button>
                 {user.role === 'admin' ||
                   (user.role == 'seller' && user._id == product.seller?._id && (

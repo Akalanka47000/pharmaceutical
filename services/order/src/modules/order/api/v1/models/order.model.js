@@ -34,7 +34,7 @@ const OrderSchema = new mongoose.Schema(
     status: {
       type: mongoose.SchemaTypes.String,
       enum: Object.values(orderStatuses),
-      default: orderStatuses.pending,
+      default: orderStatuses.confirmed,
     },
     delivery_id: {
       type: mongoose.SchemaTypes.ObjectId,

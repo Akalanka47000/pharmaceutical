@@ -10,7 +10,7 @@ export const roles = ['admin', 'seller', 'buyer'].reduce((acc, role) => {
   return acc;
 }, {});
 
-export const orderStatuses = ['pending', 'confirmed'].reduce((acc, role) => {
+export const orderStatuses = ['confirmed', 'paid'].reduce((acc, role) => {
   acc[role] = role;
   return acc;
 }, {});

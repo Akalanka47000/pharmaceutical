@@ -4,8 +4,6 @@ export { default as Users } from './users';
 export { default as Login } from './auth/login';
 export { default as Register } from './auth/register';
 export { default as Verify } from './auth/verify';
-export { default as Products } from './product/products.jsx';
-export { default as ProductForm } from './product/product-form.jsx';
 export { default as Contact } from './contact';
 export { default as Profile } from './profile';
 export { default as Order } from './order';

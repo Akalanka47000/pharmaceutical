@@ -2,13 +2,15 @@ import context from 'express-http-context';
 import createError from 'http-errors';
 import { asyncHandler, tracedAsyncHandler } from '@sliit-foss/functions';
 import { moduleLogger } from '@sliit-foss/module-logger';
-import { protectedRoutes } from '@app/constants';
+import { whitelistedRoutes } from '@app/constants';
 import { getAuthUser } from '../services';
 
 const logger = moduleLogger('Auth-middleware');
 
+const whitelistedModuleRoutes = ['/v1/products'];
+
 export const authorizer = tracedAsyncHandler(async function authorizer(req) {
-  if (protectedRoutes.find((route) => req.path.match(new RegExp(route)))) {
+  if ([...whitelistedRoutes, whitelistedModuleRoutes].find((route) => req.path.match(new RegExp(route)))) {
     return;
   }
   context.set('headers', req.headers);

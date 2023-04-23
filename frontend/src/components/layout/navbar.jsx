@@ -30,7 +30,7 @@ const Header = () => {
   return (
     <Navbar fluid={true} rounded={false} class="border-gray-200 bg-white px-2 py-4 dark:border-gray-700 dark:bg-gray-800 sm:px-4">
       <Navbar.Brand href="/">
-        <img src="/public/assets/logo.png" class="mr-3 h-6 sm:h-9" alt="Pharmaceutical Logo" />
+        <img src="/assets/logo.png" class="mr-3 h-6 sm:h-9" alt="Pharmaceutical Logo" />
         <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white ml-2">Pharmaceutical</span>
       </Navbar.Brand>
       <div class="flex md:order-2">

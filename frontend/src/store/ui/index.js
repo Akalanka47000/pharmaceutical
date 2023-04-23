@@ -1,9 +1,14 @@
 import { combineReducers } from 'redux';
+import global from './global';
+import login from './login';
+import register from './register';
+import users from './users';
+import products from './products';
 
 export default combineReducers({
-  global: (await import('./global')).default,
-  login: (await import('./login')).default,
-  register: (await import('./register')).default,
-  users: (await import('./users')).default,
-  products: (await import('./products')).default,
+  global,
+  login,
+  register,
+  users,
+  products,
 });

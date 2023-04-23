@@ -112,7 +112,7 @@ const Users = () => {
                                 {user.role != 'seller' || (user.role == 'seller' && user.business?.is_approved) ? (
                                   <span class={'bg-green-400 text-white py-1.5 rounded-full px-4 cursor-default'}>Success</span>
                                 ) : (
-                                  <span onClick={approveSeller.bind(this, user)} class={'bg-red-500 hover:bg-red-600 transition-all duration-300 text-white py-1.5 rounded-full px-4 cursor-pointer'}>
+                                  <span onClick={() => approveSeller(user)} class={'bg-red-500 hover:bg-red-600 transition-all duration-300 text-white py-1.5 rounded-full px-4 cursor-pointer'}>
                                     Approve
                                   </span>
                                 )}

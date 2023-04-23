@@ -21,7 +21,7 @@ COPY .gitignore .gitignore
 COPY --from=cleaner /app/out/json/ .
 COPY --from=cleaner /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
 
-RUN pnpm install --production --ignore-scripts
+RUN pnpm install --ignore-scripts
  
 COPY --from=cleaner /app/out/full/ .
 

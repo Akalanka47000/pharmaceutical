@@ -13,6 +13,9 @@ inputs:
   repository_access_token:
     description: Token to authenticate with Github
     required: true
+  build_args:
+    description: Docker build arguments
+    default: ""
   dockerfile:
     description: Path to docker file
     default: "./workspace-scripts/services/build/docker"
@@ -20,7 +23,7 @@ runs:
   using: composite
   steps:
     - name: Docker build
-      run: DOCKER_BUILDKIT=1 docker build -t ${{ inputs.service }} -f ${{ inputs.dockerfile }} --build-arg service=${{ inputs.service }} --build-arg dir=$(echo "${{ inputs.service }}" | cut -d'-' -f1) .
+      run: DOCKER_BUILDKIT=1 docker build -t ${{ inputs.service }} -f ${{ inputs.dockerfile }} --build-arg service=${{ inputs.service }} --build-arg dir=$(echo "${{ inputs.service }}" | cut -d'-' -f1) ${{ inputs.build_args }} .
       shell: bash
     
     - name: Docker tag

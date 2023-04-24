@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { MdPhotoCamera } from 'react-icons/md';
 import { Layout } from '../../components/layout';
 import { Button, Dropdown, Input } from '../../components/common';
-import { createProduct, getSingleProduct, updateProduct } from '../../services/product';
+import { createProduct, getSingleProduct, updateProduct } from '../../services';
 import { setFormData } from '../../store/ui/products';
 import { useEffectOnce } from '../../hooks';
 import toast from '../../libs/toastify';

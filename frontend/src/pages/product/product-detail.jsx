@@ -5,7 +5,7 @@ import { Layout } from '../../components/layout';
 import { Button } from '../../components/common';
 import { useEffectOnce } from '../../hooks';
 import { setFormData } from '../../store/ui/products';
-import { getSingleProduct, deleteProduct } from '../../services/product';
+import { getSingleProduct, deleteProduct } from '../../services';
 import toast from '../../libs/toastify';
 
 function ProductDetail() {
@@ -40,14 +40,16 @@ function ProductDetail() {
   };
 
   const onClickAddToCart = () => {
+    if (!user._id) return toast.warn('You need to be logged in before adding an item to a cart');
     setCart([...cart, productId]);
     localStorage.setItem('cart', JSON.stringify(cart));
     toast.success('Product added to cart successfully');
   };
 
   const onClickRemoveFromCart = () => {
-    setCart(cart.filter((product) => product !== productId));
-    localStorage.setItem('cart', JSON.stringify(cart));
+    const updatedCart = cart.filter((product) => product !== productId);
+    setCart(updatedCart);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
     toast.success('Product removed from cart successfully');
   };
 

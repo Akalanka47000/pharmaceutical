@@ -6,6 +6,6 @@ export { default as Register } from './auth/register';
 export { default as Verify } from './auth/verify';
 export { default as Contact } from './contact';
 export { default as Profile } from './profile';
-export { default as Order } from './order';
+export { default as Cart } from './cart';
 export * from './auth';
 export * from './product';

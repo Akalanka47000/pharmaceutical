@@ -1,4 +1,4 @@
-FROM node:alpine AS builder
+FROM node:alpine AS cleaner
 
 RUN apk add --no-cache libc6-compat
 RUN apk update
@@ -13,7 +13,7 @@ COPY . .
 
 RUN turbo prune --scope=$service --docker
  
-FROM node:alpine AS installer
+FROM node:alpine AS builder
 
 RUN apk add --no-cache libc6-compat
 RUN apk update
@@ -26,13 +26,13 @@ WORKDIR /app
 RUN yarn global add pnpm
 
 COPY .gitignore .gitignore
-COPY --from=builder /app/out/json/ .
-COPY --from=builder /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
-COPY --from=builder /app/workspace-scripts ./workspace-scripts
+COPY --from=cleaner /app/out/json/ .
+COPY --from=cleaner /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
+COPY --from=cleaner /app/workspace-scripts ./workspace-scripts
 
 RUN pnpm install --production --ignore-scripts
  
-COPY --from=builder /app/out/full/ .
+COPY --from=cleaner /app/out/full/ .
 
 RUN pnpm turbo run build --filter=$service
 

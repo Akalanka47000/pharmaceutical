@@ -7,13 +7,13 @@ const TextArea = (props) => <textarea {...props} />;
 const Input = ({ placeholder, type, required, prefixIcon, value, label, textarea, ...props }) => {
   const Element = textarea ? TextArea : Text;
   return (
-    <div className={twMerge('relative my-2 group', props.wrapperclasses || '')}>
+    <div class={twMerge('relative my-2 group', props.wrapperclasses || '')}>
       {prefixIcon && (
-        <div className="h-full w-10 group-hover:w-12 py-3.5 absolute left-0 rounded-l-md border-r-1 border-black flex justify-center items-center bg-gray-900 cursor-pointer transition-all duration-300">
-          <div className="w-5 h-5 text-white">{prefixIcon}</div>
+        <div class="h-full w-10 group-hover:w-12 py-3.5 absolute left-0 rounded-l-md border-r-1 border-black flex justify-center items-center bg-gray-900 cursor-pointer transition-all duration-300">
+          <div class="w-5 h-5 text-white">{prefixIcon}</div>
         </div>
       )}
-      {label && <div className="mb-3 font-semibold">{placeholder}</div>}
+      {label && <div class="mb-3 font-semibold">{placeholder}</div>}
       <Element
         {...props}
         type={type || 'text'}

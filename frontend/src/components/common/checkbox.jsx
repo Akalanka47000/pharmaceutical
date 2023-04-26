@@ -3,7 +3,7 @@ import { CheckIcon } from '@heroicons/react/solid';
 const Button = ({ checked, toggle, extraClasses }) => {
   return (
     <div
-      className={`flex items-center justify-center cursor-pointer h-6 w-6 rounded shadow-ds2 border-2 border-gray-800 hover:bg-gray-900 transition duration-300 ${extraClasses} ${
+      class={`flex items-center justify-center cursor-pointer h-6 w-6 rounded shadow-ds2 border-2 border-gray-800 hover:bg-gray-900 transition duration-300 ${extraClasses} ${
         checked ? 'bg-gray-900' : 'bg-white'
       }`}
       onClick={toggle}

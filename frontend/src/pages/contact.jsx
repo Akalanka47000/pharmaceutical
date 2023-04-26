@@ -15,17 +15,17 @@ const Contact = () => {
     <Layout title="Contact">
       <div class="grid max-w-screen-2xl min-h-[85vh] grid-cols-1 gap-8 gap-x-12 px-8 py-12 mx-auto text-gray-900 md:grid-cols-2 md:px-12 lg:px-16 xl:px-24">
         <div class="flex flex-col justify-center">
-          <div className="w-full mt-8">
+          <div class="w-full mt-8">
             <Lottie animationData={ContactEmail} />
           </div>
         </div>
-        <div className="flex flex-col justify-center gap-y-6">
-          <div className="mb-2">
+        <div class="flex flex-col justify-center gap-y-6">
+          <div class="mb-2">
             <h2 class="text-4xl font-bold leading-tight lg:text-5xl">Contact Us</h2>
             <p class="mt-1 text-xl text-gray-700 text-semibold">We'd love to hear from you.</p>
           </div>
           <Card icon={MailIcon} text="arachnophobia@gmail.com" />
-          <div className="w-full flex flex-col md:flex-row justify-center items-center gap-x-6 gap-y-6">
+          <div class="w-full flex flex-col md:flex-row justify-center items-center gap-x-6 gap-y-6">
             <Card icon={PhoneIcon} text="+94127876678" />
             <Card icon={LocationMarkerIcon} text="Colombo, Sri Lanka" />
           </div>

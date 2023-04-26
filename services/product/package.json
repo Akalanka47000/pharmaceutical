@@ -16,6 +16,7 @@
   "dependencies": {
     "@app/constants": "workspace*",
     "@app/middleware": "workspace*",
+    "@app/mongoose": "workspace*",
     "@app/server": "workspace*",
     "@sliit-foss/functions": "2.0.1",
     "@sliit-foss/module-logger": "1.1.2",

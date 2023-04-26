@@ -14,6 +14,10 @@ const error = (message) => {
   toast.error(message, toastOptions);
 };
 
+const warn = (message) => {
+  toast.warn(message, toastOptions);
+};
+
 // Isolate error message from API response and pass it to the toast
 const convertAndNotifyError = (e) => {
   let errorMessage = defaultErrorMessage;
@@ -24,6 +28,7 @@ const convertAndNotifyError = (e) => {
 const customToast = {
   success,
   error,
+  warn,
   convertAndNotifyError,
 };
 

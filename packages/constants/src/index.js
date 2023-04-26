@@ -4,11 +4,11 @@ import { createEnum } from './helpers';
 export const correlationId = 'x-correlation-id';
 export const hostName = 'x-host-name';
 
-export const protectedRoutes = ['/v1/auth/login', '/v1/auth/register', '/v1/auth/refresh-token', '/v1/auth/verify/*', '/v1/auth/forgot-password', '/v1/auth/reset-password/*', '/v1/system/health'];
+export const whitelistedRoutes = ['/v1/auth/login', '/v1/auth/register', '/v1/auth/refresh-token', '/v1/auth/verify/*', '/v1/auth/forgot-password', '/v1/auth/reset-password/*', '/v1/system/health'];
 
 export const roles = createEnum(['admin', 'seller', 'buyer']);
 
-export const orderStatuses = createEnum(['pending', 'confirmed']);
+export const orderStatuses = createEnum(['confirmed', 'paid']);
 
 export const objectIdSchema = (name = 'id') =>
   Joi.object({

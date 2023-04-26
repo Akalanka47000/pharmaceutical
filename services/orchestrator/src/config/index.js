@@ -11,6 +11,10 @@ class Base {
       USER_SERVICE_BASE_URL: Joi.string().required(),
       EMAIL_SERVICE_BASE_URL: Joi.string().required(),
       SMS_SERVICE_BASE_URL: Joi.string().required(),
+      PRODUCT_SERVICE_BASE_URL: Joi.string().required(),
+      PAYMENT_SERVICE_BASE_URL: Joi.string().required(),
+      ORDER_SERVICE_BASE_URL: Joi.string().required(),
+      REVIEW_SERVICE_BASE_URL: Joi.string().required(),
       REDIS_CONNECTION_STRING: Joi.string().required(),
     };
   }
@@ -21,6 +25,10 @@ class Base {
       USER_SERVICE_BASE_URL: process.env.USER_SERVICE_BASE_URL,
       EMAIL_SERVICE_BASE_URL: process.env.EMAIL_SERVICE_BASE_URL,
       SMS_SERVICE_BASE_URL: process.env.SMS_SERVICE_BASE_URL,
+      PRODUCT_SERVICE_BASE_URL: process.env.PRODUCT_SERVICE_BASE_URL,
+      PAYMENT_SERVICE_BASE_URL: process.env.PAYMENT_SERVICE_BASE_URL,
+      ORDER_SERVICE_BASE_URL: process.env.ORDER_SERVICE_BASE_URL,
+      REVIEW_SERVICE_BASE_URL: process.env.REVIEW_SERVICE_BASE_URL,
       REDIS_CONNECTION_STRING: process.env.REDIS_CONNECTION_STRING,
     };
   }

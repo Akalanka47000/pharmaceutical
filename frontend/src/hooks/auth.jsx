@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { default as jwtDecode } from 'jwt-decode';
 import { setAuthUser } from '../store/data/user';
 
-const blacklistedPaths = [];
+const blacklistedPaths = ['/payment', 'payment-confirmation'];
 
 const useAuth = () => {
   const navigate = useNavigate();

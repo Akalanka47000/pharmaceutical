@@ -71,6 +71,12 @@ importers:
       '@reduxjs/toolkit':
         specifier: 1.8.5
         version: 1.8.5(react-redux@8.0.2)(react@18.0.0)
+      '@stripe/react-stripe-js':
+        specifier: 2.1.0
+        version: 2.1.0(@stripe/stripe-js@1.52.1)(react-dom@18.0.0)(react@18.0.0)
+      '@stripe/stripe-js':
+        specifier: 1.52.1
+        version: 1.52.1
       axios:
         specifier: 0.27.2
         version: 0.27.2
@@ -3589,6 +3595,23 @@ packages:
       http-errors: 2.0.0
     transitivePeerDependencies:
       - debug
+    dev: false
+
+  /@stripe/react-stripe-js@2.1.0(@stripe/stripe-js@1.52.1)(react-dom@18.0.0)(react@18.0.0):
+    resolution: {integrity: sha512-Zb6Ycrj5QuhYkvtlvvLzo+cysUyA6wkx3zWHQ7uVnHRYRM/n1jtQD6VGBrdmptC8e8PJN6L091gBCyB5P0FqmA==}
+    peerDependencies:
+      '@stripe/stripe-js': ^1.44.1
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@stripe/stripe-js': 1.52.1
+      prop-types: 15.8.1
+      react: 18.0.0
+      react-dom: 18.0.0(react@18.0.0)
+    dev: false
+
+  /@stripe/stripe-js@1.52.1:
+    resolution: {integrity: sha512-fza40OPSpGQlFxc5TZWiYC/6Lk89Sep1fLuv9ss33YS6lCAF8UZbfA1E6W+lwO4c7WRKZIZumHIEbPJfP/O9uw==}
     dev: false
 
   /@types/body-parser@1.19.2:
@@ -8431,7 +8454,6 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       react-is: 16.13.1
-    dev: true
 
   /proxy-addr@2.0.7:
     resolution: {integrity: sha512-llQsMLSUDUPT44jdrU/O37qlnifitDP+ZwrmmZcoSKyLKvtZxpyV0n2/bD/N4tBAAZ/gJEdZU7KMraoK1+XYAg==}

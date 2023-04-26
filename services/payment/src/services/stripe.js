@@ -12,4 +12,8 @@ export const createPaymentIntent = (data) =>
     }),
   );
 
+export const retrievePaymentIntent = (id) => handleStripeError(() => stripe.paymentIntents.retrieve(id));
+
+export const transferPayment = (data) => handleStripeError(() => stripe.transfers.create(data));
+
 const handleStripeError = (func) => func().catch((err) => Promise.reject(createError(422, err.raw.message, err)));

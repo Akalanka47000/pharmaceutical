@@ -7,3 +7,7 @@ export const getAllOrders = async (filterQuery = '', sortQuery = '', page = 1) =
 export const getAllOrdersNoPagination = async (filterQuery = '', sortQuery = '') => {
   return await apiRequest(() => axiosInstance.get(`/api/v1/orders?${filterQuery}&${sortQuery}`));
 };
+
+export const makePayment = async (orderId) => {
+  return await apiRequest(() => axiosInstance.post(`/api/v1/orders/${orderId}/payments`));
+};

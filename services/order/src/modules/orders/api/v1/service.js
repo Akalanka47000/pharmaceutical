@@ -1,18 +1,30 @@
 import createError from 'http-errors';
-import { groupBy } from 'lodash';
+import { groupBy, isEqual } from 'lodash';
 import { traced } from '@sliit-foss/functions';
 import { moduleLogger } from '@sliit-foss/module-logger';
 import { orderStatuses } from '@app/constants';
-import { createOrder, getAllOrders, getSingleOrder, deleteSingleOrder, updateSingleOrder } from '../../repository';
+import { createOrder, getAllOrders, getSingleOrder, deleteSingleOrder, updateSingleOrder, findUserLatestOrder } from '../../repository';
 import { assignToDelivery, getPayment, getProductsByIds, getUserById, makePayment, sendEmail, transferPayment } from '../../../../services';
 import { calculateTotals } from './helpers/index';
 import { constructReceiptEmailPayload } from './mappers';
 
 const logger = moduleLogger('order-service');
 
-export const serviceCreateOrder = async (order) => {
+export const serviceCreateOrder = async (order, user) => {
+  const existingOrder = await findUserLatestOrder(user);
+  if (existingOrder) {
+    if (
+      !isEqual(
+        existingOrder.products.map((p) => p._id.toString()),
+        order.products.map((p) => p._id),
+      )
+    ) {
+      return serviceUpdateSingleOrder(existingOrder._id, { products: order.products });
+    }
+    return existingOrder;
+  }
   await traced(calculateTotals)(order);
-  return traced(createOrder)(order);
+  return traced(createOrder)({ ...order, user });
 };
 
 export const serviceGetAllOrders = (filters, sorts, page, limit) => {

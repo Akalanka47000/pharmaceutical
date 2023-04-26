@@ -13,7 +13,7 @@ order.post(
   '/',
   celebrate({ [Segments.BODY]: createOrderSchema }),
   tracedAsyncHandler(async function createOrderController(req, res) {
-    const order = await traced(serviceCreateOrder)(req.body);
+    const order = await traced(serviceCreateOrder)(req.body, req.headers['x-user-id']);
     return toSuccess({
       res,
       status: 201,

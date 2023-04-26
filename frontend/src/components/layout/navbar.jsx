@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Navbar } from 'flowbite-react';
-import { UserIcon, LogoutIcon, ShoppingCartIcon } from '@heroicons/react/solid';
+import { UserIcon, LogoutIcon } from '@heroicons/react/solid';
 import { isEmpty } from 'lodash';
 import { Button } from '../common';
 import { logout } from '../../services';
@@ -44,9 +44,6 @@ const Header = () => {
           )}
           {!isEmpty(user) && (
             <>
-              <Link to="/cart" class="py-1.5 px-1.5 rounded-full mr-2 md:mr-3 shadow-lg border-2 border-primary-base">
-                <ShoppingCartIcon className="h-5 w-5" />
-              </Link>
               <Link to="/profile" class="py-1.5 px-1.5 rounded-full mr-2 md:mr-3 shadow-lg border-2 border-primary-base">
                 <UserIcon className="h-5 w-5" />
               </Link>
@@ -60,6 +57,11 @@ const Header = () => {
       </div>
       <Navbar.Collapse>
         <NavLink path="/" label="Home" />
+        {!isEmpty(user) && (
+          <>
+            <NavLink path="/cart" label="Cart" />
+          </>
+        )}
         <NavLink path="/contact" label="Contact" />
         {user?.role === 'admin' && (
           <>

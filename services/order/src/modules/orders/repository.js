@@ -1,3 +1,4 @@
+import { orderStatuses } from '@app/constants';
 import { Order } from './api/v1/models';
 
 export const createOrder = (order) => {
@@ -6,6 +7,10 @@ export const createOrder = (order) => {
 
 export const getSingleOrder = (id) => {
   return Order.findById(id).lean();
+};
+
+export const findUserLatestOrder = (userId) => {
+  return Order.findOne({ user: userId, status: orderStatuses.confirmed }).sort({ created_at: -1 }).lean();
 };
 
 export const getAllOrders = ({ filters = {}, sorts = {}, page, limit }) => {

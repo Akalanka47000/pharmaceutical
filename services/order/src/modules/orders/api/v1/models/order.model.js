@@ -28,10 +28,7 @@ const OrderSchema = new mongoose.Schema(
       enum: Object.values(orderStatuses),
       default: orderStatuses.confirmed,
     },
-    delivery_id: {
-      type: mongoose.SchemaTypes.ObjectId,
-      ref: 'Delivery',
-    },
+    delivery_id: String,
     payment_id: String,
     payment_transfer_id: String,
   },

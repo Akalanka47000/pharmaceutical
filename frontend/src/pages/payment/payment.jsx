@@ -32,6 +32,7 @@ const Payment = () => {
             if (!data.data.payment_status) {
               return toast.error('Unable to process payment');
             }
+            localStorage.removeItem('cart');
             navigate('/payment-success');
           }
         });

@@ -8,6 +8,10 @@ export const getAllProducts = async (filterQuery = '', sortQuery = '', page = 1)
   return await apiRequest(() => axiosInstance.get(`/api/v1/products?${filterQuery}&${sortQuery}page=${page}&limit=${20}`));
 };
 
+export const getAllProductsWithoutPagination = async (filterQuery = '', sortQuery = '') => {
+  return await apiRequest(() => axiosInstance.get(`/api/v1/products?${filterQuery}&${sortQuery}`));
+};
+
 export const createProduct = async (data) => {
   return await apiRequest(() => axiosInstance.post(`/api/v1/products`, data));
 };

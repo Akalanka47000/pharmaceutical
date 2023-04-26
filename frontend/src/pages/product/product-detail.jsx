@@ -42,7 +42,7 @@ function ProductDetail() {
   const onClickAddToCart = () => {
     if (!user._id) return toast.warn('You need to be logged in before adding an item to a cart');
     setCart([...cart, productId]);
-    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('cart', JSON.stringify([...cart, productId]));
     toast.success('Product added to cart successfully');
   };
 

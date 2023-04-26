@@ -12,10 +12,6 @@ const OrderSchema = new Schema(
       type: SchemaTypes.String,
       required: true,
     },
-    merchant_id: {
-      type: SchemaTypes.String,
-      required: true,
-    },
     invoice_id: {
       type: SchemaTypes.String,
       required: true,

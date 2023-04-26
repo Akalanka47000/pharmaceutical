@@ -4,7 +4,7 @@ import { traced } from '@sliit-foss/functions';
 import { moduleLogger } from '@sliit-foss/module-logger';
 import { orderStatuses } from '@app/constants';
 import { createOrder, getAllOrders, getSingleOrder, deleteSingleOrder, updateSingleOrder } from '../../repository';
-import { getPayment, getProductsByIds, getUserById, makePayment, sendEmail, transferPayment } from '../../../../services';
+import { assignToDelivery, getPayment, getProductsByIds, getUserById, makePayment, sendEmail, transferPayment } from '../../../../services';
 import { calculateTotals } from './helpers/index';
 import { constructReceiptEmailPayload } from './mappers';
 
@@ -62,7 +62,20 @@ export const serviceVerifyOrderPayment = async (id) => {
   const payment = await getPayment(order.payment_id);
   if (payment.status === 'succeeded') {
     serviceUpdateSingleOrder(id, { status: orderStatuses.paid });
-    getUserById(order.user.toString()).then((customer) => sendEmail(constructReceiptEmailPayload(customer.email, order)));
+    getUserById(order.user.toString()).then((customer) => {
+      sendEmail(constructReceiptEmailPayload(customer.email, order));
+      if (customer.address) {
+        assignToDelivery({
+          invoice_id: order._id,
+          origin: 'Nugegoda',
+          destination: customer.address,
+          customer_details: {
+            email: customer.email,
+            phone: customer.mobile,
+          },
+        }).then((delivery) => serviceUpdateSingleOrder(id, { delivery_id: delivery.waybill_number }));
+      }
+    });
     const products = await getProductsByIds(order.products.map((product) => product._id));
     const sellers = groupBy(products, (product) => product.seller);
     Object.keys(sellers).forEach(async (seller) => {

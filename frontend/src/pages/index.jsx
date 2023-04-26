@@ -8,4 +8,5 @@ export { default as Contact } from './contact';
 export { default as Profile } from './profile';
 export { default as Cart } from './cart';
 export * from './auth';
+export * from './payment';
 export * from './product';

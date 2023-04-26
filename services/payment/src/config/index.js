@@ -6,15 +6,13 @@ class Base {
   static get schema() {
     return {
       PORT: Joi.number().optional(),
-      DB_URL: Joi.string().required(),
-      COMMISSION_PERCENTAGE: Joi.number().required(),
+      STRIPE_SECRET_KEY: Joi.string().required(),
     };
   }
   static get values() {
     return {
-      PORT: process.env.PORT ?? 2006,
-      DB_URL: process.env.DB_URL,
-      COMMISSION_PERCENTAGE: Number(process.env.COMMISSION_PERCENTAGE ?? 0),
+      PORT: process.env.PORT ?? 2008,
+      STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
     };
   }
 }

@@ -7,5 +7,5 @@ const connector = serviceConnector({
 });
 
 export const getUserById = (id, v = 'v1') => {
-  return connector.get(`/api/${v}/users/${id})`).then(connector.resolve);
+  return connector.get(`/api/${v}/users/${id}`).then(connector.resolve);
 };

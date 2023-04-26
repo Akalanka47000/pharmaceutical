@@ -1,23 +1,39 @@
+import { useNavigate } from 'react-router-dom';
 import { Elements, useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { default as Layout } from '../../components/layout';
 import { Button, Lottie } from '../../components/common';
-import { makePayment } from '../../services';
+import { makePayment, verifyPayment } from '../../services';
+import toast from '../../libs/toastify';
 import PaymentAnimation from '../../../public/assets/animations/payment.json';
 
 const Payment = () => {
   const stripe = useStripe();
   const elements = useElements();
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await makePayment(new URLSearchParams(window.location.search).get('order')).then(async (data) => {
+    const orderId = new URLSearchParams(window.location.search).get('order');
+    await makePayment(orderId).then(async (data) => {
       if (data) {
-        await stripe.confirmCardPayment(data?.client_secret, {
+        const { error: stripeError } = await stripe.confirmCardPayment(data?.data?.client_secret, {
           payment_method: {
             card: elements.getElement(CardNumberElement),
           },
-          return_url: `${import.meta.env.VITE_FRONTEND_BASE_URL}/payment-confirmation`,
+          return_url: `${import.meta.env.VITE_FRONTEND_BASE_URL}/payment-success`,
+        });
+        if (stripeError) {
+          return toast.error('Unable to process payment');
+        }
+        await verifyPayment(orderId).then((data) => {
+          if (data) {
+            if (!data.data.payment_status) {
+              return toast.error('Unable to process payment');
+            }
+            navigate('/payment-success');
+          }
         });
       }
     });

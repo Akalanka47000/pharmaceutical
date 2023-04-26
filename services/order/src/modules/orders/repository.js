@@ -5,7 +5,7 @@ export const createOrder = (order) => {
 };
 
 export const getSingleOrder = (id) => {
-  return Order.findById(id);
+  return Order.findById(id).lean();
 };
 
 export const getAllOrders = ({ filters = {}, sorts = {}, page, limit }) => {

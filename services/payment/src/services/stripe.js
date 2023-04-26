@@ -4,6 +4,21 @@ import config from '../config';
 
 const stripe = initialize(config.STRIPE_SECRET_KEY);
 
+export const createCustomer = ({ email, name, address }) =>
+  handleStripeError(() =>
+    stripe.customers.create({
+      email,
+      name,
+      address: {
+        line1: address,
+        postal_code: '21030',
+        city: 'Colombo',
+        state: 'CA',
+        country: 'LK',
+      },
+    }),
+  );
+
 export const createPaymentIntent = (data) =>
   handleStripeError(() =>
     stripe.paymentIntents.create({

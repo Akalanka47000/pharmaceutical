@@ -9,5 +9,9 @@ export const getAllOrdersNoPagination = async (filterQuery = '', sortQuery = '')
 };
 
 export const makePayment = async (orderId) => {
-  return await apiRequest(() => axiosInstance.post(`/api/v1/orders/${orderId}/payments`));
+  return await apiRequest(() => axiosInstance.post(`/api/v1/orders/${orderId}/payment`));
+};
+
+export const verifyPayment = async (orderId) => {
+  return await apiRequest(() => axiosInstance.get(`/api/v1/orders/${orderId}/payment/verify`));
 };

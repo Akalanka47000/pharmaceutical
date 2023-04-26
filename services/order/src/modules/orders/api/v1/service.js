@@ -37,11 +37,17 @@ export const serviceInitiateOrderPayment = async (id, userId) => {
   if (!order) {
     throw createError(404, 'Order not found');
   }
+  if (order.status === orderStatuses.paid) throw createError(400, 'Payment already made for this order');
+  const customer = await getUserById(order.user.toString());
   const payment = await traced(makePayment)({
     amount: order.total,
     metadata: {
       order_id: id,
       user_id: userId,
+    },
+    customer: {
+      name: customer.name,
+      address: customer.address,
     },
   });
   serviceUpdateSingleOrder(id, { payment_id: payment.id });
@@ -56,7 +62,7 @@ export const serviceVerifyOrderPayment = async (id) => {
   const payment = await getPayment(order.payment_id);
   if (payment.status === 'succeeded') {
     serviceUpdateSingleOrder(id, { status: orderStatuses.paid });
-    getUserById(order.user).then((customer) => sendEmail(constructReceiptEmailPayload(customer.email, order)));
+    getUserById(order.user.toString()).then((customer) => sendEmail(constructReceiptEmailPayload(customer.email, order)));
     const products = await getProductsByIds(order.products.map((product) => product._id));
     const sellers = groupBy(products, (product) => product.seller);
     Object.keys(sellers).forEach(async (seller) => {

@@ -88,7 +88,7 @@ order.post(
   }),
 );
 
-order.post(
+order.get(
   '/:id/payment/verify',
   celebrate({ [Segments.PARAMS]: objectIdSchema() }),
   tracedAsyncHandler(async function controllerVerifyOrderPayment(req, res) {

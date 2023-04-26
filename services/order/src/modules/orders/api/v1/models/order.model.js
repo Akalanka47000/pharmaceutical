@@ -27,10 +27,6 @@ const OrderSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    net_total: {
-      type: Number,
-      required: true,
-    },
     status: {
       type: mongoose.SchemaTypes.String,
       enum: Object.values(orderStatuses),

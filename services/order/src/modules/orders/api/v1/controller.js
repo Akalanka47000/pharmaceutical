@@ -14,6 +14,7 @@ order.post(
   celebrate({ [Segments.BODY]: createOrderSchema }),
   tracedAsyncHandler(async function createOrderController(req, res) {
     const order = await traced(serviceCreateOrder)(req.body);
+    console.log(res);
     return toSuccess({
       res,
       status: 201,

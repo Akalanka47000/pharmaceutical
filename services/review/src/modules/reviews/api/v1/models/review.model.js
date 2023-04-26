@@ -7,9 +7,14 @@ const SchemaTypes = mongoose.Schema.Types;
 
 const ReviewSchema = new Schema(
   {
-    content: {
-      type: SchemaTypes.String,
+    rating: {
+      type: SchemaTypes.Number,
       required: true,
+    },
+    user: {
+      type: SchemaTypes.ObjectId,
+      required: true,
+      ref: 'User',
     },
   },
   {

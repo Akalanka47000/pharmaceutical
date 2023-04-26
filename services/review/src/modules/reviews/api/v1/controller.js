@@ -11,7 +11,7 @@ review.post(
   '/',
   celebrate({ [Segments.BODY]: addReviewSchema }),
   tracedAsyncHandler(async function controllerAddReview(req, res) {
-    const data = await traced(serviceAddReview)(req.body);
+    const data = await traced(serviceAddReview)(req.body, req.headers['x-user-id']);
     return toSuccess({ res, data, message: 'Review added successfully!' });
   }),
 );

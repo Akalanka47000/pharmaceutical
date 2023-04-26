@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { Rating } from 'flowbite-react';
 import { Layout } from '../../components/layout';
 import { Button } from '../../components/common';
 import { useEffectOnce } from '../../hooks';
 import { setFormData } from '../../store/ui/products';
-import { getSingleProduct, deleteProduct } from '../../services';
+import { getSingleProduct, deleteProduct, addProductRating } from '../../services';
 import toast from '../../libs/toastify';
 
 function ProductDetail() {
   const { product_id: productId } = useParams();
   const [product, setProduct] = useState({});
   const [cart, setCart] = useState([]);
+  const [rating, setRating] = useState(0);
 
   const navigate = useNavigate();
 
@@ -26,6 +28,10 @@ function ProductDetail() {
     };
     singleProduct();
   }, [productId]);
+
+  useEffect(() => {
+    setRating(product.reviews?.find((r) => r.user === user._id)?.rating ?? 0);
+  }, [product]);
 
   useEffectOnce(() => {
     setCart(localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []);
@@ -53,6 +59,12 @@ function ProductDetail() {
     toast.success('Product removed from cart successfully');
   };
 
+  const onRatingClick = (rating) => {
+    if (!user._id) return toast.warn('You need to be logged in before rating an item');
+    setRating(rating);
+    addProductRating(productId, rating);
+  };
+
   return (
     <Layout title="Home">
       <div title="ProductDetail">
@@ -68,10 +80,19 @@ function ProductDetail() {
                 <div class="block text-gray-600 text-lg">{product.description}</div>
                 <div class="block font-bold text-gray-600 text-xl">Only {product.stock} Items Left</div>
                 <p class="block font-bold text-gray-600 text-2xl"> Rs {product.selling_price}</p>
-                <p class="text-base text-red-500 py-0 ">
+                <p class="text-base text-red-500 py-0">
                   <abbr title="Required field">*</abbr>
                   Inclusive of All Taxes & Charges
                 </p>
+                <Rating>
+                  {Array.from(Array(5).keys()).map((_, i) => {
+                    return (
+                      <div onClick={() => onRatingClick(i + 1)}>
+                        <Rating.Star filled={i <= rating - 1} className="w-16 h-16 cursor-pointer hover:brightness-110 transition-all duration-300" />
+                      </div>
+                    );
+                  })}
+                </Rating>
               </div>
             </div>
             {/* bleh */}

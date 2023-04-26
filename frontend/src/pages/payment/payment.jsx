@@ -2,8 +2,8 @@ import { Elements, useStripe, useElements, CardNumberElement, CardExpiryElement,
 import { loadStripe } from '@stripe/stripe-js';
 import { default as Layout } from '../../components/layout';
 import { Button, Lottie } from '../../components/common';
-import PaymentAnimation from '../../../public/assets/animations/payment.json';
 import { makePayment } from '../../services';
+import PaymentAnimation from '../../../public/assets/animations/payment.json';
 
 const Payment = () => {
   const stripe = useStripe();

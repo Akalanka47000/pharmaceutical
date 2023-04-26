@@ -10,6 +10,7 @@ class Base {
       PRODUCT_SERVICE_BASE_URL: Joi.string().required(),
       PAYMENT_SERVICE_BASE_URL: Joi.string().required(),
       USER_SERVICE_BASE_URL: Joi.string().required(),
+      EMAIL_SERVICE_BASE_URL: Joi.string().required(),
     };
   }
   static get values() {
@@ -19,6 +20,7 @@ class Base {
       PRODUCT_SERVICE_BASE_URL: process.env.PRODUCT_SERVICE_BASE_URL,
       PAYMENT_SERVICE_BASE_URL: process.env.PAYMENT_SERVICE_BASE_URL,
       USER_SERVICE_BASE_URL: process.env.USER_SERVICE_BASE_URL,
+      EMAIL_SERVICE_BASE_URL: process.env.EMAIL_SERVICE_BASE_URL,
     };
   }
 }

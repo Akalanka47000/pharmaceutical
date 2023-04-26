@@ -19,7 +19,7 @@ const AnimatedRoutes = () => {
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/users" element={<Users />} />
         <Route path="/payment" element={<Payment />} />
-        <Route path="/payment-confirmation" element={<PaymentConfirmation />} />
+        <Route path="/payment-success" element={<PaymentConfirmation />} />
         <Route path="/product-add" element={<ProductForm />} />
         <Route path="/product-edit/:product_id" element={<ProductForm />} />
         <Route path="/product-detail/:product_id" element={<ProductDetail />} />

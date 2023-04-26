@@ -43,4 +43,6 @@ export const updateUserSchema = Joi.object({
     is_approved: Joi.boolean().optional(),
     bank_account: Joi.string().optional().allow('', null),
   }).optional(),
+  reviews: Joi.array().items(Joi.string().hex().length(24).required()).optional(),
+  review: Joi.string().hex().length(24).optional(),
 });

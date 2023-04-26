@@ -1,6 +1,6 @@
 import { traced } from '@sliit-foss/functions';
 import { createProduct, getAllProduct, getSingleProduct, deleteSingleProduct, updateSingleProduct } from '../../repository';
-import { calculateSellingPrice } from './helpers';
+import { calculateSellingPrice, handleReviews } from './helpers';
 
 export const createProductSrc = (product, userId) => {
   traced(calculateSellingPrice)(product);
@@ -22,5 +22,6 @@ export const deleteSingleProductSrc = (id) => {
 
 export const updateSingleProductSrc = (id, payload) => {
   traced(calculateSellingPrice)(payload);
+  traced(handleReviews)(payload);
   return traced(updateSingleProduct)(id, payload);
 };

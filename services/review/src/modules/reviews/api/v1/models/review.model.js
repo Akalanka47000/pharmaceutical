@@ -7,23 +7,7 @@ const SchemaTypes = mongoose.Schema.Types;
 
 const ReviewSchema = new Schema(
   {
-    review_id: {
-      type: SchemaTypes.String,
-      required: true,
-    },
-    user_id: {
-      type: SchemaTypes.String,
-      required: true,
-    },
-    product_id: {
-      type: SchemaTypes.String,
-      required: true,
-    },
     content: {
-      type: SchemaTypes.String,
-      required: true,
-    },
-    timeStamp: {
       type: SchemaTypes.String,
       required: true,
     },

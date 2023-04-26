@@ -7,20 +7,6 @@ import { addReviewSchema } from './schema';
 
 const review = express.Router();
 
-review.get(
-  '/:id',
-  tracedAsyncHandler(async function controllerGetReviewById(req, res) {
-    return toSuccess({ res, data: {}, message: 'sucess!' });
-  }),
-);
-
-review.get(
-  '/',
-  tracedAsyncHandler(async function controllerGetReview(req, res) {
-    return toSuccess({ res, data: {}, message: 'sucess!' });
-  }),
-);
-
 review.post(
   '/',
   celebrate({ [Segments.BODY]: addReviewSchema }),

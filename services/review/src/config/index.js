@@ -7,12 +7,16 @@ class Base {
     return {
       PORT: Joi.number().optional(),
       DB_URL: Joi.string().required(),
+      PRODUCT_SERVICE_BASE_URL: Joi.string().required(),
+      USER_SERVICE_BASE_URL: Joi.string().required(),
     };
   }
   static get values() {
     return {
       PORT: process.env.PORT ?? 2005,
       DB_URL: process.env.DB_URL,
+      PRODUCT_SERVICE_BASE_URL: process.env.PRODUCT_SERVICE_BASE_URL,
+      USER_SERVICE_BASE_URL: process.env.USER_SERVICE_BASE_URL,
     };
   }
 }

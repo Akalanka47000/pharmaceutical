@@ -1,22 +1,12 @@
 import { traced } from '@sliit-foss/functions';
-import { AddReview, getSingleReview, getAllReviews } from '../../repository';
+import { addReview } from '../../repository';
+import { updateProductById, updateUserById } from '../../../../services';
 
-export const serviceAddReview = (order) => {
-  return traced(AddReview)(order);
-};
-
-export const serviceGetAllReviews = (filters, sorts, page, limit) => {
-  return traced(getAllReviews)({ filters, sorts, page, limit });
-};
-
-export const serviceGetSingleReview = (id) => {
-  return traced(getSingleReview)(id);
-};
-
-export const serviceDeleteSingleReview = (id) => {
-  return traced(deleteSingleOrder)(id);
-};
-
-export const serviceUpdateSingleReview = (id, payload) => {
-  return traced(updateSingleOrder)(id, payload);
+export const serviceAddReview = async (payload) => {
+  const review = await traced(addReview)({ content: payload.content });
+  const entityUpdateFn = payload.entity_type === 'product' ? updateProductById : updateUserById;
+  await entityUpdateFn(payload.entity_id, {
+    review: review._id,
+  });
+  return review;
 };

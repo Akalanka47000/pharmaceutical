@@ -56,6 +56,12 @@ const UserSchema = new Schema(
       is_approved: Boolean,
       bank_account: String,
     },
+    reviews: [
+      {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'Review',
+      },
+    ],
   },
   {
     versionKey: false,

@@ -8,4 +8,5 @@ export const serviceHosts = {
   products: config.PRODUCT_SERVICE_BASE_URL,
   orders: config.ORDER_SERVICE_BASE_URL,
   payments: config.PAYMENT_SERVICE_BASE_URL,
+  reviews: config.REVIEW_SERVICE_BASE_URL,
 };

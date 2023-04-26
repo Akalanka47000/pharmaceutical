@@ -6,14 +6,12 @@ class Base {
   static get schema() {
     return {
       PORT: Joi.number().optional(),
-      DB_URL: Joi.string().required(),
       STRIPE_SECRET_KEY: Joi.string().required(),
     };
   }
   static get values() {
     return {
-      PORT: process.env.PORT ?? 3002,
-      DB_URL: process.env.DB_URL,
+      PORT: process.env.PORT ?? 2008,
       STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
     };
   }

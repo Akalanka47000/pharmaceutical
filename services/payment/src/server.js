@@ -3,6 +3,5 @@ import config from './config';
 
 initializeServer({
   service: 'Payment service',
-  database: true,
   config,
 });

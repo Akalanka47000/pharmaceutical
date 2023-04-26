@@ -270,8 +270,8 @@ importers:
         specifier: workspace*
         version: link:../../packages/server
       '@sliit-foss/functions':
-        specifier: 2.0.1
-        version: 2.0.1
+        specifier: 2.1.2
+        version: 2.1.2
       '@sliit-foss/module-logger':
         specifier: 1.1.2
         version: 1.1.2
@@ -316,8 +316,8 @@ importers:
         specifier: workspace*
         version: link:../../packages/server
       '@sliit-foss/functions':
-        specifier: 2.0.1
-        version: 2.0.1
+        specifier: 2.1.2
+        version: 2.1.2
       '@sliit-foss/module-logger':
         specifier: 1.1.2
         version: 1.1.2
@@ -359,8 +359,8 @@ importers:
         specifier: workspace*
         version: link:../../packages/server
       '@sliit-foss/functions':
-        specifier: 2.0.1
-        version: 2.0.1
+        specifier: 2.1.2
+        version: 2.1.2
       '@sliit-foss/module-logger':
         specifier: 1.1.2
         version: 1.1.2
@@ -405,8 +405,8 @@ importers:
         specifier: workspace*
         version: link:../../packages/server
       '@sliit-foss/functions':
-        specifier: 2.0.1
-        version: 2.0.1
+        specifier: 2.1.2
+        version: 2.1.2
       '@sliit-foss/module-logger':
         specifier: 1.1.2
         version: 1.1.2
@@ -451,8 +451,8 @@ importers:
         specifier: workspace*
         version: link:../../packages/server
       '@sliit-foss/functions':
-        specifier: 2.0.1
-        version: 2.0.1
+        specifier: 2.1.2
+        version: 2.1.2
       '@sliit-foss/module-logger':
         specifier: 1.1.2
         version: 1.1.2
@@ -509,8 +509,8 @@ importers:
         specifier: workspace*
         version: link:../../packages/server
       '@sliit-foss/functions':
-        specifier: 2.0.1
-        version: 2.0.1
+        specifier: 2.1.2
+        version: 2.1.2
       '@sliit-foss/module-logger':
         specifier: 1.1.2
         version: 1.1.2
@@ -561,8 +561,8 @@ importers:
         specifier: workspace*
         version: link:../../packages/server
       '@sliit-foss/functions':
-        specifier: 2.0.1
-        version: 2.0.1
+        specifier: 2.1.2
+        version: 2.1.2
       '@sliit-foss/module-logger':
         specifier: 1.1.2
         version: 1.1.2
@@ -613,8 +613,8 @@ importers:
         specifier: workspace*
         version: link:../../packages/server
       '@sliit-foss/functions':
-        specifier: 2.0.1
-        version: 2.0.1
+        specifier: 2.1.2
+        version: 2.1.2
       '@sliit-foss/module-logger':
         specifier: 1.1.2
         version: 1.1.2
@@ -656,8 +656,8 @@ importers:
         specifier: workspace*
         version: link:../../packages/server
       '@sliit-foss/functions':
-        specifier: 2.0.1
-        version: 2.0.1
+        specifier: 2.1.2
+        version: 2.1.2
       '@sliit-foss/module-logger':
         specifier: 1.1.2
         version: 1.1.2
@@ -3553,15 +3553,23 @@ packages:
     resolution: {integrity: sha512-fuYAgpEHjSYOC7D+9/hVfiC33zpxpIIIkd85er9Yt72uNBWcFZH1+bnIhrSyNCA9DDaTspkp3ObLJa5Fp1fLgg==}
     dev: true
 
-  /@sliit-foss/functions@2.0.1:
-    resolution: {integrity: sha512-hnb1U+udoCLnxPWVwjcj5yDkQky+kMZ+lltVr+UGpoDUw5uwIX9OK/+wWMV73k67PVhJh2aS/Mmkg69uRa8BWg==}
+  /@sliit-foss/functions@2.1.2:
+    resolution: {integrity: sha512-ArEhYPZ1yOzZafmkv9yZamVYYCJU/qTwMvg2/2QHO/W6AjAPm+KFF6QjVGwOzgTgMpDa9Ri6PHXWMlw/ZUAODg==}
     dependencies:
-      '@sliit-foss/module-logger': 1.1.2
+      '@sliit-foss/module-logger': 1.1.3
       express-http-context: 1.2.4
     dev: false
 
   /@sliit-foss/module-logger@1.1.2:
     resolution: {integrity: sha512-Mr2zGZhaN52EKVk0ElWMqeYwMDQp4eEuiIQkYWzUuhupZRgPTpF8Bbp4AT46Sslq+BGlTTVdyUVNSWpPa8FEBA==}
+    dependencies:
+      express-http-context: 1.2.4
+      winston: 3.8.2
+      winston-daily-rotate-file: 4.7.1(winston@3.8.2)
+    dev: false
+
+  /@sliit-foss/module-logger@1.1.3:
+    resolution: {integrity: sha512-+J6ZkSQ6LRkreqcKtMJzqC+TKQrQ/kqLsycpicfZaPZCi6tpzWJ66wCsmmJTQ8+h1fTqVrI6UBWhalPMYnJqmg==}
     dependencies:
       express-http-context: 1.2.4
       winston: 3.8.2

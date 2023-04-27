@@ -10,7 +10,7 @@ const logger = moduleLogger('Auth-middleware');
 const whitelistedModuleRoutes = ['/v1/products'];
 
 export const authorizer = tracedAsyncHandler(async function authorizer(req) {
-  if ([...whitelistedRoutes, whitelistedModuleRoutes].find((route) => req.path.match(new RegExp(route)))) {
+  if (!req.ignoreWhitelists && [...whitelistedRoutes, whitelistedModuleRoutes].find((route) => req.path.match(new RegExp(route)))) {
     return;
   }
   context.set('headers', req.headers);

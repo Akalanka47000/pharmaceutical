@@ -1,4 +1,3 @@
-import config from '../../../../../config';
 import { getProductsByIds } from '../../../../../services';
 
 export const calculateTotals = async (order) => {
@@ -8,8 +7,5 @@ export const calculateTotals = async (order) => {
       total += product.selling_price * order.products[index].quantity ?? 1;
       return total;
     }, 0);
-
-    order.commission = (order.total * config.COMMISSION_PERCENTAGE).toFixed(2);
-    console.log(order.commission);
   }
 };

@@ -23,19 +23,14 @@ const OrderSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    commission: {
-      type: Number,
-      required: true,
-    },
     status: {
       type: mongoose.SchemaTypes.String,
       enum: Object.values(orderStatuses),
       default: orderStatuses.confirmed,
     },
-    delivery_id: {
-      type: mongoose.SchemaTypes.ObjectId,
-      ref: 'Delivery',
-    },
+    delivery_id: String,
+    payment_id: String,
+    payment_transfer_id: String,
   },
   {
     versionKey: false,

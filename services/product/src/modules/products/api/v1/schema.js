@@ -18,11 +18,12 @@ export const updateProductSchema = Joi.object({
   type: Joi.string().valid('Supplements and Herbs', 'Sports and Nutrition', 'Medicine', 'Beauty', 'Bath').optional(),
   measurement_unit: Joi.string().optional(),
   age_limit: Joi.string().optional(),
-  markup_price: Joi.number().required(),
+  markup_price: Joi.number().optional(),
   description: Joi.string().max(300).optional(),
   exp_date: Joi.date().min('now').optional(),
   manufactured_date: Joi.date().max('now').optional(),
   stock: Joi.number().optional(),
   image: Joi.string().optional(),
   reviews: Joi.array().items(Joi.string().hex().length(24).required()).optional(),
+  review: Joi.string().hex().length(24).optional(),
 });

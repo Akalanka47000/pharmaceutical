@@ -2,7 +2,7 @@ import crypto from 'crypto';
 import { traced } from '@sliit-foss/functions';
 import { createUserInDB, getAllUsers, getUserById, updateUserById, updateMultipleUsers, deleteUserById } from '../../repository';
 import { sendEmail } from '../../../../services';
-import { hashPasswordIfProvided } from './helpers';
+import { hashPasswordIfProvided, handleReviews } from './helpers';
 import { constructCredentialEmailPayload } from './mappers';
 
 export const serviceCreateUser = async (user) => {
@@ -27,11 +27,13 @@ export const serviceGetUserById = (id) => {
 
 export const serviceUpdateUserById = async (id, data) => {
   await hashPasswordIfProvided(data);
+  traced(handleReviews)(data);
   return traced(updateUserById)(id, data);
 };
 
 export const serviceUpdateMultipleUsers = async (filters, data) => {
   await hashPasswordIfProvided(data);
+  traced(handleReviews)(data);
   return traced(updateMultipleUsers)(filters, data);
 };
 

@@ -35,7 +35,10 @@ export const aggregatePopulate = (...attributes) =>
           as: attr[1],
         },
       },
-      { $unwind: `$${attr[1]}` },
     ];
+    // the third attribute is a boolean which when provided indicates that the field is originally an array and shouldn't be unwinded
+    if (!attr[2]) {
+      acc.push({ $unwind: `$${attr[1]}` });
+    }
     return acc;
   }, []);

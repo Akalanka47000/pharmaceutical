@@ -10,11 +10,6 @@ export const createOrderSchema = Joi.object({
       }),
     )
     .required(),
-  user: Joi.string().hex().length(24).required(),
-  status: Joi.string()
-    .valid(...Object.values(orderStatuses))
-    .optional(),
-  delivery_id: Joi.string().hex().length(24).optional(),
 });
 
 export const updateOrderSchema = Joi.object({

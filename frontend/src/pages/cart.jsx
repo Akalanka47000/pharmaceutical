@@ -1,66 +1,89 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Table } from 'flowbite-react';
 import { default as Layout } from '../components/layout';
-import { getAllOrdersNoPagination } from '../services';
+import { Button, Lottie } from '../components/common';
+import { getAllProductsWithoutPagination, placeOrder } from '../services';
+import toast from '../libs/toastify';
+import CartAnimation from '../../public/assets/animations/cart.json';
+import NoActivityAnimation from '../../public/assets/animations/no-activity.json';
 
 const Cart = () => {
-  const [orders, setOrders] = useState([]);
+  const [products, setProducts] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
-    getAllOrdersNoPagination().then((data) => {
-      if (data) setOrders(data.data[0]);
-      console.log(data);
-    });
+    const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+    if (cart.length) {
+      getAllProductsWithoutPagination(`filter[_id]=in(${cart})`).then((data) => {
+        if (data) setProducts(data.data);
+      });
+    }
   }, []);
+
+  const confirmOrder = async () => {
+    const order = await placeOrder(
+      products.map((p) => ({
+        _id: p._id,
+        quantity: 1,
+      })),
+    );
+    if (order.data) {
+      navigate(`/payment?order=${order.data._id}`);
+      toast.success(order.message);
+    }
+  };
 
   return (
     <Layout title="Cart">
-      <div class="h-screen bg-gray-100 pt-20">
-        <h1 class="mb-10 text-center text-2xl font-bold">Cart Items</h1>
-        <div class="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
-          <div class="rounded-lg md:w-2/3">
-            {orders.products?.length > 0 &&
-              orders.products.map((product, index) => (
-                <div key={index} class="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
-                  <img />
-                  <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
-                    <div class="mt-5 sm:mt-0">
-                      <h2 class="text-lg font-bold text-gray-900">{product.name}</h2>
-                      <p class="mt-1 text-xs text-gray-700">36EU - 4US</p>
-                    </div>
-                    <div class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
-                      <div class="flex items-center border-gray-100">
-                        <span class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"> - </span>
-                        <input class="h-8 w-8 border bg-white text-center text-xs outline-none" type="number" value="2" min="1" />
-                        <span class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"> + </span>
-                      </div>
-                      <div class="flex items-center space-x-4">
-                        <p class="text-sm">259.000 ₭</p>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 cursor-pointer duration-150 hover:text-red-500">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-          </div>
-          {/* total */}
-          <div class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
-            <div class="flex justify-between">
-              <p class="text-gray-700">Total number of products</p>
-              <p class="text-gray-700">4</p>
-            </div>
-            <hr class="my-4" />
-            <div class="flex justify-between">
-              <p class="text-lg font-bold">Total</p>
-              <div class="">
-                <p class="mb-1 text-lg font-bold">$134.98 USD</p>
+      <div class={`w-screen min-h-screen flex flex-col ${products?.length > 0 ? 'justify-start' : 'justify-center'} items-center`}>
+        {products?.length === 0 && (
+          <div>
+            <div class="text-5xl md:text-6xl font-semibold opacity-90 text-center px-6">Empty Cart</div>
+            <div class="text-xl md:text-2xl font-semibold opacity-90 mt-6 text-center px-6 mb-6">Please go back and add in some items</div>
+            <div class="flex justify-center items-center">
+              <div class="w-11/12  mb-10">
+                <Lottie animationData={NoActivityAnimation} />
               </div>
             </div>
-            <button class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">Proceed for Payment</button>
           </div>
-          {/* finish */}
-        </div>
+        )}
+        {products?.length > 0 && (
+          <div className="h-full w-full px-6 md:px-12">
+            <div class="text-4xl md:text-5xl font-semibold opacity-90 text-center px-6 mt-6 md:mt-20">Your Cart</div>
+            <div class="flex justify-center items-center">
+              <div class="w-11/12 sm:w-7/12 lg:w-5/12 xl:w-2/12 mt-6 mb-12">
+                <Lottie animationData={CartAnimation} />
+              </div>
+            </div>
+            <Table striped={true} hoverable={true} class="w-full">
+              <Table.Head>
+                <Table.HeadCell>Product Name</Table.HeadCell>
+                <Table.HeadCell>Selling Price</Table.HeadCell>
+                <Table.HeadCell>Type</Table.HeadCell>
+                <Table.HeadCell>Unit</Table.HeadCell>
+                <Table.HeadCell>Age Limit</Table.HeadCell>
+              </Table.Head>
+              <Table.Body class="divide-y">
+                {products?.map((product) => {
+                  return (
+                    <Table.Row class="bg-white dark:border-gray-700 dark:bg-gray-800">
+                      <Table.Cell>{product.name}</Table.Cell>
+                      <Table.Cell>LKR {product.selling_price.toFixed(2)}</Table.Cell>
+                      <Table.Cell>{product.type}</Table.Cell>
+                      <Table.Cell>{product.measurement_unit}</Table.Cell>
+                      <Table.Cell>{product.age_limit}</Table.Cell>
+                    </Table.Row>
+                  );
+                })}
+              </Table.Body>
+            </Table>
+            <Button className="w-full py-4 mt-12" onClick={confirmOrder}>
+              Confirm and Pay
+            </Button>
+          </div>
+        )}
       </div>
     </Layout>
   );

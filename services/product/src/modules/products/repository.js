@@ -20,7 +20,7 @@ export const getAllProduct = ({ filters = {}, sorts = {}, page, limit }) => {
 };
 
 export const getSingleProduct = async (id) => {
-  return head(await Product.aggregate([{ $match: { _id: mongoose.Types.ObjectId(id) } }, ...aggregatePopulate(['users', 'seller'])]));
+  return head(await Product.aggregate([{ $match: { _id: mongoose.Types.ObjectId(id) } }, ...aggregatePopulate(['users', 'seller'], ['reviews', 'reviews', true])]));
 };
 
 export const deleteSingleProduct = (id) => {

@@ -37,7 +37,18 @@ const initialState = {
       ],
     },
   ],
-  sorts: [],
+  sorts: [
+    {
+      key: 'name',
+      label: 'Sort by name',
+      direction: 0,
+    },
+    {
+      key: 'created_at',
+      label: 'Sort by registration date',
+      direction: 0,
+    },
+  ],
 };
 
 export const slice = createSlice({

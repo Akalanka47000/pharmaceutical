@@ -27,7 +27,18 @@ const initialState = {
     { key: 'description', label: 'Description' },
     { key: 'age_limit', label: 'Age Limit' },
   ],
-  sorts: [],
+  sorts: [
+    {
+      key: 'selling_price',
+      label: 'Sort by price',
+      direction: 0,
+    },
+    {
+      key: 'stock',
+      label: 'Sort by availability',
+      direction: 0,
+    },
+  ],
   allowedTypes,
 };
 

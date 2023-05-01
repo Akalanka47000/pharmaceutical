@@ -26,7 +26,6 @@ product.get(
   '/',
   filterQuery,
   tracedAsyncHandler(async function getAllProductsController(req, res) {
-    console.log(getAllProductSrc, req.query.filter);
     const product = await traced(getAllProductSrc)(req.query.filter, req.query.sort, req.query.page, req.query.limit);
     return toSuccess({
       res,

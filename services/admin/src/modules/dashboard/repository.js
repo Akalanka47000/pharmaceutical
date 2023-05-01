@@ -1,16 +1,21 @@
 import mongoose from 'mongoose';
+import { roles } from '@app/constants';
 
 export const getCollectionTotals = async () => {
   const db = mongoose.connection.db;
-  const [users, orders, succeededPayments, failedPayments, reviews] = await Promise.all([
-    db.collection('users').estimatedDocumentCount(),
+  const [buyers, sellers, orders, succeededPayments, failedPayments, reviews] = await Promise.all([
+    db.collection('users').countDocuments({ role: roles.buyer }),
+    db.collection('users').countDocuments({ role: roles.seller }),
     db.collection('orders').estimatedDocumentCount(),
     db.collection('orders').countDocuments({ status: 'paid' }),
     db.collection('orders').countDocuments({ status: 'confirmed', payment_id: { $exists: true } }),
     db.collection('reviews').estimatedDocumentCount(),
   ]);
   return {
-    users,
+    registrations: {
+      buyers,
+      sellers
+    },
     orders,
     payments: {
       succeeded: succeededPayments,

@@ -26,4 +26,7 @@ export const updateProductSchema = Joi.object({
   image: Joi.string().optional(),
   reviews: Joi.array().items(Joi.string().hex().length(24).required()).optional(),
   review: Joi.string().hex().length(24).optional(),
+  $inc: Joi.object({
+    stock: Joi.number().optional(),
+  }).optional(),
 });

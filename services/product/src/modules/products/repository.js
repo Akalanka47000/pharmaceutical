@@ -7,16 +7,16 @@ export const createProduct = (product) => {
   return Product.create(product);
 };
 
-export const getAllProduct = ({ filters = {}, sorts = {}, page, limit }) => {
+export const getAllProduct = ({ filters = {}, sorts: sort = {}, page, limit }) => {
   if (page && limit) {
     return Product.paginate(filters, {
       page,
       limit,
-      sorts,
+      sort,
       lean: true,
     });
   }
-  return Product.find(filters).sort(sorts).lean();
+  return Product.find(filters).sort(sort).lean();
 };
 
 export const getSingleProduct = async (id) => {
@@ -32,3 +32,7 @@ export const updateSingleProduct = (id, pr) => {
     new: true,
   }).lean();
 };
+
+export function updateMultipleProducts(filters, data) {
+  return Product.updateMany(filters, data, { new: true }).lean();
+}

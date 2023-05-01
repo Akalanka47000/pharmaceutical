@@ -23,7 +23,7 @@ const Header = () => {
   const user = useSelector((store) => store.data.user.authUser);
 
   const logoutClick = () => {
-    logout();
+    logout(false);
     navigate('/login');
   };
 
@@ -66,6 +66,7 @@ const Header = () => {
         {user?.role === 'admin' && (
           <>
             <NavLink path="/users" label="Users" />
+            <NavLink path="/dashboard" label="Dashboard" />
           </>
         )}
       </Navbar.Collapse>

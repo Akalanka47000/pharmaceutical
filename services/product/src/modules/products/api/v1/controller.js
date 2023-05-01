@@ -4,7 +4,7 @@ import { tracedAsyncHandler, traced } from '@sliit-foss/functions';
 import { default as filterQuery } from '@sliit-foss/mongoose-filter-query';
 import { objectIdSchema } from '@app/constants';
 import { toSuccess } from '@app/middleware';
-import { createProductSrc, getAllProductSrc, getSingleProductSrc, deleteSingleProductSrc, updateSingleProductSrc } from './service';
+import { createProductSrc, getAllProductSrc, getSingleProductSrc, deleteSingleProductSrc, updateSingleProductSrc, serviceUpdateMultipleProducts } from './service';
 import { createProductSchema, updateProductSchema } from './schema';
 
 const product = express.Router();
@@ -26,7 +26,6 @@ product.get(
   '/',
   filterQuery,
   tracedAsyncHandler(async function getAllProductsController(req, res) {
-    console.log(getAllProductSrc, req.query.filter);
     const product = await traced(getAllProductSrc)(req.query.filter, req.query.sort, req.query.page, req.query.limit);
     return toSuccess({
       res,
@@ -59,6 +58,16 @@ product.delete(
       data: product,
       message: 'Product successfully deleted',
     });
+  }),
+);
+
+product.patch(
+  '/',
+  filterQuery,
+  celebrate({ [Segments.BODY]: updateProductSchema }),
+  tracedAsyncHandler(async function controllerUpdateMultipleProducts(req, res) {
+    const data = await traced(serviceUpdateMultipleProducts)(req.query.filter, req.body);
+    return toSuccess({ res, data, message: 'Products updated successfully!' });
   }),
 );
 

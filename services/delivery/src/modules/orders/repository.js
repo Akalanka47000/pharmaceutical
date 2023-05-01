@@ -8,14 +8,14 @@ export function getOrderById(id) {
   return Order.findById(id).lean();
 }
 
-export function getAllOrders({ filters = {}, sorts = {}, page, limit }) {
+export function getAllOrders({ filters = {}, sorts: sort = {}, page, limit }) {
   if (page && limit) {
     return Order.paginate(filters, {
       page,
       limit,
-      sorts,
+      sort,
       lean: true,
     });
   }
-  return Order.find(filters).sort(sorts).lean();
+  return Order.find(filters).sort(sort).lean();
 }

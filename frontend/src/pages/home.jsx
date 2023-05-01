@@ -27,16 +27,18 @@ const Home = () => {
     refresh();
   }, [page, filterQuery, sortQuery]);
 
+  const showAddProductBtn = user.role === 'seller' || user.role === 'admin'
+
   return (
     <Layout title="Home">
       <div class="w-screen flex flex-col justify-center items-center">
         {productRes && (
           <>
-            <div class="w-11/12 flex flex-col justify-center items-start mt-12">
+            <div class={`w-11/12 flex flex-col justify-center items-start mt-12 ${!showAddProductBtn ? "mb-8" : ""}`}>
               <Filters filters={filters} setFilterQuery={setFilterQuery} />
               <Sorts sorts={sorts} setSortQuery={setSortQuery} />
             </div>
-            {(user.role === 'seller' || user.role === 'admin') && (
+            {showAddProductBtn && (
               <div class="w-11/12 flex justify-end items-center mt-6 lg:mt-0 mb-6">
                 <Link to="/product-add">
                   <Button className="py-1.5 px-6 mb-2">Add Product</Button>

@@ -2,7 +2,7 @@ import initializeServer from '@app/server';
 import config from './config';
 
 initializeServer({
-  service: 'Product service',
+  service: 'Admin service',
   database: true,
   config,
 });

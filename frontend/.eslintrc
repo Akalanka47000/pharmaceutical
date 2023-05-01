@@ -1,5 +1,5 @@
 {
-  "extends": ["eslint:recommended", "react-app", "prettier"],
+  "extends": ["eslint:recommended", "react-app"],
   "rules": {
     "no-unused-vars": "error",
     "react-hooks/exhaustive-deps": "off",

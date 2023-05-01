@@ -115,10 +115,12 @@ function ProductDetail() {
             </Table>
             <div className="pt-1">
               <Button
-                className={`w-full py-4 text-base mt-4 ${cart.includes(productId) ? '' : 'bg-green-500 hover:bg-green-400'}`}
+                className={`w-full py-4 text-base mt-4 ${cart.includes(productId) ? '' : 'bg-green-500 hover:bg-green-400'} ${
+                  product.stock <= 0 ? 'bg-gray-700 pointer-events-none cursor-default' : ''
+                }`}
                 onClick={cart.includes(productId) ? onClickRemoveFromCart : onClickAddToCart}
               >
-                {cart.includes(productId) ? 'Remove from cart' : 'Add to cart'}
+                {product.stock <= 0 ? 'Out of Stock' : cart.includes(productId) ? 'Remove from cart' : 'Add to cart'}
               </Button>
               {user.role === 'admin' ||
                 (user.role == 'seller' && user._id == product.seller?._id && (

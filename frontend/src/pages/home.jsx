@@ -46,13 +46,13 @@ const Home = () => {
             <div class="w-11/12 min-h-[80vh] flex flex-col justify-between items-center mb-16">
               <div class="w-full h-full flex flex-col justify-start items-center gap-y-6">
                 {productRes.docs?.length > 0 ? (
-                  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
                     {productRes.docs?.map((product) => {
                       return (
                         <Link to={`/product-detail/${product._id}`}>
-                          <div className="w-full h-[25vh] relative rounded-md hover:scale-102 transition-all duration-300 cursor-pointer">
+                          <div className="w-full h-[30vh] border-2 border-base-primary relative rounded-md hover:scale-102 transition-all duration-300 cursor-pointer">
                             <img className="w-full h-full object-cover rounded-md" src={product.image} />
-                            <div className="w-full absolute bottom-0 h-14 bg-black/80 rounded-b-md flex flex-row justify-between items-center text-white px-6">
+                            <div className="w-full absolute bottom-0 py-3 min-h-14 bg-black/80 rounded-b-md flex flex-row justify-between items-center text-white px-6">
                               <span>{product.name}</span>
                               <span>Rs. {product.selling_price.toFixed(2)}</span>
                             </div>

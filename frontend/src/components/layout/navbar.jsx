@@ -66,6 +66,7 @@ const Header = () => {
         {user?.role === 'admin' && (
           <>
             <NavLink path="/users" label="Users" />
+            <NavLink path="/dashboard" label="Dashboard" />
           </>
         )}
       </Navbar.Collapse>

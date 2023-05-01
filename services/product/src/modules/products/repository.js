@@ -32,3 +32,7 @@ export const updateSingleProduct = (id, pr) => {
     new: true,
   }).lean();
 };
+
+export function updateMultipleProducts(filters, data) {
+  return Product.updateMany(filters, data, { new: true }).lean();
+}

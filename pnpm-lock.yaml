@@ -156,9 +156,6 @@ importers:
       eslint:
         specifier: 8.33.0
         version: 8.33.0
-      eslint-config-prettier:
-        specifier: 2.9.0
-        version: 2.9.0(eslint@8.33.0)
       eslint-config-react-app:
         specifier: 7.0.1
         version: 7.0.1(@babel/plugin-syntax-flow@7.14.5)(@babel/plugin-transform-react-jsx@7.14.9)(eslint@8.33.0)(typescript@4.5.2)
@@ -5655,16 +5652,6 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /eslint-config-prettier@2.9.0(eslint@8.33.0):
-    resolution: {integrity: sha512-ag8YEyBXsm3nmOv1Hz991VtNNDMRa+MNy8cY47Pl4bw6iuzqKbJajXdqUpiw13STdLLrznxgm1hj9NhxeOYq0A==}
-    hasBin: true
-    peerDependencies:
-      eslint: '>=3.14.1'
-    dependencies:
-      eslint: 8.33.0
-      get-stdin: 5.0.1
-    dev: true
-
   /eslint-config-react-app@7.0.1(@babel/plugin-syntax-flow@7.14.5)(@babel/plugin-transform-react-jsx@7.14.9)(eslint@8.33.0)(typescript@4.5.2):
     resolution: {integrity: sha512-K6rNzvkIeHaTd8m/QEh1Zko0KI7BACWkkneSs6s9cKZC/J27X3eZR6Upt1jkmZ/4FK+XUOPPxMEN7+lbUXfSlA==}
     engines: {node: '>=14.0.0'}
@@ -6566,11 +6553,6 @@ packages:
       function-bind: 1.1.1
       has: 1.0.3
       has-symbols: 1.0.3
-
-  /get-stdin@5.0.1:
-    resolution: {integrity: sha512-jZV7n6jGE3Gt7fgSTJoz91Ak5MuTLwMwkoYdjxuJ/AmjIsE1UC03y/IWkZCQGEvVNS9qoRNwy5BCqxImv0FVeA==}
-    engines: {node: '>=0.12.0'}
-    dev: true
 
   /get-stream@3.0.0:
     resolution: {integrity: sha512-GlhdIUuVakc8SJ6kK0zAFbiGzRFzNnY4jUuEbV9UROo4Y+0Ny4fjvcZFVTeDA4odpFyOQzaw6hXukJSq/f28sQ==}

@@ -69,10 +69,10 @@ const UserModal = ({ user, show, setShow, refresh = () => {} }) => {
       <Modal.Body>
         <form>
           <div class="flex flex-col mb-4">
-            <Input placeholder="Name" name="name" value={formData.name} className="h-12 sm:h-14 light" theme="light" required="true" onChange={onChange} />
-            {isEmpty(user) && <Input placeholder="Email" name="email" value={formData.email} className="h-12 sm:h-14 light" theme="light" required="true" onChange={onChange} />}
-            <Input placeholder="Mobile" name="mobile" value={formData.mobile} className="h-12 sm:h-14 light" theme="light" required="true" onChange={onChange} />
-            <Input placeholder="Address" name="address" value={formData.address} className="h-12 sm:h-14 light" theme="light" required="true" onChange={onChange} />
+            <Input placeholder="Name" name="name" label value={formData.name} className="h-12 sm:h-14 light" theme="light" required="true" onChange={onChange} />
+            {isEmpty(user) && <Input placeholder="Email" name="email" label value={formData.email} className="h-12 sm:h-14 light" theme="light" required="true" onChange={onChange} />}
+            <Input placeholder="Mobile" name="mobile" label value={formData.mobile} className="h-12 sm:h-14 light" theme="light" required="true" onChange={onChange} />
+            <Input placeholder="Address" name="address" label value={formData.address} className="h-12 sm:h-14 light" theme="light" required="true" onChange={onChange} />
           </div>
         </form>
       </Modal.Body>

@@ -19,3 +19,17 @@ export const getCollectionTotals = async () => {
     reviews,
   };
 };
+
+export const getProfits = () => {
+  const db = mongoose.connection.db;
+  return db.collection('orders').aggregate([
+    {
+      $lookup: {
+         from: "products",
+         localField: "products._id",
+         foreignField: "_id",
+         as: "products.product"
+      }
+    }
+  ])
+};

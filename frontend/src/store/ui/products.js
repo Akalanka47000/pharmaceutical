@@ -25,6 +25,7 @@ const initialState = {
     },
     { key: 'measurement_unit', label: 'Unit' },
     { key: 'description', label: 'Description' },
+    { key: 'age_limit', label: 'Age Limit' },
   ],
   sorts: [],
   allowedTypes,

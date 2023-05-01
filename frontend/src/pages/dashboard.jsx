@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, BarElement, BarController } from "chart.js";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, BarController } from "chart.js";
 import { Bar } from 'react-chartjs-2';
 import { default as Layout } from '../components/layout';
 import { Divider } from "../components/common";

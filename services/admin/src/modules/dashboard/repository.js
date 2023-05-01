@@ -14,7 +14,7 @@ export const getCollectionTotals = async () => {
   return {
     registrations: {
       buyers,
-      sellers
+      sellers,
     },
     orders,
     payments: {

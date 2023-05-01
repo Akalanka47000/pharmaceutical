@@ -11,7 +11,8 @@
     "dev": "sh ../../workspace-scripts/services/start-dev.sh",
     "start": "sh ../../workspace-scripts/services/start.sh",
     "build": "node ../../workspace-scripts/services/build/esbuild.js",
-    "lint": "sh ../../workspace-scripts/services/lint.sh"
+    "lint": "sh ../../workspace-scripts/services/lint.sh",
+    "test": "sh ../../workspace-scripts/services/test.sh"
   },
   "dependencies": {
     "@app/middleware": "workspace*",

@@ -29,9 +29,13 @@ const Filters = ({ filters, setFilterQuery }) => {
   return (
     <div class="w-full mb-4">
       <Accordion alwaysOpen={true} collapseAll>
-        <Accordion.Panel className="outline-none focus:ring-0">
-          <Accordion.Title>
-            <span class="text-2xl text-gray-700 font-semibold">Filters</span>
+        <Accordion.Panel>
+          <Accordion.Title
+            theme={{
+              base: 'flex w-full items-center justify-between first:rounded-t-lg last:rounded-b-lg py-5 px-5 text-left font-medium !text-white !bg-primary-base hover:!bg-primary-hover focus:!bg-primary-hover focus:!ring-2 focus:!ring-gray-200',
+            }}
+          >
+            <span class="text-2xl font-semibold">Filters</span>
           </Accordion.Title>
           <Accordion.Content>
             <div class="w-full flex justify-start items-center flex-wrap gap-x-6">

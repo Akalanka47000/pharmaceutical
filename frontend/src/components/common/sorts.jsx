@@ -18,7 +18,7 @@ const Sorts = ({ sorts, setSortQuery }) => {
     setSortLocalState(
       sortLocalState.map((sort) => {
         if (sort.key === key) {
-          sort.direction = direction;
+          return { ...sort, direction };
         }
         return sort;
       }),
@@ -59,10 +59,10 @@ const Sort = ({ sort, onSortChange }) => {
 
   return (
     <div class="w-full h-full flex justify-start items-center">
-      <div class="text-2xl text-white mr-2 cursor-pointer" onClick={setSortOrder}>
-        {directionLocalState === 0 ? <MdOutlineCircle /> : <MdArrowDropDownCircle className={`text-primary transform ${directionLocalState === 1 ? '' : 'rotate-180'}`} />}
+      <div class="text-2xl text-primary-base mr-2 cursor-pointer" onClick={setSortOrder}>
+        {directionLocalState === 0 ? <MdOutlineCircle /> : <MdArrowDropDownCircle className={`text-primary-base transform ${directionLocalState === 1 ? '' : 'rotate-180'}`} />}
       </div>
-      <span class="text-md text-white font-semibold">{sort.label}</span>
+      <span class="text-md text-black font-semibold">{sort.label}</span>
     </div>
   );
 };

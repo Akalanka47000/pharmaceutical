@@ -1,6 +1,6 @@
 import { traced } from '@sliit-foss/functions';
-import { getSystemTotals } from '../../repository';
+import { getCollectionTotals } from '../../repository';
 
 export const getSystemTotalsSvc = () => {
-  return traced(getSystemTotals)();
+  return traced(getCollectionTotals)();
 };

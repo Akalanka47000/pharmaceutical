@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-export const getSystemTotals = async () => {
+export const getCollectionTotals = async () => {
   const db = mongoose.connection.db;
   const [users, orders, succeededPayments, failedPayments, reviews] = await Promise.all([
     db.collection('users').estimatedDocumentCount(),

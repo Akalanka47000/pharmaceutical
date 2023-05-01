@@ -10,4 +10,5 @@ export const serviceHosts = {
   payments: config.PAYMENT_SERVICE_BASE_URL,
   reviews: config.REVIEW_SERVICE_BASE_URL,
   dashboard: config.ADMIN_SERVICE_BASE_URL,
+  reports: config.REPORT_SERVICE_BASE_URL
 };

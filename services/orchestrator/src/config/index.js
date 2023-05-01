@@ -16,6 +16,7 @@ class Base {
       ORDER_SERVICE_BASE_URL: Joi.string().required(),
       REVIEW_SERVICE_BASE_URL: Joi.string().required(),
       ADMIN_SERVICE_BASE_URL: Joi.string().required(),
+      REPORT_SERVICE_BASE_URL: Joi.string().required(),
       REDIS_CONNECTION_STRING: Joi.string().required(),
     };
   }
@@ -31,6 +32,7 @@ class Base {
       ORDER_SERVICE_BASE_URL: process.env.ORDER_SERVICE_BASE_URL,
       REVIEW_SERVICE_BASE_URL: process.env.REVIEW_SERVICE_BASE_URL,
       ADMIN_SERVICE_BASE_URL: process.env.ADMIN_SERVICE_BASE_URL,
+      REPORT_SERVICE_BASE_URL: process.env.ADMIN_SERVICE_BASE_URL,
       REDIS_CONNECTION_STRING: process.env.REDIS_CONNECTION_STRING,
     };
   }

@@ -6,13 +6,13 @@ class Base {
   static get schema() {
     return {
       PORT: Joi.number().optional(),
-      DB_URL: Joi.string().required()
+      DB_URL: Joi.string().required(),
     };
   }
   static get values() {
     return {
       PORT: process.env.PORT ?? 2011,
-      DB_URL: process.env.DB_URL
+      DB_URL: process.env.DB_URL,
     };
   }
 }

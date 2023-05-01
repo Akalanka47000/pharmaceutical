@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Modal } from 'flowbite-react';
 import { toast } from 'react-toastify';
 import { isEmpty, omitBy } from 'lodash';
@@ -13,7 +13,13 @@ const initialFormData = {
 };
 
 const UserModal = ({ user, show, setShow, refresh = () => {} }) => {
-  const [formData, setFormData] = useState(!isEmpty(user) ? user : initialFormData);
+  const [formData, setFormData] = useState(initialFormData);
+
+  useEffect(() => {
+    if (!isEmpty(user)) {
+      setFormData(user);
+    }
+  }, [user]);
 
   const onSubmit = async () => {
     if (!isEmpty(user)) {

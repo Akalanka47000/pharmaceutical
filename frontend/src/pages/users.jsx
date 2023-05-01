@@ -71,10 +71,9 @@ const Users = () => {
               <Button
                 className="px-12 py-2 font-semibold md:text-lg focus:outline-none focus:ring focus:ring-offset-1 bg-primary-base focus:ring-black focus:ring-opacity-10"
                 onClick={() => {
-                  setShowUserModal(true);
+                  setUserToEdit({});
                 }}
               >
-                Add User onClick={() => setUserToEdit({})}
                 Add Admin User
               </Button>
             </div>
@@ -97,7 +96,7 @@ const Users = () => {
                       {userRes.docs?.map((user) => {
                         return (
                           <Table.Row class="bg-white dark:border-gray-700 dark:bg-gray-800">
-                            <Table.Cell class="whitespace-nowrap font-medium text-gray-900 dark:text-white">{user.name ?? '--'}</Table.Cell>
+                            <Table.Cell class="whitespace-nowrap font-medium text-gray-900 dark:text-white pl-6">{user.name ?? '--'}</Table.Cell>
                             <Table.Cell>{user.email ?? '--'}</Table.Cell>
                             <Table.Cell>{user.mobile ?? '--'}</Table.Cell>
                             <Table.Cell>{user.address ?? '--'}</Table.Cell>

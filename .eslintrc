@@ -5,6 +5,7 @@
     "turbo"
   ],
   "rules": {
+    "no-sparse-arrays": "off",
     "newline-per-chained-call": "off",
     "turbo/no-undeclared-env-vars": "off"
   }

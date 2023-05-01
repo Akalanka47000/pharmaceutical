@@ -20,16 +20,16 @@ export function getUsersByRole(role) {
   return User.findOne({ role }).lean();
 }
 
-export function getAllUsers({ filters = {}, sorts = {}, page, limit }) {
+export function getAllUsers({ filters = {}, sorts: sort = {}, page, limit }) {
   if (page && limit) {
     return User.paginate(filters, {
       page,
       limit,
-      sorts,
+      sort,
       lean: true,
     });
   }
-  return User.find(filters).sort(sorts).lean();
+  return User.find(filters).sort(sort).lean();
 }
 
 export function updateUserById(id, data) {

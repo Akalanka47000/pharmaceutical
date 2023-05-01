@@ -13,16 +13,16 @@ export const findUserLatestOrder = (userId) => {
   return Order.findOne({ user: userId, status: orderStatuses.confirmed }).sort({ created_at: -1 }).lean();
 };
 
-export const getAllOrders = ({ filters = {}, sorts = {}, page, limit }) => {
+export const getAllOrders = ({ filters = {}, sorts: sort = {}, page, limit }) => {
   if (page && limit) {
     return Order.paginate(filters, {
       page,
       limit,
-      sorts,
+      sort,
       lean: true,
     });
   }
-  return Order.find(filters).sort(sorts).lean();
+  return Order.find(filters).sort(sort).lean();
 };
 
 export const deleteSingleOrder = (id) => {

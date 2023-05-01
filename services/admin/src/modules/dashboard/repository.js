@@ -13,7 +13,7 @@ export const getCollectionTotals = async () => {
     users,
     orders,
     payments: {
-      suceeded: succeededPayments,
+      succeeded: succeededPayments,
       failed: failedPayments,
     },
     reviews,

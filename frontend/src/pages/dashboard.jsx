@@ -1,28 +1,68 @@
+import { useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, BarController } from "chart.js";
 import { Bar } from 'react-chartjs-2';
-import Layout from '../components/layout';
+import { default as Layout } from '../components/layout';
+import { useEffectOnce } from "../hooks";
+import { getProfitData, getTotals } from "../services";
+import { Divider } from "../components/common";
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, BarController);
 
+const Card = ({ title, value }) => {
+    return <div className="w-full min-h-56 flex flex-col justify-center items-center text-center p-12 border-2 border-primary-base/10 cursor-default shadow-sm hover:shadow-lg rounded-md transition-all duration-300">
+        <div class="font-semibold text-3xl mb-3">{title}</div>
+        <div class="font-semibold text-3xl">{value} </div>
+    </div>
+}
+
 const Dashboard = () => {
+
+    const [totals, setTotals] = useState({})
+    const [profits, setProfits] = useState([])
+
+    useEffectOnce(() => {
+        getProfitData().then((data) => {
+            data && setProfits(data.data)
+        })
+        getTotals().then((data) => {
+            data && setTotals(data.data)
+        })
+    })
+
     return (
         <Layout title="Dashboard">
-            <div class="w-full flex flex-wrap">
-                <Bar
-                    data={{
-                        labels: ["January", "February", "March", "April", "May", "June", "July"],
-                        datasets: [
-                            {
-                                label: "User registrations",
-                                backgroundColor: "rgba(0, 0, 0, 0.8)",
-                                borderColor: "rgba(220, 220, 220, 1)",
-                                pointBackgroundColor: "rgba(220, 220, 220, 1)",
-                                pointBorderColor: "#fff",
-                                data: [40, 20, 12, 39, 10, 40, 39, 80, 40]
-                            }
-                        ],
-                    }}
-                />
+            <div class="w-full flex justify-center items-center flex-wrap px-12">
+                <div className="w-full flex flex-col md:flex-row justify-between items-center gap-4 mt-12 mb-4">
+                    <Card title="Buyer Registrations" value={totals.registrations?.buyers ?? 0} />
+                    <Card title="Seller Registrations" value={totals.registrations?.sellers ?? 0} />
+                </div>
+                <Divider className="my-4"/>
+                <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-4 mt-4 mb-4">
+                    <Card title="Orders" value={totals.orders ?? 0} />
+                    <Card title="Succeeded Payments" value={totals.payments?.succeeded ?? 0} />
+                    <Card title="Failed Payments" value={totals.payments?.succeeded ?? 0} />
+                    <Card title="Reviews" value={totals.reviews ?? 0} />
+                </div>
+                <div className="w-full h-[30vh] mt-6">
+                    <Bar
+                        data={{
+                            labels: profits.map(p => p.month),
+                            datasets: [
+                                {
+                                    label: "Net Income from Commission",
+                                    backgroundColor: "rgba(0, 0, 0, 0.8)",
+                                    borderColor: "rgba(220, 220, 220, 1)",
+                                    pointBackgroundColor: "rgba(220, 220, 220, 1)",
+                                    pointBorderColor: "#fff",
+                                    data: profits.map(p => p.profit)
+                                }
+                            ],
+                        }}
+                        height={350}
+                        width={1920}
+                        options={{ maintainAspectRatio: false }}
+                    />
+                </div>
             </div>
         </Layout>
     );

@@ -4,7 +4,7 @@ import { traced } from '@sliit-foss/functions';
 import { moduleLogger } from '@sliit-foss/module-logger';
 import { orderStatuses } from '@app/constants';
 import { createOrder, getAllOrders, getSingleOrder, deleteSingleOrder, updateSingleOrder, findUserLatestOrder } from '../../repository';
-import { assignToDelivery, getPayment, getProductsByIds, getUserById, makePayment, sendEmail, transferPayment } from '../../../../services';
+import { assignToDelivery, getPayment, getProductsByIds, updateProductsByIds, getUserById, makePayment, sendEmail, transferPayment } from '../../../../services';
 import { calculateTotals } from './helpers/index';
 import { constructReceiptEmailPayload } from './mappers';
 
@@ -88,7 +88,13 @@ export const serviceVerifyOrderPayment = async (id) => {
         }).then((delivery) => serviceUpdateSingleOrder(id, { delivery_id: delivery.waybill_number }));
       }
     });
-    const products = await getProductsByIds(order.products.map((product) => product._id));
+    const productIds = order.products.map((product) => product._id);
+    const [products] = await Promise.all([
+      getProductsByIds(productIds),
+      updateProductsByIds(productIds, {
+        $inc: { stock: -1 },
+      }),
+    ]);
     const sellers = groupBy(products, (product) => product.seller);
     Object.keys(sellers).forEach(async (seller) => {
       seller = await getUserById(seller);

@@ -23,7 +23,7 @@ const Header = () => {
   const user = useSelector((store) => store.data.user.authUser);
 
   const logoutClick = () => {
-    logout();
+    logout(false);
     navigate('/login');
   };
 

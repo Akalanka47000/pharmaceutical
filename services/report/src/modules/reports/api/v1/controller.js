@@ -7,9 +7,9 @@ const reports = express.Router();
 
 reports.get(
   '/orders',
-  tracedAsyncHandler(async function controllerGenerateOrderReport(_req, res) {
-    const data = await traced(serviceGenerateOrderReport)();
-    return toSuccess({ res, data, message: 'Order report generated successfully!' });
+  tracedAsyncHandler(function controllerGenerateOrderReport(req, res) {
+    traced(serviceGenerateOrderReport)(req.headers['x-user-email']);
+    return toSuccess({ res, message: 'Report generation request made!' });
   }),
 );
 

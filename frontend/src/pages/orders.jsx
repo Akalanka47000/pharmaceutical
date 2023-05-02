@@ -4,7 +4,8 @@ import { Table, Pagination } from 'flowbite-react';
 import { debounce, startCase } from 'lodash';
 import { Button, Filters, NoRecords, Sorts } from '../components/common';
 import { default as Layout } from '../components/layout';
-import { getAllOrders } from '../services/order';
+import { getAllOrders, emailOrderReport } from '../services';
+import toast from '../libs/toastify';
 
 const Reports = () => {
     const [orderRes, setorderRes] = useState(null);
@@ -24,6 +25,12 @@ const Reports = () => {
         refresh();
     }, [page, filterQuery, sortQuery]);
 
+    const onClickEmailReport = () => {
+        emailOrderReport().then((data) => {
+            data && toast.success(data.message)
+        })
+    }
+
     return (
         <Layout title="Users">
             <div class="w-screen min-h-screen flex flex-col justify-center items-center">
@@ -37,9 +44,7 @@ const Reports = () => {
                         <div class="w-11/12 flex justify-end items-center mb-6">
                             <Button
                                 className="px-12 py-2 font-semibold md:text-lg focus:outline-none focus:ring focus:ring-offset-1 bg-primary-base focus:ring-black focus:ring-opacity-10"
-                                onClick={() => {
-
-                                }}
+                                onClick={onClickEmailReport}
                             >
                                 Email Report
                             </Button>

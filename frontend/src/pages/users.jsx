@@ -108,7 +108,7 @@ const Users = () => {
                             <Table.Cell>{startCase(user.role)}</Table.Cell>
                             <Table.Cell>
                               <span class="font-medium text-sm">
-                                {user.role != 'seller' || (user.role === 'seller' && user.business?.is_approved) ? (
+                                {user.role !== 'seller' || (user.role === 'seller' && user.business?.is_approved) ? (
                                   <span class={'bg-green-400 text-white py-1.5 rounded-full px-4 cursor-default'}>Success</span>
                                 ) : (
                                   <span onClick={() => approveSeller(user)} class={'bg-red-500 hover:bg-red-600 transition-all duration-300 text-white py-1.5 rounded-full px-4 cursor-pointer'}>

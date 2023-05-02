@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { createObjectCsvWriter as createCsvWriter } from 'csv-writer';
-import { traced } from '@sliit-foss/functions';
+import { traced, bindKey } from '@sliit-foss/functions';
 import { getTransactionDetails } from '../../repository';
 import { sendEmail, uploadFile } from '../../../../services';
 import { constructOrderReportEmailPayload } from './mappers/email';
@@ -19,7 +19,7 @@ export const serviceGenerateOrderReport = async (email) => {
       { id: 'created_at', title: 'Date' },
     ],
   });
-  await traced(csvWriter.writeRecords)(data.map((o) => ({ ...o, user: o.user?.name })));
+  await traced(bindKey(csvWriter, 'writeRecords'))(data.map((o) => ({ ...o, user: o.user?.name })));
   const url = await traced(uploadFile)(path);
   traced(sendEmail)(constructOrderReportEmailPayload(email, url));
   fs.unlinkSync(path);

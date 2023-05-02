@@ -58,7 +58,7 @@ const Reports = () => {
                                             {orderRes.docs?.map((order) => {
                                                 return (
                                                     <Table.Row class="bg-white dark:border-gray-700 dark:bg-gray-800">
-                                                        <Table.Cell class="whitespace-nowrap font-medium text-gray-900 dark:text-white pl-6">{order.user ?? '--'}</Table.Cell>
+                                                        <Table.Cell class="whitespace-nowrap font-medium text-gray-900 dark:text-white pl-6">{order.user?.name ?? '--'}</Table.Cell>
                                                         <Table.Cell>LKR {order.total.toFixed(2) ?? '--'}</Table.Cell>
                                                         <Table.Cell>{startCase(order.status) ?? '--'}</Table.Cell>
                                                     </Table.Row>

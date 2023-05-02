@@ -517,6 +517,9 @@ importers:
       '@app/middleware':
         specifier: workspace*
         version: link:../../packages/middleware
+      '@app/mongoose':
+        specifier: workspace*
+        version: link:../../packages/mongoose
       '@app/server':
         specifier: workspace*
         version: link:../../packages/server

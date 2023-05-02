@@ -1,4 +1,6 @@
+import { isEmpty } from 'lodash';
 import { orderStatuses } from '@app/constants';
+import { aggregatePopulate } from '@app/mongoose';
 import { Order } from './api/v1/models';
 
 export const createOrder = (order) => {
@@ -15,11 +17,23 @@ export const findUserLatestOrder = (userId) => {
 
 export const getAllOrders = ({ filters = {}, sorts: sort = {}, page, limit }) => {
   if (page && limit) {
-    return Order.paginate(filters, {
+    const pipeline = [
+      ...aggregatePopulate(['users', 'user'])
+    ]
+    if (!isEmpty(filters)) {
+      pipeline.unshift({
+        $match: filters
+      })
+    }
+    if (!isEmpty(sort)) {
+      pipeline.unshift({
+        $sort: sort
+      })
+    }
+    const aggregate = Order.aggregate(pipeline)
+    return Order.aggregatePaginate(aggregate, {
       page,
       limit,
-      sort,
-      lean: true,
     });
   }
   return Order.find(filters).sort(sort).lean();

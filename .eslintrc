@@ -4,6 +4,12 @@
     "@sliit-foss/eslint-config-internal",
     "turbo"
   ],
+  "env": {
+    "browser": false,
+    "node": true,
+    "jest": true,
+    "es6": true
+  },
   "rules": {
     "no-sparse-arrays": "off",
     "newline-per-chained-call": "off",

@@ -21,7 +21,7 @@ export const serviceGenerateOrderReport = async (email) => {
   });
   await traced(bindKey(csvWriter, 'writeRecords'))(data.map((o) => ({ ...o, user: o.user?.name })));
   const url = await traced(uploadFile)(path);
-  traced(sendEmail)(constructOrderReportEmailPayload(email, url));
+  await traced(sendEmail)(constructOrderReportEmailPayload(email, url));
   fs.unlinkSync(path);
   return;
 };

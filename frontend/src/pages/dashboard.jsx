@@ -43,7 +43,7 @@ const Dashboard = () => {
                             labels: profits.map(p => p.month),
                             datasets: [
                                 {
-                                    label: "Net Income from Commission",
+                                    label: "Net Income from Commission (LKR)",
                                     backgroundColor: "rgba(0, 0, 0, 0.8)",
                                     borderColor: "rgba(220, 220, 220, 1)",
                                     pointBackgroundColor: "rgba(220, 220, 220, 1)",

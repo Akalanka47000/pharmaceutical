@@ -6,7 +6,7 @@ import { Button, Filters, NoRecords, Sorts } from '../components/common';
 import { default as Layout } from '../components/layout';
 import { UserModal } from '../components/users';
 import { getAllUsers, updateUser } from '../services/user';
-import { toast } from 'react-toastify';
+import toast from '../libs/toastify';
 
 const Users = () => {
   const [userRes, setUserRes] = useState(null);

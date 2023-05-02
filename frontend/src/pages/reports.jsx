@@ -6,10 +6,10 @@ import { Button, Filters, NoRecords, Sorts } from '../components/common';
 import { default as Layout } from '../components/layout';
 import { UserModal } from '../components/users';
 import { getAllUsers, updateUser } from '../services/user';
-import { toast } from 'react-toastify';
+import toast from '../libs/toastify';
 
 const Reports = () => {
-  const [userRes, setUserRes] = useState(null);
+  const [orderRes, setorderRes] = useState(null);
   const [page, setPage] = useState(1);
   const [filterQuery, setFilterQuery] = useState('');
   const [sortQuery, setSortQuery] = useState('');
@@ -17,11 +17,11 @@ const Reports = () => {
   const [showUserModal, setShowUserModal] = useState(false);
   const [userToEdit, setUserToEdit] = useState(null);
 
-  const { filters, sorts } = useSelector((store) => store.ui.users);
+  const { filters, sorts } = useSelector((store) => store.ui.reports);
 
   const refresh = debounce(() => {
     getAllUsers(filterQuery, sortQuery, page).then(({ data }) => {
-      setUserRes(data);
+      setorderRes(data);
     });
   }, 300);
 
@@ -61,8 +61,9 @@ const Reports = () => {
   return (
     <Layout title="Users">
       <div class="w-screen min-h-screen flex flex-col justify-center items-center">
-        {userRes && (
+        {orderRes && (
           <>
+            <h2 class="text-4xl font-bold leading-tight lg:text-5xl mt-12">Transactions</h2>
             <div class="w-11/12 flex flex-col justify-center items-start mt-12">
               <Filters filters={filters} setFilterQuery={setFilterQuery} />
               <Sorts sorts={sorts} setSortQuery={setSortQuery} />
@@ -71,15 +72,15 @@ const Reports = () => {
               <Button
                 className="px-12 py-2 font-semibold md:text-lg focus:outline-none focus:ring focus:ring-offset-1 bg-primary-base focus:ring-black focus:ring-opacity-10"
                 onClick={() => {
-                  setUserToEdit({});
+                  
                 }}
               >
-                Add Admin User
+                Download CSV
               </Button>
             </div>
             <div class="w-11/12 min-h-screen flex flex-col justify-between items-center mb-16">
               <div class="w-full h-full flex flex-col justify-start items-center gap-y-6">
-                {userRes.docs?.length > 0 ? (
+                {orderRes.docs?.length > 0 ? (
                   <Table striped={true} hoverable={true} class="w-full">
                     <Table.Head>
                       <Table.HeadCell>Name</Table.HeadCell>
@@ -93,7 +94,7 @@ const Reports = () => {
                       </Table.HeadCell>
                     </Table.Head>
                     <Table.Body class="divide-y">
-                      {userRes.docs?.map((user) => {
+                      {orderRes.docs?.map((user) => {
                         return (
                           <Table.Row class="bg-white dark:border-gray-700 dark:bg-gray-800">
                             <Table.Cell class="whitespace-nowrap font-medium text-gray-900 dark:text-white pl-6">{user.name ?? '--'}</Table.Cell>
@@ -139,7 +140,7 @@ const Reports = () => {
                     </Table.Body>
                   </Table>
                 ) : (
-                  <NoRecords text="No Users Found" className="mt-12" />
+                  <NoRecords text="No transactions Found" className="mt-12" />
                 )}
               </div>
               <div class="w-full flex justify-end items-center mt-4 md:mt-0">
@@ -149,7 +150,7 @@ const Reports = () => {
                     setPage(newPage);
                   }}
                   showIcons={true}
-                  totalPages={userRes.totalPages}
+                  totalPages={orderRes.totalPages}
                 />
               </div>
             </div>

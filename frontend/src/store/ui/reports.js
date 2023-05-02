@@ -3,49 +3,24 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   filters: [
     {
-      key: 'name',
-      label: 'Name',
-    },
-    {
-      key: 'email',
-      label: 'Email',
-    },
-    {
-      key: 'address',
-      label: 'Address',
-    },
-    {
-      key: 'mobile',
-      label: 'Mobile',
-    },
-    {
-      key: 'role',
-      label: 'Role',
+      key: 'status',
+      label: 'Status',
       options: [
         {
-          key: 'admin',
-          label: 'Admin',
+          key: 'confirmed',
+          label: 'Confirmed',
         },
         {
-          key: 'buyer',
-          label: 'Buyer',
-        },
-        {
-          key: 'seller',
-          label: 'Seller',
-        },
+          key: 'paid',
+          label: 'Paid',
+        }
       ],
     },
   ],
   sorts: [
     {
-      key: 'name',
-      label: 'Sort by name',
-      direction: 0,
-    },
-    {
       key: 'created_at',
-      label: 'Sort by registration date',
+      label: 'Sort by creation date',
       direction: 0,
     },
   ],

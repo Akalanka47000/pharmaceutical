@@ -42,7 +42,7 @@ const Reports = () => {
 
                                 }}
                             >
-                                Download CSV
+                                Download All
                             </Button>
                         </div>
                         <div class="w-11/12 min-h-screen flex flex-col justify-between items-center mb-16">

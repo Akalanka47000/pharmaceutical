@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import mongoosePaginate from 'mongoose-paginate-v2';
+import aggregatePaginate from 'mongoose-aggregate-paginate-v2';
 import { orderStatuses } from '@app/constants';
 
 const OrderSchema = new mongoose.Schema(
@@ -40,7 +40,7 @@ const OrderSchema = new mongoose.Schema(
 
 OrderSchema.index({ createdAt: 1 });
 
-OrderSchema.plugin(mongoosePaginate);
+OrderSchema.plugin(aggregatePaginate);
 
 const Order = mongoose.model('Order', OrderSchema);
 

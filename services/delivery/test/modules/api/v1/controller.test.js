@@ -1,19 +1,20 @@
 import * as httpMocks from 'node-mocks-http';
-import * as dashboardService from '../../../../src/modules/dashboard/api/v1/service';
-import { default as dashboardController } from '../../../../src/modules/dashboard/api/v1/controller';
-import { mockTotalsResponse } from '../../../__mocks__';
+import * as deliveryService from '../../../../src/modules/orders/api/v1/service';
+import { default as deliveryController } from '../../../../src/modules/orders/api/v1/controller';
+import { mockAddOrderRequestBody } from '../../../__mocks__';
 
-describe('dashboard-controller-tests', () => {
+describe('delivery-controller-tests', () => {
   const next = jest.fn();
 
-  it('01. should get totals successfully', () => {
-    jest.spyOn(dashboardService, 'getSystemTotalsSvc').mockResolvedValue(mockTotalsResponse);
+  it('01. should add an order successfully', () => {
+    jest.spyOn(deliveryService, 'serviceCreateOrder').mockResolvedValue(true);
     const req = httpMocks.createRequest({
-      method: 'get',
-      url: '/totals',
+      method: 'post',
+      url: '/',
+      body: mockAddOrderRequestBody,
     });
     const res = httpMocks.createResponse();
-    dashboardController(req, res, next);
+    deliveryController(req, res, next);
     expect(res.statusCode).toBe(200);
   });
 });

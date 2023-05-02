@@ -7,7 +7,7 @@ execSync('npx rimraf ./dist && mkdir dist');
 
 require('esbuild')
   .build({
-    entryPoints: ['./src/**/*.js', './src/**/*.json'],
+    entryPoints: ['./src/**/*.js', './src/**/*.json', './src/**/*.html'],
     bundle: false,
     outdir: './dist',
     platform: 'node',
@@ -18,6 +18,7 @@ require('esbuild')
     keepNames: true,
     loader: {
       '.json': 'copy',
+      '.html': 'copy',
     },
     plugins: [globPlugin()],
   })

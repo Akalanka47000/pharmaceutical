@@ -16,7 +16,7 @@ class Base {
       PORT: process.env.PORT ?? 2011,
       DB_URL: process.env.DB_URL,
       EMAIL_SERVICE_BASE_URL: process.env.EMAIL_SERVICE_BASE_URL,
-      USER_SERVICE_BASE_URL: process.env.USER_SERVICE_BASE_URL
+      USER_SERVICE_BASE_URL: process.env.USER_SERVICE_BASE_URL,
     };
   }
 }

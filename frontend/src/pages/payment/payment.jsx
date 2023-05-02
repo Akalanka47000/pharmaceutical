@@ -70,11 +70,11 @@ const Payment = () => {
   );
 };
 
-export default () => {
+export default function () {
   const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISH_KEY);
   return (
     <Elements stripe={stripePromise}>
       <Payment />
     </Elements>
   );
-};
+}

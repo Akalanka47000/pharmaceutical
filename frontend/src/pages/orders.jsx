@@ -5,7 +5,6 @@ import { debounce, startCase } from 'lodash';
 import { Button, Filters, NoRecords, Sorts } from '../components/common';
 import { default as Layout } from '../components/layout';
 import { getAllOrders } from '../services/order';
-import toast from '../libs/toastify';
 
 const Reports = () => {
     const [orderRes, setorderRes] = useState(null);
@@ -42,7 +41,7 @@ const Reports = () => {
 
                                 }}
                             >
-                                Download All
+                                Email Report
                             </Button>
                         </div>
                         <div class="w-11/12 min-h-screen flex flex-col justify-between items-center mb-16">

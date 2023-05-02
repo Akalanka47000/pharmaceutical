@@ -17,20 +17,18 @@ export const findUserLatestOrder = (userId) => {
 
 export const getAllOrders = ({ filters = {}, sorts: sort = {}, page, limit }) => {
   if (page && limit) {
-    const pipeline = [
-      ...aggregatePopulate(['users', 'user'])
-    ]
+    const pipeline = [...aggregatePopulate(['users', 'user'])];
     if (!isEmpty(filters)) {
       pipeline.unshift({
-        $match: filters
-      })
+        $match: filters,
+      });
     }
     if (!isEmpty(sort)) {
       pipeline.unshift({
-        $sort: sort
-      })
+        $sort: sort,
+      });
     }
-    const aggregate = Order.aggregate(pipeline)
+    const aggregate = Order.aggregate(pipeline);
     return Order.aggregatePaginate(aggregate, {
       page,
       limit,

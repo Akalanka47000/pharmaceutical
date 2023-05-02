@@ -13,7 +13,7 @@ const initialState = {
         {
           key: 'paid',
           label: 'Paid',
-        }
+        },
       ],
     },
   ],

@@ -123,7 +123,7 @@ function ProductDetail() {
                 {product.stock <= 0 ? 'Out of Stock' : cart.includes(productId) ? 'Remove from cart' : 'Add to cart'}
               </Button>
               {user.role === 'admin' ||
-                (user.role == 'seller' && user._id == product.seller?._id && (
+                (user.role === 'seller' && user._id === product.seller?._id && (
                   <>
                     <Link to="/">
                       <Button className="w-full py-4 text-base bg-red-500 hover:bg-red-600 mt-4" onClick={() => deleteProduct(productId)}>

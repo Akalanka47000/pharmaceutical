@@ -30,7 +30,7 @@ const Reports = () => {
             <div class="w-screen min-h-screen flex flex-col justify-center items-center">
                 {orderRes && (
                     <>
-                        <h2 class="text-4xl font-bold leading-tight lg:text-5xl mt-12">Transactions</h2>
+                        <h2 class="text-4xl font-bold leading-tight lg:text-5xl mt-12">Order List</h2>
                         <div class="w-11/12 flex flex-col justify-center items-start mt-12">
                             <Filters filters={filters} setFilterQuery={setFilterQuery} />
                             <Sorts sorts={sorts} setSortQuery={setSortQuery} />

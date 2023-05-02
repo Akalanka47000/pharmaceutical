@@ -13,7 +13,7 @@ const Reports = () => {
     const [filterQuery, setFilterQuery] = useState('');
     const [sortQuery, setSortQuery] = useState('');
 
-    const { filters, sorts } = useSelector((store) => store.ui.reports);
+    const { filters, sorts } = useSelector((store) => store.ui.orders);
 
     const refresh = debounce(() => {
         getAllOrders(filterQuery, sortQuery, page).then(({ data }) => {

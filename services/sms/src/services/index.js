@@ -1,1 +1,1 @@
-export * from './twillio.service';
+export * from './twilio.service';

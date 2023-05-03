@@ -26,7 +26,8 @@ RUN pnpm install --ignore-scripts
 COPY --from=cleaner /app/out/full/ .
 
 ARG VITE_SERVER_URL
-ARG VITE_STRIPE_PUBLIC_KEY
+ARG VITE_STRIPE_PUBLISH_KEY
+ARG VITE_FRONTEND_BASE_URL
 
 RUN pnpm turbo run build --filter=frontend
 

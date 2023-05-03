@@ -15,8 +15,33 @@ export async function getTicketById(id) {
       },
     },
     ...aggregatePopulate(['users', 'user']),
+    {
+      $unwind: '$replies',
+    },
+    {
+      $lookup: {
+        from: 'users',
+        localField: 'replies.user',
+        foreignField: '_id',
+        as: 'replies.user',
+      },
+    },
+    {
+      $unwind: '$replies.user',
+    },
+    {
+      $group: {
+        _id: '$_id',
+        replies: { $push: '$replies' },
+        status: { $first: '$status' },
+        title: { $first: '$title' },
+        description: { $first: '$description' },
+        user: { $first: '$user' },
+        created_at: { $first: '$created_at' },
+      },
+    },
   ]);
-  return ticket?.[0]
+  return ticket?.[0];
 }
 
 export function getAllTickets({ filters = {}, sorts: sort = {}, page, limit }) {

@@ -22,6 +22,7 @@ const TicketSchema = new Schema(
     },
     replies: [
       {
+        _id: false,
         message: {
           type: SchemaTypes.String,
           required: true,
@@ -29,6 +30,10 @@ const TicketSchema = new Schema(
         user: {
           type: SchemaTypes.ObjectId,
           required: true,
+        },
+        timestamp: {
+          type: Date,
+          default: Date.now,
         },
       },
     ],

@@ -58,19 +58,21 @@ function TicketDetail() {
                         </Button>
                     }
                 </div>
-                <form className='w-full flex mt-4 gap-x-6' onSubmit={onAddReply}>
-                    <Input
-                        placeholder="Type something here..."
-                        value={reply}
-                        className="h-12 sm:h-14"
-                        wrapperclasses="w-full"
-                        onChange={(e) => setReply(e.target.value)}
-                        required
-                    />
-                    <Button className='p-3 rounded-full w-16 h-16' type="submit">
-                        <BsFillSendFill className='w-6 h-6' />
-                    </Button>
-                </form>
+                {
+                    ticket.status === "open" && <form className='w-full flex mt-4 gap-x-6' onSubmit={onAddReply}>
+                        <Input
+                            placeholder="Type something here..."
+                            value={reply}
+                            className="h-12 sm:h-14"
+                            wrapperclasses="w-full"
+                            onChange={(e) => setReply(e.target.value)}
+                            required
+                        />
+                        <Button className='p-3 rounded-full w-16 h-16' type="submit">
+                            <BsFillSendFill className='w-6 h-6' />
+                        </Button>
+                    </form>
+                }
             </div>
         </Layout>
     );

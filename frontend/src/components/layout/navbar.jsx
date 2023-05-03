@@ -58,11 +58,6 @@ const Header = () => {
         {!isEmpty(user) && (
           <>
             <NavLink path="/cart" label="Cart" />
-          </>
-        )}
-        <NavLink path="/contact" label="Contact" />
-        {!isEmpty(user) && (
-          <>
             <NavLink path="/tickets" label="Tickets" />
           </>
         )}
@@ -73,6 +68,7 @@ const Header = () => {
             <NavLink path="/users" label="Users" />
           </>
         )}
+         <NavLink path="/contact" label="Contact" />
       </Navbar.Collapse>
     </Navbar>
   );

@@ -7,15 +7,16 @@ export function createTicketInDB(ticket) {
   return Ticket.create(ticket);
 }
 
-export function getTicketById(id) {
-  return Ticket.aggregate([
+export async function getTicketById(id) {
+  const ticket = await Ticket.aggregate([
     {
       $match: {
-        _id: mongoose.Types.ObjectId(id)
-      }
+        _id: mongoose.Types.ObjectId(id),
+      },
     },
-    ...aggregatePopulate(['users', 'user'])
+    ...aggregatePopulate(['users', 'user']),
   ]);
+  return ticket?.[0]
 }
 
 export function getAllTickets({ filters = {}, sorts: sort = {}, page, limit }) {

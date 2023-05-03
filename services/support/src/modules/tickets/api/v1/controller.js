@@ -39,7 +39,7 @@ ticket.get(
   }),
 );
 
-ticket.patch(
+ticket.post(
   '/:id/reply',
   celebrate({ [Segments.PARAMS]: objectIdSchema(), [Segments.BODY]: replyTicketSchema }),
   tracedAsyncHandler(async function controllerReplyTicketById(req, res) {

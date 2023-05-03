@@ -20,7 +20,7 @@ const TicketSchema = new Schema(
       type: SchemaTypes.String,
       required: true,
     },
-    discussion: [
+    replies: [
       {
         message: {
           type: SchemaTypes.String,

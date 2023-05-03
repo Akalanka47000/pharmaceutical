@@ -8,6 +8,7 @@ export { default as Contact } from './contact';
 export { default as Dashboard } from './dashboard';
 export { default as Profile } from './profile';
 export { default as Orders } from './orders';
+export { default as Tickets } from './tickets';
 export { default as Cart } from './cart';
 export * from './auth';
 export * from './payment';

@@ -21,7 +21,7 @@ const NotFound = () => {
             ></polygon>
           </svg>
           <p class="text-3xl">Looks like our services are currently offline</p>
-          <a rel="noopener noreferrer" href="#" class="px-8 py-3 font-semibold rounded bg-primary-base text-white">
+          <a rel="noopener noreferrer" href="/" class="px-8 py-3 font-semibold rounded bg-primary-base text-white">
             Back to homepage
           </a>
         </div>

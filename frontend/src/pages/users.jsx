@@ -118,9 +118,9 @@ const Users = () => {
                               </span>
                             </Table.Cell>
                             <Table.Cell>
-                              <a onClick={() => toggleActiveState(user)} class="cursor-pointer font-medium hover:underline">
+                              <span onClick={() => toggleActiveState(user)} class="cursor-pointer font-medium hover:underline">
                                 {user.is_active ? <span class={'text-red-500'}>Deactivate</span> : <span class="text-green-500">Activate</span>}
-                              </a>
+                              </span>
                             </Table.Cell>
                             <Table.Cell>
                               <span class="font-medium text-primary-base cursor-default">

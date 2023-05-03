@@ -61,16 +61,16 @@ const Header = () => {
           </>
         )}
         <NavLink path="/contact" label="Contact" />
-        {user?.role === 'admin' && (
-          <>
-            <NavLink path="/users" label="Users" />
-            <NavLink path="/dashboard" label="Dashboard" />
-            <NavLink path="/orders" label="Orders" />
-          </>
-        )}
         {!isEmpty(user) && (
           <>
             <NavLink path="/tickets" label="Tickets" />
+          </>
+        )}
+        {user?.role === 'admin' && (
+          <>
+            <NavLink path="/dashboard" label="Dashboard" />
+            <NavLink path="/orders" label="Orders" />
+            <NavLink path="/users" label="Users" />
           </>
         )}
       </Navbar.Collapse>

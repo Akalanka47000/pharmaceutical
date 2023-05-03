@@ -1,12 +1,10 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Navbar } from 'flowbite-react';
 import { UserIcon, LogoutIcon } from '@heroicons/react/solid';
 import { isEmpty } from 'lodash';
 import { Button } from '../common';
 import { logout } from '../../services';
-import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
 
 const NavLink = ({ path, label }) => {
   const location = useLocation();

@@ -95,7 +95,7 @@ const Users = () => {
                     <Table.Body class="divide-y">
                       {userRes.docs?.map((user) => {
                         return (
-                          <Table.Row class="bg-white dark:border-gray-700 dark:bg-gray-800">
+                          <Table.Row key={user._id} class="bg-white dark:border-gray-700 dark:bg-gray-800">
                             <Table.Cell class="whitespace-nowrap font-medium text-gray-900 dark:text-white pl-6">{user.name ?? '--'}</Table.Cell>
                             <Table.Cell>{user.email ?? '--'}</Table.Cell>
                             <Table.Cell>{user.mobile ?? '--'}</Table.Cell>

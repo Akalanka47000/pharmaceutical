@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import { Table, Pagination } from 'flowbite-react';
+import { FolderOpenIcon } from '@heroicons/react/solid';
 import { debounce, startCase } from 'lodash';
 import { Button, Filters, NoRecords, Sorts } from '../components/common';
 import { default as Layout } from '../components/layout';
@@ -16,6 +18,8 @@ const Tickets = () => {
     const [showTicketModal, setShowTicketModal] = useState(false);
 
     const { filters, sorts } = useSelector((store) => store.ui.tickets);
+
+    const navigate = useNavigate();
 
     const refresh = debounce(() => {
         getAllTickets(filterQuery, sortQuery, page).then(({ data }) => {
@@ -59,12 +63,13 @@ const Tickets = () => {
                                         <Table.Body class="divide-y">
                                             {ticketRes.docs?.map((ticket) => {
                                                 return (
-                                                    <Table.Row class="bg-white dark:border-gray-700 dark:bg-gray-800">
+                                                    <Table.Row key={ticket._id} class="bg-white dark:border-gray-700 dark:bg-gray-800 cursor-pointer" onClick={() => navigate(`tickets/${ticket._id}`)}>
                                                         <Table.Cell class="whitespace-nowrap font-medium text-gray-900 dark:text-white pl-6">{ticket._id}</Table.Cell>
                                                         <Table.Cell>{ticket.user?.name ?? '--'}</Table.Cell>
                                                         <Table.Cell>{ticket.title ?? '--'}</Table.Cell>
                                                         <Table.Cell>{ticket.description ?? '--'}</Table.Cell>
                                                         <Table.Cell>{startCase(ticket.status) ?? '--'}</Table.Cell>
+                                                        <Table.Cell><Link to={`tickets/${ticket._id}`}><FolderOpenIcon className='w-8 h-8' /></Link></Table.Cell>
                                                     </Table.Row>
                                                 );
                                             })}

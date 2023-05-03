@@ -27,7 +27,10 @@ function TicketDetail() {
     const onAddReply = (e) => {
         e.preventDefault()
         addReply(ticketId, reply).then((data) => {
-            data && toast.success(data.message)
+            if (data) {
+                toast.success(data.message)
+                refresh()
+            }
         })
     };
 
@@ -45,7 +48,7 @@ function TicketDetail() {
             <div class=" bg-gray-100/10 rounded-xl shadow border-2 mx-6 md:mx-24 my-6 p-8 relative">
                 <div class="font-bold text-4xl">{ticket.title}</div>
                 <div class="font-semibold text-xl mt-2 text-ellipsis break-all">{ticket.description}</div>
-                <div className='w-full flex mt-4 gap-x-4'>
+                <div className='w-full flex mt-4 gap-x-4 mb-4'>
                     <span className={`${ticket.status === "open" ? "bg-red-500" : "bg-green-400"} text-white py-2 rounded-md px-4 md:text-lg cursor-default font-medium text-sm`}>
                         {startCase(ticket.status)}
                     </span>
@@ -58,6 +61,15 @@ function TicketDetail() {
                         </Button>
                     }
                 </div>
+                {
+                    ticket.replies?.map((reply) => {
+                        return <div key={reply._id} className='my-6 border-b-2' dir={user._id === reply.user?._id ? "rtl" : "ltr"}>
+                            <div class="font-semibold text-md mt-2">{reply.user?.name}</div>
+                            <div class="font-normal text-xs mt-2">{new Date(reply.timestamp).toLocaleString()}</div>
+                            <div class="font-semibold text-md mt-2 mb-6 text-ellipsis break-all">{reply.message}</div>
+                        </div>
+                    })
+                }
                 {
                     ticket.status === "open" && <form className='w-full flex mt-4 gap-x-6' onSubmit={onAddReply}>
                         <Input

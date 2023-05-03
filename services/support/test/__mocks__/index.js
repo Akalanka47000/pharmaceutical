@@ -1,9 +1,5 @@
-export const mockAddOrderRequestBody = {
-  invoice_id: '644f5837328b625f6e3bc6ca',
-  origin: 'Kandy',
-  destination: 'Colombo',
-  customer_details: {
-    email: 'akalankaperera128@gmail.com',
-    phone: '94765678987',
-  },
+export const mockAddTicketRequestBody = {
+  user: "644f5837328b625f6e3bc6ca",
+  title: "Refund request",
+  description: "I would like to request a refund for order - #123f5837318b635f6e3bc6ca",
 };

@@ -17,6 +17,7 @@
   "dependencies": {
     "@app/constants": "workspace*",
     "@app/middleware": "workspace*",
+    "@app/mongoose": "workspace*",
     "@app/server": "workspace*",
     "@sliit-foss/functions": "2.1.4",
     "@sliit-foss/module-logger": "1.1.2",
@@ -27,7 +28,7 @@
     "http-errors": "2.0.0",
     "lodash": "4.17.10",
     "mongoose": "^6.3.4",
-    "mongoose-paginate-v2": "1.6.3"
+    "mongoose-aggregate-paginate-v2": "1.0.6"
   },
   "devDependencies": {
     "nodemon": "1.12.1"

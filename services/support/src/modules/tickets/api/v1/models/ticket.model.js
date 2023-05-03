@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import mongoosePaginate from 'mongoose-paginate-v2';
+import aggregatePaginate from 'mongoose-aggregate-paginate-v2';
 import { statuses } from '../../../constants';
 
 const { Schema } = mongoose;
@@ -46,7 +46,7 @@ const TicketSchema = new Schema(
 
 TicketSchema.index({ createdAt: 1 });
 
-TicketSchema.plugin(mongoosePaginate);
+TicketSchema.plugin(aggregatePaginate);
 
 const Ticket = mongoose.model('Ticket', TicketSchema);
 

@@ -1,3 +1,5 @@
+import { isEmpty } from 'lodash';
+import { aggregatePopulate } from '@app/mongoose';
 import { Ticket } from './api/v1/models';
 
 export function createTicketInDB(order) {
@@ -10,11 +12,21 @@ export function getTicketById(id) {
 
 export function getAllTickets({ filters = {}, sorts: sort = {}, page, limit }) {
   if (page && limit) {
-    return Ticket.paginate(filters, {
+    const pipeline = [...aggregatePopulate(['users', 'user'])];
+    if (!isEmpty(filters)) {
+      pipeline.unshift({
+        $match: filters,
+      });
+    }
+    if (!isEmpty(sort)) {
+      pipeline.unshift({
+        $sort: sort,
+      });
+    }
+    const aggregate = Ticket.aggregate(pipeline);
+    return Ticket.aggregatePaginate(aggregate, {
       page,
       limit,
-      sort,
-      lean: true,
     });
   }
   return Ticket.find(filters).sort(sort).lean();

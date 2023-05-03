@@ -70,7 +70,11 @@ const Header = () => {
             <NavLink path="/orders" label="Orders" />
           </>
         )}
-        <NavLink path="/tickets" label="Tickets" />
+        {!isEmpty(user) && (
+          <>
+            <NavLink path="/tickets" label="Tickets" />
+          </>
+        )}
       </Navbar.Collapse>
     </Navbar>
   );

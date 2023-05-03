@@ -4,20 +4,19 @@ import { Table, Pagination } from 'flowbite-react';
 import { debounce, startCase } from 'lodash';
 import { Button, Filters, NoRecords, Sorts } from '../components/common';
 import { default as Layout } from '../components/layout';
-import { getAllOrders, emailOrderReport } from '../services';
-import toast from '../libs/toastify';
+import { getAllTickets } from '../services';
 
 const Tickets = () => {
-    const [ticketRes, setticketRes] = useState(null);
+    const [ticketRes, setTicketRes] = useState(null);
     const [page, setPage] = useState(1);
     const [filterQuery, setFilterQuery] = useState('');
     const [sortQuery, setSortQuery] = useState('');
 
-    const { filters, sorts } = useSelector((store) => store.ui.orders);
+    const { filters, sorts } = useSelector((store) => store.ui.tickets);
 
     const refresh = debounce(() => {
-        getAllOrders(filterQuery, sortQuery, page).then(({ data }) => {
-            setticketRes(data);
+        getAllTickets(filterQuery, sortQuery, page).then(({ data }) => {
+            setTicketRes(data);
         });
     }, 300);
 
@@ -25,18 +24,16 @@ const Tickets = () => {
         refresh();
     }, [page, filterQuery, sortQuery]);
 
-    const onClickEmailReport = () => {
-        emailOrderReport().then((data) => {
-            data && toast.success(data.message)
-        })
+    const onClickCreateReport = () => {
+
     }
 
     return (
-        <Layout title="Users">
+        <Layout title="Tickets">
             <div class="w-screen min-h-screen flex flex-col justify-center items-center">
                 {ticketRes && (
                     <>
-                        <h2 class="text-4xl font-bold leading-tight lg:text-5xl mt-12">Order List</h2>
+                        <h2 class="text-4xl font-bold leading-tight lg:text-5xl mt-12">Ticket List</h2>
                         <div class="w-11/12 flex flex-col justify-center items-start mt-12">
                             <Filters filters={filters} setFilterQuery={setFilterQuery} />
                             <Sorts sorts={sorts} setSortQuery={setSortQuery} />
@@ -44,9 +41,9 @@ const Tickets = () => {
                         <div class="w-11/12 flex justify-end items-center mb-6">
                             <Button
                                 className="px-12 py-2 font-semibold md:text-lg focus:outline-none focus:ring focus:ring-offset-1 bg-primary-base focus:ring-black focus:ring-opacity-10"
-                                onClick={onClickEmailReport}
+                                onClick={onClickCreateReport}
                             >
-                                Email Report
+                                Create Ticket
                             </Button>
                         </div>
                         <div class="w-11/12 min-h-screen flex flex-col justify-between items-center mb-16">
@@ -54,24 +51,28 @@ const Tickets = () => {
                                 {ticketRes.docs?.length > 0 ? (
                                     <Table striped={true} hoverable={true} class="w-full">
                                         <Table.Head>
+                                            <Table.HeadCell>ID</Table.HeadCell>
                                             <Table.HeadCell>User</Table.HeadCell>
-                                            <Table.HeadCell>Total</Table.HeadCell>
+                                            <Table.HeadCell>Title</Table.HeadCell>
+                                            <Table.HeadCell>Description</Table.HeadCell>
                                             <Table.HeadCell>Status</Table.HeadCell>
                                         </Table.Head>
                                         <Table.Body class="divide-y">
-                                            {ticketRes.docs?.map((order) => {
+                                            {ticketRes.docs?.map((ticket) => {
                                                 return (
                                                     <Table.Row class="bg-white dark:border-gray-700 dark:bg-gray-800">
-                                                        <Table.Cell class="whitespace-nowrap font-medium text-gray-900 dark:text-white pl-6">{order.user?.name ?? '--'}</Table.Cell>
-                                                        <Table.Cell>LKR {order.total.toFixed(2) ?? '--'}</Table.Cell>
-                                                        <Table.Cell>{startCase(order.status) ?? '--'}</Table.Cell>
+                                                        <Table.Cell class="whitespace-nowrap font-medium text-gray-900 dark:text-white pl-6">{ticket._id}</Table.Cell>
+                                                        <Table.Cell>{ticket.user?.name ?? '--'}</Table.Cell>
+                                                        <Table.Cell>{ticket.title ?? '--'}</Table.Cell>
+                                                        <Table.Cell>{ticket.description ?? '--'}</Table.Cell>
+                                                        <Table.Cell>{startCase(ticket.status) ?? '--'}</Table.Cell>
                                                     </Table.Row>
                                                 );
                                             })}
                                         </Table.Body>
                                     </Table>
                                 ) : (
-                                    <NoRecords text="No transactions Found" className="mt-12" />
+                                    <NoRecords text="No tickets found" className="mt-12" />
                                 )}
                             </div>
                             <div class="w-full flex justify-end items-center mt-4 md:mt-0">

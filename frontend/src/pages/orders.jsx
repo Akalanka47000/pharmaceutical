@@ -32,7 +32,7 @@ const Reports = () => {
     }
 
     return (
-        <Layout title="Users">
+        <Layout title="Orders">
             <div class="w-screen min-h-screen flex flex-col justify-center items-center">
                 {orderRes && (
                     <>
@@ -71,7 +71,7 @@ const Reports = () => {
                                         </Table.Body>
                                     </Table>
                                 ) : (
-                                    <NoRecords text="No transactions Found" className="mt-12" />
+                                    <NoRecords text="No orders found" className="mt-12" />
                                 )}
                             </div>
                             <div class="w-full flex justify-end items-center mt-4 md:mt-0">

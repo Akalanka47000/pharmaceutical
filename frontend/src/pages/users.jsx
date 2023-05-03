@@ -139,7 +139,7 @@ const Users = () => {
                     </Table.Body>
                   </Table>
                 ) : (
-                  <NoRecords text="No Users Found" className="mt-12" />
+                  <NoRecords text="No users found" className="mt-12" />
                 )}
               </div>
               <div class="w-full flex justify-end items-center mt-4 md:mt-0">

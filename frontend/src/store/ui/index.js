@@ -14,5 +14,5 @@ export default combineReducers({
   users,
   products,
   orders,
-  tickets
+  tickets,
 });

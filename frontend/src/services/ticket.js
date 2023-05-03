@@ -16,6 +16,6 @@ export const addReply = async (ticketId, message) => {
   return await apiRequest(() => axiosInstance.post(`/api/v1/tickets/${ticketId}/reply`, { message }));
 };
 
-export const deleteTicket = async (ticketId) => {
-  return await apiRequest(() => axiosInstance.delete(`/api/v1/tickets/${ticketId}`));
+export const closeTicket = async (ticketId) => {
+  return await apiRequest(() => axiosInstance.patch(`/api/v1/tickets/${ticketId}/close`));
 };

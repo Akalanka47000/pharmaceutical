@@ -31,3 +31,7 @@ export function getAllTickets({ filters = {}, sorts: sort = {}, page, limit }) {
   }
   return Ticket.find(filters).sort(sort).lean();
 }
+
+export function updateTicketById(id, data) {
+  return Ticket.findByIdAndUpdate(id, data, { new: true }).lean();
+}

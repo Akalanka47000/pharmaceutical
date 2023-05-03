@@ -15,6 +15,7 @@ orchestrator.all('/:api_version/:module*', (req, res, next) => {
     case 'users':
     case 'dashboard':
     case 'reports':
+    case 'tickets':
       return routeGuards[req.params.module](req, res, next);
     case 'payments':
     case 'emails':

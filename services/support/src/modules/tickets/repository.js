@@ -8,40 +8,49 @@ export function createTicketInDB(ticket) {
 }
 
 export async function getTicketById(id) {
-  const ticket = await Ticket.aggregate([
-    {
-      $match: {
-        _id: mongoose.Types.ObjectId(id),
+  const ticket = (
+    await Ticket.aggregate([
+      {
+        $match: {
+          _id: mongoose.Types.ObjectId(id),
+        },
       },
-    },
-    ...aggregatePopulate(['users', 'user']),
-    {
-      $unwind: '$replies',
-    },
-    {
-      $lookup: {
-        from: 'users',
-        localField: 'replies.user',
-        foreignField: '_id',
-        as: 'replies.user',
+      ...aggregatePopulate(['users', 'user']),
+      {
+        $unwind: {
+          path: '$replies',
+          preserveNullAndEmptyArrays: true,
+        },
       },
-    },
-    {
-      $unwind: '$replies.user',
-    },
-    {
-      $group: {
-        _id: '$_id',
-        replies: { $push: '$replies' },
-        status: { $first: '$status' },
-        title: { $first: '$title' },
-        description: { $first: '$description' },
-        user: { $first: '$user' },
-        created_at: { $first: '$created_at' },
+      {
+        $lookup: {
+          from: 'users',
+          localField: 'replies.user',
+          foreignField: '_id',
+          as: 'replies.user',
+        },
       },
-    },
-  ]);
-  return ticket?.[0];
+      {
+        $unwind: {
+          path: '$replies.user',
+          preserveNullAndEmptyArrays: true,
+        },
+      },
+      {
+        $group: {
+          _id: '$_id',
+          replies: { $push: '$replies' },
+          status: { $first: '$status' },
+          title: { $first: '$title' },
+          description: { $first: '$description' },
+          user: { $first: '$user' },
+          created_at: { $first: '$created_at' },
+        },
+      },
+    ])
+  )?.[0];
+  ticket.replies = ticket.replies.filter((r) => !isEmpty(r));
+  return ticket;
 }
 
 export function getAllTickets({ filters = {}, sorts: sort = {}, page, limit }) {

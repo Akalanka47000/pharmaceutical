@@ -2,8 +2,8 @@ import { isEmpty } from 'lodash';
 import { aggregatePopulate } from '@app/mongoose';
 import { Ticket } from './api/v1/models';
 
-export function createTicketInDB(order) {
-  return Ticket.create(order);
+export function createTicketInDB(ticket) {
+  return Ticket.create(ticket);
 }
 
 export function getTicketById(id) {

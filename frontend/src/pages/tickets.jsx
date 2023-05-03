@@ -4,6 +4,7 @@ import { Table, Pagination } from 'flowbite-react';
 import { debounce, startCase } from 'lodash';
 import { Button, Filters, NoRecords, Sorts } from '../components/common';
 import { default as Layout } from '../components/layout';
+import { TicketModal } from '../components/tickets';
 import { getAllTickets } from '../services';
 
 const Tickets = () => {
@@ -11,6 +12,8 @@ const Tickets = () => {
     const [page, setPage] = useState(1);
     const [filterQuery, setFilterQuery] = useState('');
     const [sortQuery, setSortQuery] = useState('');
+
+    const [showTicketModal, setShowTicketModal] = useState(false);
 
     const { filters, sorts } = useSelector((store) => store.ui.tickets);
 
@@ -23,10 +26,6 @@ const Tickets = () => {
     useEffect(() => {
         refresh();
     }, [page, filterQuery, sortQuery]);
-
-    const onClickCreateReport = () => {
-
-    }
 
     return (
         <Layout title="Tickets">
@@ -41,7 +40,7 @@ const Tickets = () => {
                         <div class="w-11/12 flex justify-end items-center mb-6">
                             <Button
                                 className="px-12 py-2 font-semibold md:text-lg focus:outline-none focus:ring focus:ring-offset-1 bg-primary-base focus:ring-black focus:ring-opacity-10"
-                                onClick={onClickCreateReport}
+                                onClick={() => setShowTicketModal(true)}
                             >
                                 Create Ticket
                             </Button>
@@ -89,6 +88,7 @@ const Tickets = () => {
                     </>
                 )}
             </div>
+            <TicketModal show={showTicketModal} setShow={setShowTicketModal} refresh={refresh} />
         </Layout>
     );
 };

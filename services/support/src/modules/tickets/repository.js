@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import { isEmpty } from 'lodash';
 import { aggregatePopulate } from '@app/mongoose';
 import { Ticket } from './api/v1/models';
@@ -7,7 +8,14 @@ export function createTicketInDB(ticket) {
 }
 
 export function getTicketById(id) {
-  return Ticket.findById(id).lean();
+  return Ticket.aggregate([
+    {
+      $match: {
+        _id: mongoose.Types.ObjectId(id)
+      }
+    },
+    ...aggregatePopulate(['users', 'user'])
+  ]);
 }
 
 export function getAllTickets({ filters = {}, sorts: sort = {}, page, limit }) {

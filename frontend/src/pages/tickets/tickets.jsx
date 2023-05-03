@@ -4,10 +4,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Table, Pagination } from 'flowbite-react';
 import { FolderOpenIcon } from '@heroicons/react/solid';
 import { debounce, startCase } from 'lodash';
-import { Button, Filters, NoRecords, Sorts } from '../components/common';
-import { default as Layout } from '../components/layout';
-import { TicketModal } from '../components/tickets';
-import { getAllTickets } from '../services';
+import { Button, Filters, NoRecords, Sorts } from '../../components/common';
+import { default as Layout } from '../../components/layout';
+import { TicketModal } from '../../components/tickets';
+import { getAllTickets } from '../../services';
 
 const Tickets = () => {
     const [ticketRes, setTicketRes] = useState(null);
@@ -63,7 +63,7 @@ const Tickets = () => {
                                         <Table.Body class="divide-y">
                                             {ticketRes.docs?.map((ticket) => {
                                                 return (
-                                                    <Table.Row key={ticket._id} class="bg-white dark:border-gray-700 dark:bg-gray-800 cursor-pointer" onClick={() => navigate(`tickets/${ticket._id}`)}>
+                                                    <Table.Row key={ticket._id} class="bg-white dark:border-gray-700 dark:bg-gray-800 cursor-pointer" onClick={() => navigate(`${ticket._id}`)}>
                                                         <Table.Cell class="whitespace-nowrap font-medium text-gray-900 dark:text-white pl-6">{ticket._id}</Table.Cell>
                                                         <Table.Cell>{ticket.user?.name ?? '--'}</Table.Cell>
                                                         <Table.Cell>{ticket.title ?? '--'}</Table.Cell>

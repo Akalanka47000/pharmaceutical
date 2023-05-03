@@ -68,7 +68,9 @@ const Tickets = () => {
                                                         <Table.Cell>{ticket.user?.name ?? '--'}</Table.Cell>
                                                         <Table.Cell>{ticket.title ?? '--'}</Table.Cell>
                                                         <Table.Cell>{ticket.description ?? '--'}</Table.Cell>
-                                                        <Table.Cell>{startCase(ticket.status) ?? '--'}</Table.Cell>
+                                                        <Table.Cell>
+                                                            <span className={`${ticket.status === "open" ? "bg-red-500" : "bg-green-400"} text-white py-1.5 rounded-full px-4 cursor-default font-medium text-sm`}>{startCase(ticket.status)}</span>
+                                                        </Table.Cell>
                                                         <Table.Cell><Link to={`tickets/${ticket._id}`}><FolderOpenIcon className='w-8 h-8' /></Link></Table.Cell>
                                                     </Table.Row>
                                                 );

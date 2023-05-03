@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { default as jwtDecode } from 'jwt-decode';
 import { setAuthUser } from '../store/data/user';
 
-const blacklistedPaths = ['payment', 'payment-confirmation', 'dashboard', 'orders', 'tickets'];
+const protectedRoutes = ['payment', 'payment-confirmation', 'dashboard', 'orders', 'tickets'];
 
 const useAuth = () => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const useAuth = () => {
 
   const checkUser = () => {
     const token = localStorage.getItem('access_token') || sessionStorage.getItem('access_token');
-    if (!token && blacklistedPaths.includes(window.location.pathname.split('/')[1])) {
+    if (!token && protectedRoutes.includes(window.location.pathname.split('/')[1])) {
       navigate('/login');
     }
     if (token) {

@@ -5,6 +5,7 @@ import register from './register';
 import users from './users';
 import products from './products';
 import orders from './orders';
+import tickets from './tickets';
 
 export default combineReducers({
   global,
@@ -13,4 +14,5 @@ export default combineReducers({
   users,
   products,
   orders,
+  tickets
 });

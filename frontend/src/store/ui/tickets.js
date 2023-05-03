@@ -7,12 +7,12 @@ const initialState = {
       label: 'Status',
       options: [
         {
-          key: 'confirmed',
-          label: 'Confirmed',
+          key: 'open',
+          label: 'Open',
         },
         {
-          key: 'paid',
-          label: 'Paid',
+          key: 'resolved',
+          label: 'Resolved',
         },
       ],
     },
@@ -27,11 +27,11 @@ const initialState = {
 };
 
 export const slice = createSlice({
-  name: 'orders',
+  name: 'tickets',
   initialState,
   reducers: {},
 });
 
-export const {} = slice.actions;
+export const { } = slice.actions;
 
 export default slice.reducer;

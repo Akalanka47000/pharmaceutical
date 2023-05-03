@@ -68,6 +68,7 @@ const Header = () => {
             <NavLink path="/users" label="Users" />
             <NavLink path="/dashboard" label="Dashboard" />
             <NavLink path="/orders" label="Orders" />
+            <NavLink path="/tickets" label="Tickets" />
           </>
         )}
       </Navbar.Collapse>

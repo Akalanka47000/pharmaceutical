@@ -1,73 +1,57 @@
-# Turborepo starter
+# pharmaceutical
 
-This is an official pnpm starter turborepo.
+This is a [Turborepo](https://turbo.build/repo) designed to house all components of the Pharmaceutical project.
 
-## What's inside?
+</br>
 
-This turborepo uses [pnpm](https://pnpm.io) as a package manager. It includes the following packages/apps:
+## File Structure
 
-### Apps and Packages
+- .github - GitHub Actions workflows
+- .husky - Git hooks
+- frontend - The frontend application
+- packages - All shared packages
+  - constants - Common constants
+  - middleware - Common middleware functions for Express
+  - mongoose - Mongoose database connection wrapper
+  - redis - Redis database connection wrapper
+  - server - Common Root Express server which is responsible for bootstrapping all of the microservices including middleware, database connections, and routes
+  - utils - Common utility functions
+- services - All backend microservices
+- workspace-scripts - Scripts for managing tasks across workspaces
+- jest.config.js - Jest configuration file
+- turbo.json - Turbo configuration file
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
+</br>
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+## Preqrequisites
 
-### Utilities
+- [Node.js](https://nodejs.org/en/) (v16 or higher).
+- [pnpm](https://pnpm.io) (v6 or higher).
+- You will need to create a `.env` at the root of every workspace and fill in the required keys.
+- Email functionality is provided through Gmail and as such will need a pair of credentials to authenticate with it. This can be as simple as using a [App Password](https://support.google.com/accounts/answer/185833?hl=en).
+- A [MongoDB](https://www.mongodb.com/) and a [Redis](https://redis.io/) data source.
+- A [Stripe](https://stripe.com/) account with its [API keys](https://stripe.com/docs/keys).
+
+</br>
+
+## Commands
+
+- `pnpm install` - Installs all dependencies for all packages/apps
+- `pnpm build` - Builds all packages/apps using [Esbuild](https://esbuild.github.io/). This must be executed before trying to run any of the apps.
+- `pnpm dev` - Runs a development server for all apps.
+- `pnpm test` - Runs the test suites for all apps.
+
+</br>
+
+## Utilities
 
 This turborepo has some additional tools already setup for you:
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
 - [ESLint](https://eslint.org/) for code linting
 - [Prettier](https://prettier.io) for code formatting
 
-### Build
+</br>
 
-To build all apps and packages, run the following command:
+## Deployment
 
-```
-cd my-turborepo
-pnpm run build
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm run dev
-```
-
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-pnpm dlx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your turborepo:
-
-```
-pnpm dlx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+Deployment is handled automatically by [GitHub Actions](.github\workflows\release.yml) when a commit is pushed to the master branch. The services are containerized and push to the [GitHub Package Registry](https://github.com/features/packages) as Docker images. These images are then pulled by an ArgoCD instance running on a Kubernetes cluster and deployed to the cluster. All of the kubernetes manifest required for this process can be found at the [following repository](https://github.com/Akalanka47000/pharmaceutical-kube-config). The process of updating these manifests has been automated. The Kubernetes cluster can be on any cloud provider, but this project uses a local one bootstrapped through [Docker Desktop](https://www.docker.com/products/docker-desktop).

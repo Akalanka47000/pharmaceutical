@@ -38,8 +38,6 @@ RUN pnpm turbo run build --filter=$service
 
 EXPOSE 8080
 
-RUN export dir=$(echo "$service" | cut -d'-' -f1)
-
 ENV directory=$dir
 
 CMD ["sh", "-c",  "node services/$directory/dist/server.js --enable-source-maps"]

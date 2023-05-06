@@ -54,6 +54,7 @@ export async function getTicketById(id) {
 }
 
 export function getAllTickets({ filters = {}, sorts: sort = {}, page, limit }) {
+  if (filters.user) filters.user = mongoose.Types.ObjectId(filters.user);
   if (page && limit) {
     const pipeline = [...aggregatePopulate(['users', 'user'])];
     if (!isEmpty(filters)) {

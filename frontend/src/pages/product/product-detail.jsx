@@ -128,7 +128,7 @@ function ProductDetail() {
                       Delete
                     </Button>
                   </Link>
-                  <Button className="w-full py-4 text-base" onClick={onClickEdit}>
+                  <Button className="w-full py-4 text-base mt-4" onClick={onClickEdit}>
                     Edit
                   </Button>
                 </>

@@ -14,7 +14,7 @@ export const serviceGetTickets = (filters, sorts, page, limit) => {
 
 export const serviceGetTicketById = async (id, user) => {
   const ticket = await traced(getTicketById)(id);
-  if (user.role !== roles.admin && ticket.user?._id !== user._id) {
+  if (user.role !== roles.admin && ticket.user?._id?.toString() !== user._id) {
     throw createError(403, 'You are not allowed to access this resource');
   }
   return ticket;

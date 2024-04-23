@@ -32,7 +32,7 @@
     "migrate-mongo": "9.0.0",
     "mongoose": "^6.3.4",
     "mongoose-lean-defaults": "2.2.1",
-    "mongoose-aggregate-paginate-v2": "1.0.6"
+    "mongoose-aggregate-paginate-v2": "1.0.7"
   },
   "devDependencies": {
     "nodemon": "1.12.1"

@@ -23,7 +23,7 @@
     "@sliit-foss/module-logger": "1.1.2",
     "@sliit-foss/mongoose-filter-query": "1.1.1",
     "celebrate": "15.0.1",
-    "express": "4.16.3",
+    "express": "4.19.2",
     "express-http-context": "1.2.4",
     "http-errors": "2.0.0",
     "lodash": "4.17.10",
